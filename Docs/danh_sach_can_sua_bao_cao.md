@@ -60,3 +60,25 @@
 ### 4.2.3. Đánh giá thuật toán Store-and-Forward
 - Cắt dán đoạn log: `Flushing offline buffer (279 bytes)...` và `Flush: 2 sent, 0 failed`.
 - Lập luận: Chứng minh được gói tin tại thời điểm mất mạng đã được cất an toàn vào thẻ SD, và khi mạng có lại, nó được "flush" 100% lên server, không mất dữ liệu.
+
+---
+
+## 4. NHẬN XÉT TỪ MENTOR (REVIEW MỚI NHẤT)
+Tôi đã quét toàn bộ file `baocao_text.txt` và đối chiếu với mã nguồn `pipeline.c` cũng như kiến trúc thực tế. Danh sách em tự liệt kê ở trên là **tốt và chính xác** (đặc biệt là tính toán 100 slot tốn ~50KB RAM là chuẩn vì `PAYLOAD_MAX_LEN` = 512). Tuy nhiên, em đã để lọt **những lỗi sai logic cực kỳ nghiêm trọng** trong bản nháp báo cáo. Phải sửa ngay nếu không muốn bị hội đồng trừ điểm nặng:
+
+### ❌ Lỗi sai 1: Ngụy biện về tốc độ SPI (Dòng 202 vs Dòng 177)
+- **Sai lầm:** Ở dòng 202 em viết: *"Tốc độ của bus SPI đảm bảo việc ghi nối (append) các chuỗi JSON cảnh báo không gây tắc nghẽn vòng lặp chính của vi điều khiển."* 
+- **Tại sao sai:** Hoàn toàn sai bản chất hệ điều hành thời gian thực! Tốc độ SPI không hề ngăn chặn việc "tắc nghẽn". Chính em đã thừa nhận ở dòng 177 là thẻ SD có thể bị trễ (delay) do các chu kỳ xóa block nội bộ (internal wear-leveling). Cái giúp vòng lặp chính (Sensor Task) không bị tắc nghẽn là nhờ **kiến trúc tách Tác vụ (Task) độc lập và dùng Queue RAM làm đệm**, KHÔNG PHẢI do bus SPI nhanh hay chậm.
+- **Yêu cầu sửa:** Xóa câu ngụy biện đó đi. Sửa thành: *"Việc giao tiếp SPI được đặt trong một luồng (Task) riêng biệt (Transmit Task) và được cách ly với luồng thu thập dữ liệu bằng Queue, đảm bảo các chu kỳ trễ khi ghi file của thẻ SD không làm gián đoạn quá trình lấy mẫu của cảm biến."*
+
+### ❌ Lỗi sai 2: Dùng sai thuật ngữ chuyên ngành (Dòng 182)
+- **Sai lầm:** Ở dòng 182 em viết mô hình Store-and-Forward đưa dữ liệu vào thẻ SD để *"lưu trữ vĩnh cửu (Store)"*.
+- **Tại sao sai:** Kỹ sư không dùng từ "vĩnh cửu" (Permanent) cho một file buffer. Hơn nữa, chính ở dòng 281 em có viết về cơ chế **Retention Policy tự động xóa file sau 5 ngày**. Đã tự động xóa thì sao gọi là vĩnh cửu? 
+- **Yêu cầu sửa:** Đổi chữ "vĩnh cửu" thành **"lưu trữ bền vững (Persistent Storage)"** hoặc **"lưu trữ không bay hơi (Non-volatile Storage)"**.
+
+### ❌ Lỗi sai 3: Chương 4 chưa có tư duy minh họa dữ liệu định lượng
+- **Nhận xét:** Trong phần Gợi ý viết Chương 4 (mục 3 của file này), em định dùng text log (`WDG: heap_free...`) để chứng minh. Dùng log là đúng, nhưng **quá phèn và sinh viên**. Hội đồng không ai muốn căng mắt đọc từng dòng text log.
+- **Yêu cầu:** Em có sẵn script `generate_thesis_charts_matplotlib.py` trong source code. Phải dùng nó để **vẽ đồ thị (Line Chart)** chứng minh `heap_free` đi ngang (ổn định) theo trục thời gian, và biểu đồ thể hiện tốc độ `Interleaved Flush` dọn dẹp buffer khi có mạng lại. Báo cáo kỹ thuật là phải có data visualization (trực quan hóa dữ liệu).
+
+### ❌ Lỗi sai 4: Thiết kế phần cứng Hình 3.2
+- **Nhắc nhở:** Trong danh sách em đã note là cần vẽ lại Altium để nối GPIO4 vào PWRKEY (Hard Reset). Đây là yêu cầu BẮT BUỘC để chứng minh tính năng Self-Healing của hệ thống. Nhớ cập nhật lại cái Hình 3.2 sau khi vẽ xong, nếu nộp hình cũ hội đồng hỏi vặn "chân nào reset cứng phần cứng LTE" mà trên sơ đồ nguyên lý không có nét nối thì sẽ bị rớt.
