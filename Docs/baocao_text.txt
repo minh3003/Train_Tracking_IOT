@@ -1,0 +1,321 @@
+NHIỆM VỤ ĐỒ ÁN TỐT NGHIỆP
+(NGÀNH ĐIỆN TỬ VIỄN THÔNG)
+Thông tin về sinh viên:
+Email (đại diện):  phamnhatminh202@gmail.com
+Hệ đào tạo: Chính quy			Chuyên ngành: Điện tử     
+Đồ án tốt nghiệp được thực hiện tại:   Đại học Bách Khoa Hà Nội
+Thời gian làm ĐATN: Từ ngày	
+Tên đề tài: Thiết kế hệ thống giám sát tàu hỏa ứng dụng IoT có tính năng chống mất dữ liệu.
+MỤC LỤC
+MỤC LỤC	ii
+DANH MỤC HÌNH ẢNH	iv
+DANH MỤC VIẾT TẮT	vi
+DANH MỤC BẢNG BIỂU	vii
+LỜI MỞ ĐẦU	1
+CHƯƠNG 1: TỔNG QUAN ĐỀ TÀI	2
+1.1. Đặt vấn đề	2
+1.2. Mục tiêu nghiên cứu	4
+1.2.1. Nền tảng phần cứng	4
+1.2.2. Cơ chế đệm ngoại tuyến	4
+1.2.3. Thuật toán đồng bộ hóa dữ liệu	5
+1.2.4. Kiến trúc phần mềm nhúng	5
+1.2.5. Giao tiếp hai chiều	5
+1.3. Đối tượng và phạm vi nghiên cứu	5
+1.3.1. Đối tượng nghiên cứu	5
+1.3.2. Phạm vi và giới hạn của đề tài	6
+1.4. Phương pháp thực hiện	6
+1.5. Kết luận chương	7
+CHƯƠNG 2: CƠ SỞ LÝ THUYẾT	8
+2.1. ESP32 và FreeRTOS	8
+2.1.1. Kiến trúc ESP32	8
+2.1.2. FreeRTOS	9
+2.1.3. Queue và cơ chế đồng bộ	9
+2.2. Công nghệ truyền thông LTE	9
+2.2.1. Module A7680C LTE Cat-1	9
+2.2.2. Giao tiếp AT Command	10
+2.2.3. URC và xử lý bất đồng bộ	11
+2.3. Giao thức MQTT	11
+2.3.1. Publish/Subscribe	11
+2.3.2. QoS	12
+2.4. Hệ thống lưu trữ ngoại tuyến	12
+2.4.1. Thẻ nhớ MicroSD và chuẩn giao tiếp SPI	12
+2.4.2. FAT32	13
+2.4.3. Mô hình Store-and-Forward	13
+2.5. Tổng kết chương	14
+CHƯƠNG 3: THIẾT KẾ HỆ THỐNG	15
+3.1. Thiết kế sơ đồ khối phần cứng	15
+3.1.1. Khối nguồn	15
+3.1.2. Khối vi điều khiển và giao tiếp ngoại vi	16
+3.2. Kiến trúc phân tầng Firmware	17
+3.2.1. Tầng trừu tượng phần cứng (Hardware Abstraction Layer – HAL)	18
+3.2.2. Tầng dịch vụ lõi (Service Layer)	19
+3.2.3. Tầng điều phối ứng dụng (Application Layer/Pipeline)	19
+3.2.4. Triển khai kiến trúc trên mã nguồn	20
+3.3. Đa nhiệm FreeRTOS và phân bổ tài nguyên lõi	20
+3.3.1. Phân bổ tác vụ theo cấu trúc đa lõi (Task Pinning)	21
+3.3.2. Cơ chế đệm dữ liệu liên tác vụ (FreeRTOS Queue)	22
+3.3.3. Cơ chế khóa đồng bộ (Mutex)	23
+3.4. Quy hoạch cấu trúc dữ liệu, Tập lệnh và Trạng thái mạng	24
+3.4.1. Tập lệnh giao tiếp AT và mã sự kiện gián đoạn (URC)	24
+3.4.2. Máy trạng thái mạng (Network FSM)	27
+3.4.3. Cấu trúc bản tin viễn trắc	29
+KẾT LUẬN	37
+TÀI LIỆU THAM KHẢO	38
+DANH MỤC HÌNH ẢNH
+Hình 1.1: Mô phỏng biến thiên cường độ tín hiệu LTE khi phương tiện di chuyển qua đoạn hầm đường sắt	3
+Hình 1.2: Minh họa khoảng trống dữ liệu trên hệ thống giám sát khi thiết bị không có cơ chế lưu trữ dự phòng	3
+Hình 1.3: Mô phỏng cơ chế đệm cục bộ ngoại tuyến và chuyển tiếp dữ liệu sau khi khôi phục kết nối mạng	4
+Hình 2.1: Sơ đồ khối kiến trúc vi điều khiển lõi kép ESP32	8
+Hình 2.2: Đặc tuyến dòng điện đỉnh của module A7680C khi dò sóng	10
+Hình 2.3: Kiến trúc Publish/Subscribe của giao thức MQTT	11
+Hình 2.4: Cơ chế xác nhận bản tin trong MQTT QoS 1	12
+Hình 2.5: Lưu đồ Store-and-Forward kết hợp hàng đợi trên RAM và lưu trữ ngoại tuyến	13
+Hình 3.1: Sơ đồ nguyên lý khối nguồn	15
+Hình 3.2: Sơ đồ nguyên lý kết nối vi điều khiển ESP32 và các module ngoại vi.	16
+Hình 3.3: Mô hình kiến trúc phân tầng Firmware của hệ thống	18
+Hình 3.4: Cấu trúc tổ chức thư mục mã nguồn (Source Tree) theo mô hình phân tầng	20
+Hình 3.5: Cơ chế phân bổ tác vụ và đồng bộ dữ liệu trên kiến trúc lõi kép ESP32	21
+Hình 3.6: Khởi tạo và phân bổ các tác vụ lõi bằng API của FreeRTOS	21
+Hình 3.7: Khởi tạo hàng đợi liên tác vụ trên bộ nhớ RAM để làm vùng đệm sơ cấp	22
+Hình 3.8: Khai báo các trạng thái của Network FSM	27
+Hình 3.9: Lưu đồ chuyển trạng thái của máy trạng thái mạng	28
+Hình 3.10: Cấu trúc bản tin viễn trắc định dạng JSON	29
+Hình 3.11: Lưu đồ thuật toán định tuyến dữ liệu và bảo vệ hệ thống tệp tin ngoại tuyến	32
+Hình 3.12: Trích đoạn mã nguồn xử lý tín hiệu nghẽn Hàng đợi (Queue Congested) và Khôi phục (Recovered) bằng cơ chế Trễ từ (Hysteresis)	34
+Hình 3.13: Lưu đồ thuật toán cơ chế chuyển đổi luồng dữ liệu theo trạng thái mạng	35
+Hình 3.14: Minh họa cấu trúc gói tin điều khiển định dạng JSON gửi từ máy chủ đến thiết bị	36
+Hình 3.15: Bản tin MQTT phản hồi xác nhận thực thi thành công lệnh điều khiển set_interval từ máy chủ	37
+Hình 3.16: Biểu đồ tuần tự minh họa dòng thời gian của chu trình nhận lệnh điều khiển và phản hồi (ACK)	38
+Hình 3.17: Sơ đồ khối nguyên lý hoạt động của cơ chế điều khiển và giám sát từ xa	39
+DANH MỤC VIẾT TẮT
+DANH MỤC BẢNG BIỂU
+Bảng 2.1: Vai trò của các thành phần kỹ thuật trong hệ thống	14
+Bảng 3.1: Bảng tập lệnh AT	26
+Bảng 3.2: Bảng danh sách mã URC	27
+Bảng 3.3: Giải nghĩa các trường tham số trong gói tin JSON	30
+Bảng 3.4: Bảng phân phối lệnh điều khiển từ xa (Command Dispatch) tại thiết bị	37
+LỜI MỞ ĐẦU
+TỔNG QUAN ĐỀ TÀI
+Đặt vấn đề
+Mạng lưới đường sắt Việt Nam trải dài hơn 3.000 km, trong đó tuyến huyết mạch Bắc-Nam phải di chuyển xuyên qua 27 hầm đường sắt lịch sử. Điển hình như cung đường đèo Hải Vân có chiều dài 19,8 km ôm trọn 6 hầm liên tiếp. Khi phương tiện di chuyển qua đoạn địa hình phức tạp này, trung tâm điều hành có thể không nhận được dữ liệu giám sát trong một khoảng thời gian kéo dài 20 đến 30 phút. Đây là đặc điểm vận hành khác biệt căn bản so với phương tiện đường bộ: tàu hỏa không thể thay đổi lộ trình và buộc phải đi qua các khu vực có chất lượng phủ sóng không ổn định.
+Vấn đề kỹ thuật nảy sinh trực tiếp từ thực tế này: tín hiệu vô tuyến phải chịu hai nguồn suy hao chồng chất. Thứ nhất là suy hao đường truyền do hình học hẹp của môi trường hầm (waveguide effect) và hiện tượng tán xạ đa đường, làm suy giảm nghiêm trọng cường độ tín hiệu so với không gian mở. Thứ hai là lớp vỏ kim loại và kính tráng màng cách nhiệt của toa tàu tạo ra hiệu ứng lồng Faraday. Theo báo cáo đánh giá trên các hệ thống đường sắt hiện đại của Bộ Giao thông Vận tải Vương quốc Anh (DfT), kết cấu này gây ra tổn hao xuyên thấu (vehicle penetration loss) đo đạc thực tế ở mức 20 dB đến 30 dB đối với sóng vô tuyến. 
+Với xu hướng ngành Đường sắt Việt Nam liên tục nâng cấp các toa xe chất lượng cao, đóng kín và sử dụng điều hòa trung tâm. Mức suy hao lớn này trở thành một rào cản kỹ thuật không thể bỏ qua. Sự kết hợp của các yếu tố trên làm suy giảm đáng kể chất lượng tín hiệu LTE, dẫn đến tình trạng mất kết nối hoàn toàn kéo dài tại nhiều khu vực trên tuyến đường.
+Mô phỏng biến thiên cường độ tín hiệu LTE khi phương tiện di chuyển qua đoạn hầm đường sắt
+Hậu quả trực tiếp đối với thiết bị giám sát phụ thuộc vào kết nối thời gian thực là toàn bộ dữ liệu thu thập trong giai đoạn mất sóng không được truyền về máy chủ. Quỹ đạo di chuyển của phương tiện trên hệ thống giám sát bị đứt gãy, tạo ra những khoảng trống dữ liệu không thể lấp đầy sau khi chuyến đi kết thúc. Đối với các ứng dụng giám sát an toàn, đây không chỉ là vấn đề suy giảm chất lượng dữ liệu mà còn ảnh hưởng trực tiếp đến khả năng truy xuất lịch sử. Sự gián đoạn này cản trở nghiêm trọng quá trình phân tích, đánh giá và điều tra nguyên nhân khi có sự cố kỹ thuật xảy ra trên tuyến.
+Minh họa khoảng trống dữ liệu trên hệ thống giám sát khi thiết bị không có cơ chế lưu trữ dự phòng
+Để khắc phục nhược điểm này, thiết bị giám sát cần có khả năng tự chủ đánh giá trạng thái kết nối và lưu trữ dữ liệu cục bộ khi phát hiện mất sóng. Thay vì phụ thuộc hoàn toàn vào đường truyền, hệ thống phải duy trì hoạt động độc lập trong giai đoạn mất kết nối và tự động khôi phục dữ liệu tồn đọng khi kết nối được thiết lập lại.
+Mô phỏng cơ chế đệm cục bộ ngoại tuyến và chuyển tiếp dữ liệu sau khi khôi phục kết nối mạng
+Xuất phát từ yêu cầu kỹ thuật trên, đồ án này tập trung thiết kế một thiết bị giám sát hành trình tàu hỏa có khả năng tự động lưu trữ dữ liệu khi mất kết nối LTE và đồng bộ lại toàn bộ dữ liệu tồn đọng khi đường truyền được khôi phục, đảm bảo không có gói tin nào bị mất trong suốt hành trình.
+Mục tiêu nghiên cứu
+Mục tiêu cốt lõi của đề tài là xây dựng một thiết bị giám sát hoạt động ổn định trong điều kiện kết nối LTE không liên tục, đảm bảo tính toàn vẹn dữ liệu từ điểm thu thập đến máy chủ. Để đạt được mục tiêu này, đồ án tập trung vào năm nhóm nhiệm vụ cụ thể:
+Nền tảng phần cứng
+Xây dựng mạch điện có khả năng duy trì điện áp ổn định cho module LTE trong điều kiện tải thay đổi đột ngột. Module LTE Cat-1 có thể kéo dòng đỉnh lên tới 2A trong quá trình thiết lập kết nối và truyền dữ liệu, đặc biệt khi đang tìm kiếm sóng ở vùng phủ yếu. Sụt áp tại thời điểm này là nguyên nhân trực tiếp gây ra hiện tượng module khởi động lại đột ngột (một vấn đề thực tế được ghi nhận và xử lý trong quá trình phát triển đồ án).
+Cơ chế đệm ngoại tuyến
+Phát triển thuật toán theo dõi trạng thái kết nối và tự động chuyển hướng luồng dữ liệu sang bộ nhớ dự phòng khi phát hiện mất kết nối. Cơ chế này phải hoạt động trong thời gian thực, không làm gián đoạn quá trình thu thập dữ liệu cảm biến đang diễn ra song song.
+Thuật toán đồng bộ hóa dữ liệu
+Xây dựng quy trình gửi bù dữ liệu tồn đọng khi kết nối được khôi phục. Thách thức ở đây là cân bằng giữa hai luồng dữ liệu: dữ liệu cũ đang chờ gửi bù và dữ liệu mới đang tiếp tục được thu thập. Nếu ưu tiên gửi hết dữ liệu cũ trước, dữ liệu mới sẽ bị ứ đọng trong hàng đợi và có thể bị mất. Thuật toán gửi xen kẽ được đề xuất để giải quyết xung đột này.
+Kiến trúc phần mềm nhúng
+FreeRTOS được sử dụng để tổ chức hệ thống thành các tác vụ (Task) độc lập như: thu thập dữ liệu cảm biến, quản lý kết nối LTE, và lưu trữ thẻ nhớ. Cách tiếp cận này giúp triệt tiêu sự phụ thuộc chéo giữa các chức năng, đảm bảo hệ thống không bị tắc nghẽn cục bộ khi mạng di động xuất hiện các sự kiện có thời gian phản hồi không xác định.
+Giao tiếp hai chiều
+Nghiên cứu và triển khai cơ chế giao tiếp hai chiều giữa thiết bị IoT và máy chủ, hỗ trợ truyền dữ liệu giám sát đồng thời với việc nhận các lệnh điều khiển từ xa.
+Đối tượng và phạm vi nghiên cứu
+Đối tượng nghiên cứu
+Hệ thống được cấu thành dựa trên việc nghiên cứu chuyên sâu các công nghệ lõi trong lĩnh vực Internet vạn vật và Hệ thống nhúng, bao gồm:
+Vi điều khiển ESP32 với hệ điều hành thời gian thực FreeRTOS, tập trung vào cơ chế quản lý đa tác vụ, hàng đợi và khóa loại trừ tương hỗ để đảm bảo an toàn khi truy cập tài nguyên dùng chung.
+Module truyền thông di động A7680C LTE Cat-1, bao gồm quy trình thiết lập kết nối mạng và điều khiển qua tập lệnh AT. Module này được lựa chọn để thay thế các module thế hệ 2G (như SIM800L) nhằm đáp ứng lộ trình tắt sóng 2G hoàn toàn tại Việt Nam, đồng thời đảm bảo yêu cầu băng thông cao hơn cho thiết bị IoT.
+Giao thức MQTT với kết nối bảo mật TLS, phục vụ truyền nhận dữ liệu định dạng JSON giữa thiết bị và máy chủ. Lựa chọn này xuất phát từ đặc điểm hạng nhẹ của giao thức MQTT, vốn được chuẩn hóa dành riêng cho các thiết bị nhúng có tài nguyên hạn chế hoạt động trên đường truyền không ổn định.
+Hệ thống lưu trữ thẻ nhớ MicroSD thông qua giao tiếp SPI và hệ thống tệp FAT32, với cơ chế luân chuyển file tự động để tránh tràn bộ nhớ trong quá trình vận hành dài ngày.
+Phạm vi và giới hạn của đề tài
+Phần cứng
+Đề tài dừng ở mức nguyên mẫu lắp ráp trên bo mạch thử nghiệm phục vụ kiểm thử tính năng. Chưa bao gồm thiết kế mạch in đa lớp chống nhiễu hay vỏ hộp đạt tiêu chuẩn môi trường công nghiệp như chống nước, chống rung lắc cơ học.
+Dữ liệu cảm biến
+trong giai đoạn phát triển Firmware, dữ liệu GPS và cảm biến quán tính được giả lập bằng module phần mềm để tập trung kiểm thử độ tin cậy của cơ chế truyền thông và lưu trữ dự phòng. Kiến trúc Firmware được thiết kế để có thể tích hợp dữ liệu cảm biến thực tế mà không ảnh hưởng đến logic xử lý phía trên.
+Phần mềm phía máy chủ
+Đề tài sử dụng dịch vụ MQTT Broker công cộng làm điểm tiếp nhận dữ liệu. Phát triển hệ thống dashboard hay phân tích dữ liệu phía server nằm ngoài phạm vi của đồ án.
+Phương pháp thực hiện
+Đồ án được thực hiện theo quy trình phát triển từ thành phần đến hệ thống, với kiểm thử độc lập từng module trước khi tích hợp.
+Giai đoạn một: tập trung vào xác nhận phần cứng — kiểm thử giao tiếp UART với module LTE, đọc dữ liệu GPS, ghi đọc thẻ nhớ qua SPI, và đo đạc điện áp thực tế tại các điểm cấp nguồn quan trọng.
+Giai đoạn hai: xây dựng kiến trúc Firmware FreeRTOS từng tầng, kiểm thử từng cơ chế độc lập trước khi tích hợp — hàng đợi dữ liệu, máy trạng thái kết nối, cơ chế đệm ngoại tuyến, rồi đến thuật toán gửi xen kẽ.
+Giai đoạn ba: kiểm thử hệ thống theo các kịch bản thực tế: mô phỏng mất kết nối đột ngột bằng cách ngắt anten module LTE trong khi hệ thống đang truyền dữ liệu, quan sát hành vi chuyển trạng thái và xác nhận tính toàn vẹn dữ liệu sau khi kết nối được khôi phục.
+Kết luận chương
+Như vậy, Chương đầu tiên đã thiết lập toàn bộ bối cảnh kỹ thuật, xác định rõ các rào cản truyền thông và định hướng giải pháp cho đồ án. Trên cơ sở đó, các chương tiếp theo sẽ đi sâu vào quá trình bóc tách kiến trúc, thiết kế phần cứng và hiện thực hóa thuật toán Firmware cho từng phân hệ của hệ thống.
+CƠ SỞ LÝ THUYẾT
+Mục tiêu của chương này là trình bày các đặc tính kỹ thuật của những nền tảng công nghệ được áp dụng. Nội dung tập trung giải thích lý do tại sao các công nghệ này (ESP32, FreeRTOS, MQTT, Store-and-Forward) được lựa chọn để giải quyết bài toán chống đứt gãy dữ liệu trong môi trường khắc nghiệt của đường sắt.
+ESP32 và FreeRTOS
+Kiến trúc ESP32
+Đối với hệ thống giám sát hành trình yêu cầu xử lý đa luồng, module ESP32-WROOM-32E được lựa chọn. Vi điều khiển sở hữu bộ xử lý lõi kép (Dual-core) Xtensa 32-bit LX6 với xung nhịp lên tới 240 MHz, đáp ứng yêu cầu xử lý đồng thời các tác vụ thu thập dữ liệu và truyền thông. Kiến trúc lõi kép cho phép phân bổ các nhóm tác vụ nặng (như thu thập I/O thời gian thực và quản lý viễn thông) chạy song song độc lập, hạn chế tối đa rủi ro nghẽn cổ chai khi vi xử lý phải gánh vác các giao thức mạng phức tạp.
+Bên cạnh đó, ESP32 tích hợp sẵn 520 KB bộ nhớ SRAM nội bộ. Đây là yếu tố cốt lõi vì mỗi tác vụ cần được cấp phát vùng không gian (Stack) riêng trong SRAM để lưu trữ ngữ cảnh thực thi. Tuy nhiên, sau khi phân bổ tài nguyên cho hệ điều hành và ngăn xếp mạng, vùng nhớ trống (Free Heap) còn lại đòi hỏi người thiết kế phải tính toán kích thước hàng đợi (Queue) một cách khắt khe để tránh gây tràn bộ nhớ (Out of Memory).
+Sơ đồ khối kiến trúc vi điều khiển lõi kép ESP32
+FreeRTOS
+Trong lập trình nhúng tuần tự, hệ thống thực thi theo một vòng lặp vô tận. Khi module LTE mất sóng và cố gắng thiết lập lại kết nối, hàm truyền dữ liệu có thể bị chặn (block) trong nhiều giây, dẫn đến việc bỏ lỡ các tọa độ GPS có tính chất thời gian thực.
+FreeRTOS được sử dụng để khắc phục vấn đề thắt cổ chai này nhờ cơ chế chuyển đổi ngữ cảnh (Context Switching) tối ưu dành cho hệ thống thời gian thực. Bộ lập lịch (Scheduler) dựa trên độ ưu tiên (Priority) cho phép ngắt (preempt) tác vụ mạng đang bị treo để nhường CPU cho tác vụ đọc cảm biến, đảm bảo tính liên tục của dữ liệu đầu vào.
+Queue và cơ chế đồng bộ
+Để di chuyển dữ liệu an toàn giữa Tác vụ thu thập (Producer) và Tác vụ tiêu thụ (Consumer), FreeRTOS Queue được sử dụng như một cấu trúc dữ liệu liên tác vụ an toàn. Thay vì sử dụng các biến toàn cục dễ gây xung đột (Race Condition), Queue đảm bảo tính nhất quán của dữ liệu tọa độ khi truyền giữa các lõi CPU. Ngoài ra, cơ chế Mutex (Khóa loại trừ tương hỗ) được áp dụng để bảo vệ các tài nguyên dùng chung như bus SPI của thẻ nhớ, ngăn chặn xung đột dữ liệu.
+Nếu tác vụ mạng bị trễ do rớt sóng, Tác vụ đọc vẫn tiếp tục nạp dữ liệu vào Queue. Cơ chế này giúp tách biệt tốc độ sinh dữ liệu của ngoại vi liên tục (GPS) với tốc độ xử lý của đường truyền bất ổn định (LTE), giúp hệ thống vẫn duy trì hoạt động ổn định khi xuất hiện các khoảng trễ. Kích thước của Queue phải được thiết kế tính toán dựa trên tần suất lấy mẫu của cảm biến và thời gian tối đa hệ thống cần để thao tác với thẻ SD, qua đó đóng vai trò là chốt chặn chống mất dữ liệu đầu tiên trước khi kích hoạt lưu trữ ngoại tuyến.
+Công nghệ truyền thông LTE
+Module A7680C LTE Cat-1
+Để đáp ứng lộ trình tắt sóng 2G, hệ thống sử dụng module A7680C hỗ trợ mạng di động 4G LTE Cat-1. Tốc độ truyền dữ liệu của LTE Cat-1 vượt xa yêu cầu của các bản tin dữ liệu giám sá có kích thước nhỏ. Việc lựa chọn công nghệ này không nhằm khai thác tốc độ truyền tải tối đa mà hướng tới khả năng hoạt động ổn định trên hạ tầng LTE hiện có, đồng thời đạt được sự cân bằng giữa chi phí triển khai, mức tiêu thụ năng lượng và hiệu năng truyền thông. Bên cạnh đó, modem A7680C tích hợp sẵn ngăn xếp giao thức TCP/IP, giúp giảm tải đáng kể khối lượng xử lý truyền thông cho vi điều khiển ESP32.
+Vấn đề then chốt của giao tiếp vô tuyến là tiêu thụ dòng điện lớn dạng xung (Burst). Theo đặc tả kỹ thuật, A7680C kéo dòng đỉnh (Peak Current) lên tới 2A trong giai đoạn phát vô tuyến, đặc biệt là khi tín hiệu yếu ở khu vực hầm. Điện áp cấp cho module tuyệt đối không được sụt dưới 3.4V để tránh hiện tượng sập nguồn tự động (Power Off). Đặc tính khắt khe này là cơ sở kỹ thuật bắt buộc để thiết kế khối nguồn hạ áp (Buck Converter) có khả năng chịu tải cao như LM2596 (dòng định mức tối đa 3A), kết hợp với nguồn cấp (Adapter/Pin) đủ công suất, thay vì phụ thuộc vào chuẩn USB 500mA thông thường.
+Đặc tuyến dòng điện đỉnh của module A7680C khi dò sóng
+Giao tiếp AT Command
+Vi điều khiển giao tiếp với modem LTE thông qua giao diện UART và bộ lệnh AT Command. Cơ chế Request/Response cho phép ESP32 thực hiện các thao tác cấu hình mạng, kiểm tra trạng thái kết nối, đánh giá chất lượng tín hiệu và truyền dữ liệu ứng dụng thông qua modem một cách có kiểm soát.
+URC và xử lý bất đồng bộ
+Điểm mấu chốt và khó khăn nhất trong việc quản lý kết nối di động là xử lý Mã kết quả không yêu cầu (Unsolicited Result Code - URC). Khác với các lệnh có phản hồi theo mô hình Request/Response, các sự kiện mạng thường xảy ra một cách bất đồng bộ và không thể dự đoán trước.
+Trong công nghệ viễn thông, modem hỗ trợ cơ chế URC để chủ động thông báo các thay đổi trạng thái mạng hoặc trạng thái kết nối cho vi điều khiển thay vì chờ hệ thống thực hiện truy vấn định kỳ. Cảnh báo URC cho phép hệ thống hoạt động theo cơ chế hướng sự kiện (event-driven), giúp giảm nhu cầu polling liên tục và hỗ trợ phát hiện các thay đổi trạng thái kết nối một cách kịp thời hơn.
+Việc khai thác cơ chế URC giúp hệ thống phát hiện sớm các sự cố kết nối mạng, tạo cơ sở để kích hoạt cơ chế lưu trữ ngoại tuyến và đồng bộ dữ liệu khi kết nối được khôi phục.
+Giao thức MQTT
+Publish/Subscribe
+Hệ thống sử dụng giao thức MQTT thay cho HTTP vì MQTT được thiết kế với phần điều khiển gọn nhẹ hơn đáng kể so với HTTP, giúp giảm overhead truyền thông. Mô hình Publish/Subscribe thông qua máy chủ Broker trung gian giúp giải quyết bài toán băng thông hẹp và tối ưu điện năng. Broker đóng vai trò là "Tổng đài phân loại" (Message Router), duy trì trạng thái phiên của các Node và định tuyến gói tin đến đúng Subscriber dựa trên các Topic, giúp các thiết bị đầu cuối không cần quan tâm đến địa chỉ IP của nhau.
+Kiến trúc Publish/Subscribe của giao thức MQTT
+QoS
+MQTT cung cấp 3 mức Chất lượng Dịch vụ (QoS 0, 1, 2). Với đặc thù giám sát hành trình không được phép thất thoát dữ liệu, mức QoS 1 (Giao ít nhất một lần) được lựa chọn.
+QoS 1 yêu cầu mọi bản tin đẩy lên (PUBLISH) đều phải nhận lại một gói tin xác nhận (PUBACK) từ Broker. Nếu hệ thống không nhận được PUBACK sau một khoảng thời gian Timeout cấu hình trước, bản tin đó sẽ được đánh dấu là chưa gửi thành công. Cơ chế này đóng vai trò là "Công tắc kích hoạt" (Trigger) thứ hai để nhận diện sự cố truyền tải khi mạng LTE vẫn báo có sóng nhưng không thể kết nối tới máy chủ
+Cơ chế xác nhận bản tin trong MQTT QoS 1
+Hệ thống lưu trữ ngoại tuyến
+Thẻ nhớ MicroSD và chuẩn giao tiếp SPI
+Để hiện thực hóa cơ sở lưu trữ không bay hơi trong các chu kỳ mất kết nối kéo dài, hệ thống sử dụng thẻ nhớ MicroSD giao tiếp với vi điều khiển thông qua chuẩn SPI. Giải pháp này cho phép lưu trữ dữ liệu cục bộ với dung lượng lớn, đồng thời có chi phí thấp và dễ dàng thay thế khi cần thiết.
+Mặc dù tốc độ lấy mẫu dữ liệu của hệ thống tương đối thấp, quá trình ghi dữ liệu xuống thẻ nhớ không phải lúc nào cũng diễn ra với độ trễ cố định. Do đặc tính quản lý bộ nhớ bên trong của thiết bị lưu trữ Flash, các thao tác ghi có thể xuất hiện những khoảng trễ đáng kể khi thẻ thực hiện các tác vụ nội bộ như xóa khối dữ liệu hoặc tổ chức lại vùng nhớ.
+Trong khoảng thời gian này, nếu tác vụ thu thập dữ liệu phải chờ hoàn tất thao tác ghi xuống thẻ nhớ, chu kỳ lấy mẫu có thể bị ảnh hưởng. Vì vậy, hệ thống sử dụng FreeRTOS Queue làm bộ đệm trung gian trên RAM nhằm tách biệt tác vụ thu thập dữ liệu và tác vụ ghi lưu trữ. Cơ chế này cho phép dữ liệu tiếp tục được tiếp nhận theo thời gian thực ngay cả khi thiết bị lưu trữ đang xuất hiện độ trễ tạm thời.
+FAT32
+Dữ liệu trên thẻ nhớ được tổ chức dưới hệ thống tệp FAT32. Mặc dù ghi dữ liệu trực tiếp vào các cung từ (Raw Sector) sẽ đem lại tốc độ cao hơn, FAT32 được chọn vì tính tương thích phổ quát. Người vận hành hệ thống có thể trích xuất thẻ MicroSD từ thiết bị, cắm vào máy tính cá nhân và lập tức mở các tập tin lưu trữ định dạng Text bằng Notepad để phân tích sự cố mà không cần bất kỳ phần mềm giải mã chuyên dụng nào.
+Mô hình Store-and-Forward
+Store-and-Forward (Lưu trữ và Chuyển tiếp) là nguyên lý thiết kế lõi của các hệ thống mạng chịu trễ (Delay-Tolerant Networking). Mô hình DTN hoạt động dựa trên nguyên lý: thay vì cố gắng tái truyền lập tức và làm tràn bộ đệm RAM cục bộ khi mạng đứt gãy, hệ thống sẽ định tuyến gói tin vào bộ nhớ không bay hơi (như thẻ SD) để lưu trữ vĩnh cửu (Store). Khi môi trường truyền dẫn vô tuyến được khôi phục, hệ thống tự động kiểm soát lưu lượng để trích xuất và đồng bộ lại các gói tin cũ (Forward) lên máy chủ mà không làm gián đoạn luồng dữ liệu hiện tại.
+Lưu đồ Store-and-Forward kết hợp hàng đợi trên RAM và lưu trữ ngoại tuyến
+Tổng kết chương
+Chương này đã trình bày các cơ sở lý thuyết và đặc tính kỹ thuật của những công nghệ được lựa chọn cho hệ thống. Dòng điện đỉnh lên tới 2A của module A7680C đặt ra yêu cầu đối với thiết kế nguồn, trong khi đặc tính bất đồng bộ của mạng di động và cơ chế URC cho thấy sự cần thiết của kiến trúc điều khiển theo sự kiện. Bên cạnh đó, FreeRTOS, MQTT QoS 1 và mô hình Store-and-Forward đã được phân tích như những thành phần cốt lõi nhằm đảm bảo tính liên tục và độ tin cậy của dữ liệu trong điều kiện kết nối không ổn định. Những cơ sở lý thuyết này sẽ được sử dụng làm nền tảng cho việc xây dựng kiến trúc Firmware và các thuật toán điều khiển được trình bày trong Chương tiếp theo.
+Vai trò của các thành phần kỹ thuật trong hệ thống
+THIẾT KẾ HỆ THỐNG 
+Thiết kế sơ đồ khối phần cứng
+Để đảm bảo hệ thống có khả năng vận hành ổn định trong môi trường rung lắc và khắc nghiệt trên tàu hỏa, sơ đồ nguyên lý phần cứng được thiết kế theo hướng phân tách rõ ràng giữa khối nguồn công suất và khối xử lý tín hiệu. Toàn bộ thiết kế được thực hiện trên phần mềm Altium Designer
+Khối nguồn
+Khối nguồn đóng vai trò sống còn trong việc quyết định độ ổn định của toàn hệ thống, đặc biệt là khi module viễn thông LTE hoạt động.
+Sơ đồ nguyên lý khối nguồn
+Như đã phân tích ở Chương 2, module A7680C yêu cầu dòng đỉnh (Peak Current) lên tới 2A khi phát sóng vô tuyến (Tx Burst). Nếu thiết kế nguồn không đạt chuẩn, hiện tượng sụt áp (Voltage Drop) sẽ lập tức làm vi điều khiển ESP32 bị reset (Brownout). Để giải quyết bài toán này, khối nguồn được thiết kế theo kiến trúc hạ áp 2 cấp (Dual-stage Step-down).
+Cấp 1 (12V xuống 5V): Sử dụng IC xung LM2596. Với khả năng cung cấp dòng điện liên tục lên tới 3A, LM2596 dư sức gánh tải dòng đỉnh 2A của module A7680C. Điểm nhấn kỹ thuật của khối này là việc bố trí một tụ điện phân cực (Electrolytic Capacitor) dung lượng lớn 1000uF/16V (C1) ngay tại ngõ ra 5V. Tụ C1 đóng vai trò như một "hồ chứa điện" (Bulk Capacitor), cung cấp dòng xả tức thời để bù áp cho module LTE trong phần ngàn giây khi nó phát sóng, đảm bảo điện áp 5V luôn phẳng và ổn định.
+Cấp 2 (5V xuống 3.3V): Điện áp 5V sau đó được đưa qua IC tuyến tính AMS1117-3.3V để tạo ra điện áp 3.3V chuẩn xác cung cấp cho vi điều khiển ESP32, cảm biến MPU6050, module GPS và thẻ nhớ SD. Các tụ gốm 100nF (C3, C4) được bố trí sát chân linh kiện để triệt tiêu nhiễu cao tần (Decoupling).
+Khối vi điều khiển và giao tiếp ngoại vi
+Sơ đồ kết nối vi điều khiển được thiết kế nhằm tối ưu hóa các bus giao tiếp phần cứng (Hardware Bus), tránh sử dụng giả lập phần mềm (Software Bit-banging) gây ngốn CPU.
+Sơ đồ nguyên lý kết nối vi điều khiển ESP32 và các module ngoại vi.
+Vi điều khiển trung tâm (ESP32-DEVKIT-V1): Đóng vai trò là bộ não điều phối. ESP32 được cấp nguồn trực tiếp vào chân VIN (5V). Các ngoại vi được quy hoạch vào các bộ điều khiển bus vật lý độc lập.
+Khối Viễn thông (A7680C): Được cấp nguồn trực tiếp từ đường 5V. Giao tiếp với ESP32 thông qua bộ Hardware UART (Chân TX-D26 của ESP32 đấu chéo vào chân RX của SIM, và chân RX-D27 của ESP32 đấu chéo vào chân TX của SIM). Việc dùng Hardware UART kết hợp với ngắt (Interrupt) giúp ESP32 không bị lỡ mất các bản tin URC cảnh báo rớt mạng.
+Khối Định vị (GPS NEO-7M): Hoạt động ở mức logic 3.3V, giao tiếp qua bộ Hardware UART số 2 (RX2-D16, TX2-D17), tách biệt hoàn toàn với luồng dữ liệu của module LTE để tránh xung đột.
+Khối Lưu trữ ngoại tuyến (MicroSD): Giao tiếp qua bus SPI tốc độ cao tiêu chuẩn (CS-D5, SCK-D18, MISO-D19, MOSI-D23). Tốc độ của bus SPI đảm bảo việc ghi nối (append) các chuỗi JSON cảnh báo không gây tắc nghẽn vòng lặp chính của vi điều khiển.
+Khối Cảm biến gia tốc (MPU6050): Giao tiếp qua bus I2C (SCL-D22, SDA-D21) phục vụ cho việc mở rộng tính năng phát hiện rung lắc của tàu hỏa trong tương lai.
+Kiến trúc phân tầng Firmware
+Để đảm bảo hệ thống có khả năng vận hành ổn định trong thời gian dài, dễ dàng nâng cấp và bảo trì, phần mềm nhúng (Firmware) của thiết bị không được viết theo tư duy lập trình nguyên khối (Monolithic) tuyến tính. Thay vào đó, hệ thống được thiết kế theo mô hình Kiến trúc phân tầng (Layered Architecture), chia nhỏ mã nguồn thành các module độc lập có tính đóng gói (Encapsulation) cao.
+Mô hình kiến trúc phân tầng Firmware của hệ thống
+Kiến trúc Firmware của hệ thống được chia làm 3 tầng chính như được minh họa tại Hình 3.3:
+Tầng trừu tượng phần cứng (Hardware Abstraction Layer – HAL)
+Đây là tầng thấp nhất, tương tác trực tiếp với các thanh ghi của vi điều khiển ESP32. Nhiệm vụ của tầng này là che giấu đi sự phức tạp của phần cứng bên dưới, cung cấp các hàm giao tiếp chuẩn hóa cho các tầng phía trên.
+Trình điều khiển UART: Quản lý giao tiếp nối tiếp với module LTE A7680C và module GPS. Tầng này chịu trách nhiệm khởi tạo tốc độ baud, cấu hình ngắt (Interrupt) nhận dữ liệu phần cứng để không bỏ sót bất kỳ ký tự nào từ mạng di động.
+Trình điều khiển SPI: Quản lý bus giao tiếp tốc độ cao với thẻ nhớ MicroSD. Tích hợp cơ chế khóa Mutex của FreeRTOS để đảm bảo tại một thời điểm, chỉ có duy nhất một luồng dữ liệu được phép thao tác đọc/ghi vật lý, tránh xung đột phần cứng.
+Trình điều khiển I2C: Quản lý bus giao tiếp với cảm biến gia tốc MPU6050. Cung cấp các hàm cấp thấp để đọc thanh ghi chứa dữ liệu thô (Raw Data) về độ nghiêng và rung chấn của tàu hỏa.
+Tầng dịch vụ lõi (Service Layer)
+Nằm phía trên tầng HAL, tầng Dịch vụ chứa các module phần mềm (Services) thực thi các tác vụ logic chuyên biệt. Các module ở tầng này hoạt động hoàn toàn độc lập, không truy xuất chéo vào các biến toàn cục (Global Variables) của nhau nhằm đảm bảo tính an toàn bộ nhớ.
+GPS Service: Liên tục thu thập chuỗi dữ liệu chuẩn NMEA từ vệ tinh, phân tích cú pháp (Parsing) để trích xuất tọa độ kinh độ, vĩ độ và thời gian thực, sau đó định dạng lại thành chuỗi JSON.
+Motion Service: Khai thác dữ liệu từ I2C Driver để tính toán độ rung lắc và gia tốc. Luồng dữ liệu (Data Stream) này được đồng bộ cùng với GPS để tạo ra một bản ghi giám sát hành trình toàn diện.
+MQTT/LTE Service: Quản lý toàn bộ tập lệnh AT Command giao tiếp với A7680C. Module này đảm nhận việc bao bọc (Wrapper) các lệnh khởi tạo TCP/IP, đăng nhập MQTT Broker, xử lý bản tin URC báo lỗi mạng và cơ chế Publish/Subscribe.
+Storage Service: Quản lý hệ thống tệp tin FAT32. Module này cung cấp các giao diện API cấp cao như: ghi nối thêm tọa độ vào file tạm (Append), đọc xuất dữ liệu cũ (Read) và xóa dữ liệu khi đã đồng bộ thành công.
+Tầng điều phối ứng dụng (Application Layer/Pipeline)
+Đây là thành phần trung tâm của toàn bộ Firmware, nơi chứa thuật toán giám sát và điều phối luồng dữ liệu. Tầng này không trực tiếp điều khiển phần cứng mà chỉ gọi các API do tầng Dịch vụ cung cấp. Nhiệm vụ cốt lõi của tầng Điều phối là vận hành Máy trạng thái mạng (Network FSM) để liên tục đánh giá tình trạng kết nối hiện tại. Dựa trên trạng thái mạng, tầng này sẽ chuyển hướng luồng dữ liệu: Đẩy trực tiếp tọa độ lên đám mây, hay lưu cất vào thẻ nhớ. Thuật toán Store-and-Forward được hiện thực hóa tại chính tầng này.
+Triển khai kiến trúc trên mã nguồn
+Để hiện thực hóa kiến trúc phân tầng trên, toàn bộ mã nguồn C của dự án được tổ chức thành các thư mục module độc lập.
+Cấu trúc tổ chức thư mục mã nguồn (Source Tree) theo mô hình phân tầng
+Như quan sát tại Hình 3.4, việc tuân thủ nghiêm ngặt nguyên tắc tách biệt các lớp mã nguồn (thư mục hal/ chứa driver vật lý, services/ chứa các dịch vụ lõi) kết hợp với tệp tiêu đề (.h) độc lập giúp ngăn chặn triệt để hiện tượng phụ thuộc vòng (Circular Dependency), hỗ trợ quá trình bảo trì và mở rộng tính năng của Firmware về sau.
+Đa nhiệm FreeRTOS và phân bổ tài nguyên lõi
+Hệ thống giám sát hành trình yêu cầu xử lý hai nhóm công việc có bản chất hoàn toàn trái ngược nhau: Nhóm thu thập dữ liệu (yêu cầu tốc độ nhanh, tính thời gian thực cao) và Nhóm truyền thông mạng (thường xuyên bị trễ, treo vòng lặp khi rớt sóng). Để giải quyết xung đột này, sức mạnh của vi xử lý lõi kép (Dual-core) trên ESP32 được khai thác tối đa thông qua hệ điều hành FreeRTOS.
+Cơ chế phân bổ tác vụ và đồng bộ dữ liệu trên kiến trúc lõi kép ESP32
+Phân bổ tác vụ theo cấu trúc đa lõi (Task Pinning)
+Bằng cách sử dụng hàm API xTaskCreatePinnedToCore(), mã nguồn của hệ thống được chủ động đóng gói thành các tác vụ (Task) độc lập và "ghim" (pin) cứng vào 2 nhân vật lý của ESP32 như minh họa tại Hình 3.5:
+Khởi tạo và phân bổ các tác vụ lõi bằng API của FreeRTOS
+Các tham số truyền vào hàm (Kích thước Stack, Mức ưu tiên, Core ID) được tính toán chuyên biệt cho tính chất của từng tiến trình:
+Tác vụ Thu thập cảm biến (Sensor Task): Cấp phát 4096 Bytes Stack và ghim vào Core 1 (APP_CPU) với mức ưu tiên 3. Tác vụ này đảm nhiệm việc thu thập dữ liệu tọa độ qua UART (GPS), dữ liệu gia tốc qua I2C (MPU6050) và tổng hợp thành chuỗi JSON. Do chỉ xử lý logic thu thập nội bộ không truy xuất mạng, cấu hình này giúp tối ưu hóa tài nguyên phần cứng. Việc nằm độc lập trên Core 1 giúp tác vụ hoạt động liên tục, không bị gián đoạn ngay cả khi luồng mạng viễn thông bị treo.
+Tác vụ Truyền thông (Transmit Task): Cấp phát 8192 Bytes Stack và ghim vào Core 0 (PRO_CPU) với mức ưu tiên 4. Không gian Stack lớn được sử dụng để xử lý các tiến trình tốn bộ nhớ như ngăn xếp TCP/IP, mã hóa SSL/TLS và giao thức FAT32. Mức ưu tiên 4 đảm bảo CPU tập trung xử lý giao tiếp AT và MQTT, ngăn chặn rủi ro quá hạn (Timeout) đường truyền.
+Tác vụ Cảnh vệ (Watchdog Task): Cấp phát 4096 Bytes Stack và ghim chung vào Core 0 với mức ưu tiên cao nhất (5). Tác vụ này chạy ngầm để giám sát hệ thống. Nhờ thiết lập đặc quyền ưu tiên cao nhất, nó luôn có khả năng can thiệp và tự phục hồi kết nối nếu tác vụ Truyền thông bị treo tiến trình do nhiễu sóng hoặc kẹt phần cứng.
+Cơ chế đệm dữ liệu liên tác vụ (FreeRTOS Queue)
+Vì hai tác vụ Sensor Task (Core 1) và Transmit Task (Core 0) hoạt động hoàn toàn bất đồng bộ, chúng không thể chuyển tọa độ trực tiếp cho nhau bằng biến thông thường. Giải pháp là sử dụng FreeRTOS Queue (Hàng đợi) đóng vai trò như tầng Store-and-Forward thứ nhất trên RAM.
+Khởi tạo hàng đợi liên tác vụ trên bộ nhớ RAM để làm vùng đệm sơ cấp
+Hàng đợi được hệ thống khởi tạo với kích thước 20 khe chứa (slot). Sensor Task liên tục đẩy (push) các gói dữ liệu vào hàng đợi, trong khi Transmit Task sẽ truy xuất (pop) chúng ra để gửi đi. Việc lựa chọn kích thước 20 slot không phải là con số ngẫu nhiên mà là kết quả của bài toán cân bằng tài nguyên phần cứng (Memory Optimization) dựa trên 3 tiêu chí cốt lõi:
+Ràng buộc bộ nhớ (SRAM Constraints): Mỗi bản tin chứa dữ liệu tọa độ định dạng JSON có kích thước khoảng 256 bytes. Kích thước 20 slot sẽ tiêu tốn khoảng ~5KB RAM. Đây là mức cấp phát cực kỳ an toàn đối với ESP32, giúp bảo toàn lượng bộ nhớ trống (Free Heap) dồi dào để phục vụ cho các tiến trình nặng nề như TCP/IP Stack và mã hóa SSL/TLS của thư viện MQTT. Nếu khởi tạo Queue quá lớn (ví dụ hàng ngàn slot), vi điều khiển sẽ đối mặt trực tiếp với rủi ro tràn bộ nhớ (Out of Memory) dẫn đến tê liệt hệ thống.
+Ngưỡng thời gian dung sai (Time Threshold): Sensor Task hoạt động với tần suất lấy mẫu là 3 giây/lần. Theo đó, 20 slot tương đương với 60 giây (1 phút) lưu trữ đệm thời gian thực. Trong điều kiện vô tuyến di động, 1 phút là khoảng thời gian dung sai phù hợp để module LTE A7680C có cơ hội tự động tái thiết lập kết nối (Reconnect) khi gặp nhiễu sóng nhẹ.
+Tối ưu kiến trúc đệm 2 tầng (Two-tier Buffering): Queue trên RAM được quy hoạch chỉ làm Tầng đệm sơ cấp (Primary Buffer). Khi thời gian mất sóng kéo dài vượt quá 1 phút (ví dụ tàu chạy vào đường hầm ngầm) khiến hàng đợi báo đầy (Queue Full), hệ thống sẽ không cố gắng làm tràn RAM mà lập tức chuyển dữ liệu (Spill-over) sang Tầng đệm thứ cấp (Secondary Buffer) là thẻ nhớ MicroSD (Slow-path buffer). Chính nhờ dung lượng lưu trữ lớn của thẻ SD, việc cố gắng gia tăng kích thước Queue trên RAM trở thành một sự lãng phí tài nguyên không cần thiết.
+Cơ chế khóa đồng bộ (Mutex)
+Đối với các tài nguyên phần cứng dùng chung, điển hình là bộ Hardware UART kết nối với module SIM, cơ chế Semaphore Mutex của hệ điều hành FreeRTOS được áp dụng để đảm bảo tính toàn vẹn của chuỗi giao tiếp. Khi một tác vụ (ví dụ: Transmit Task) bắt đầu gửi một lệnh AT và chờ phản hồi, Mutex sẽ tạm thời khóa quyền truy xuất bus UART. Điều này ngăn chặn các tác vụ khác (như Watchdog Task) gửi đan xen lệnh mới vào cùng thời điểm, tránh tình trạng xung đột tín hiệu và làm sai lệch quá trình phân tích chuỗi phản hồi (Parsing). Cơ chế này đảm bảo mỗi chu trình gửi lệnh và nhận phản hồi (Send-and-Wait) được thực thi trọn vẹn, không bị chia cắt bởi các tiến trình khác.
+Bên cạnh UART, cơ chế Mutex cũng được hệ thống triển khai trên bus giao tiếp SPI của thẻ nhớ MicroSD. Việc khóa Mutex đảm bảo tại một thời điểm chỉ có duy nhất một luồng dữ liệu được phép đọc hoặc ghi, bảo vệ cấu trúc tệp tin FAT32 khỏi rủi ro phân mảnh hoặc hỏng hóc (Corruption) do truy xuất đồng thời.
+Quy hoạch cấu trúc dữ liệu, Tập lệnh và Trạng thái mạng
+Các cấu trúc định nghĩa và lệnh giao tiếp được thiết kế thành các quy chuẩn chung nhằm tạo ra nền tảng cho phần xử lý logic phía sau.
+Tập lệnh giao tiếp AT và mã sự kiện gián đoạn (URC)
+Để tương tác với module A7680C, hệ thống sử dụng tập lệnh AT kết hợp cơ chế bắt sự kiện URC (Unsolicited Result Code). Các lệnh AT đóng vai trò chủ động điều khiển phần cứng, trong khi mã URC đóng vai trò tiếp nhận cảnh báo bất đồng bộ từ mạng di động.
+Danh sách các lệnh AT quan trọng trong việc cấu hình module và khởi tạo giao thức mạng:
+Bảng tập lệnh AT
+Danh sách các mã sự kiện gián đoạn (URC) Trong môi trường truyền tin di động, trạm phát sóng và máy chủ MQTT thường xuyên trả về các bản tin cảnh báo tự động (Unsolicited Result Code - URC). Hệ thống thiết lập hàng đợi để liên tục bắt và phân tích các mã sự kiện này nhằm phản ứng kịp thời:
+Bảng danh sách mã URC
+Máy trạng thái mạng (Network FSM)
+Vòng đời kết nối mạng được mô hình hóa thành một Máy trạng thái hữu hạn. Định nghĩa biến trạng thái pipe_state_t được triển khai trực tiếp trong mã nguồn hệ thống:
+Khai báo các trạng thái của Network FSM
+Cơ chế bẻ nhánh của hệ thống được vận hành dựa trên việc luân chuyển giữa 6 trạng thái này:
+PIPE_INIT: Trạng thái khởi động nền. Hệ thống cấu hình tốc độ Baud UART, tắt Echo và kiểm tra tình trạng thẻ SIM. Nếu thẻ SIM sẵn sàng, FSM tiến tới thiết lập mạng.
+PIPE_LTE_CONNECTING: Kích hoạt quá trình dò sóng, đăng ký trạm phát không dây, cấu hình APN và mở ngăn xếp TCP/IP (AT+NETOPEN).
+PIPE_MQTT_CONNECTING: Thực hiện thiết lập kênh truyền bảo mật SSL/TLS và gửi gói tin CONNECT kèm xác thực tới máy chủ MQTT Broker.
+PIPE_ONLINE: Trạng thái hoạt động ổn định (Happy Path). Thiết bị liên tục truy xuất dữ liệu từ Hàng đợi RAM để Publish lên đám mây. Nếu bắt được mã URC báo rớt mạng (ví dụ: +CMQTTDISC), FSM lập tức bẻ nhánh sang PIPE_OFFLINE.
+PIPE_OFFLINE: Trạng thái mất kết nối. Dữ liệu thay vì đẩy ra UART sẽ được định tuyến thẳng vào thẻ nhớ MicroSD. Đồng thời, FSM khởi động bộ đếm thời gian ngầm để tự động chuyển sang trạng thái thử lại.
+PIPE_RECONNECTING: Cố gắng khôi phục lại đường truyền viễn thông. Nếu thành công, FSM chuyển về PIPE_ONLINE và kích hoạt thuật toán đẩy bù dữ liệu đan xen từ thẻ nhớ lên máy chủ. Nếu thất bại, hệ thống lùi về lại PIPE_OFFLINE để tiếp tục bảo toàn dữ liệu.
+Lưu đồ chuyển trạng thái của máy trạng thái mạng
+Cấu trúc bản tin viễn trắc
+Mỗi gói dữ liệu tọa độ và cảm biến được định dạng hóa thành chuỗi JSON trước khi truyền đi nhằm đảm bảo tính chuẩn hóa và dễ dàng tích hợp với các hệ thống Web/App. Chuỗi dữ liệu mang theo đầy đủ thông tin định vị và thông số vật lý của tàu:
+Cấu trúc bản tin viễn trắc định dạng JSON
+Bảng dưới đây mô tả chi tiết ý nghĩa và định dạng của từng trường tham số được đóng gói trong bản tin viễn trắc:
+Giải nghĩa các trường tham số trong gói tin JSON
+Kiến trúc điều phối luồng
+Hệ thống vận hành cơ chế Lưu trữ và Chuyển tiếp (Store-and-Forward) để quản lý luồng dữ liệu qua ba môi trường: RAM – MicroSD – Cloud
+Cơ chế phát hiện gián đoạn truyền tải
+Khác với phương pháp tiếp cận thụ động dựa trên các cảnh báo mạng, hệ thống thực hiện giám sát trạng thái kết nối thông qua cơ chế phản hồi chủ động. Việc phát hiện sự cố gián đoạn được gắn liền trực tiếp với kết quả trả về của hàm xuất bản dữ liệu (Publish). Cụ thể, khi quá trình gửi một gói tin viễn trắc thất bại do quá hạn thời gian chờ (Timeout) hoặc do module viễn thông trả về mã lỗi giao tiếp, Máy trạng thái mạng sẽ ngay lập tức ghi nhận sự kiện mất kết nối. Gói tin gặp lỗi truyền tải sẽ được định tuyến lưu trữ vào thẻ nhớ ngoại tuyến để bảo toàn dữ liệu, đồng thời hệ thống tự động tạm ngưng luồng truyền thông nhằm kích hoạt chu trình tái thiết lập kết nối (PIPE_RECONNECTING).
+Trong giai đoạn Transmit Task đang xử lý việc thiết lập lại ngăn xếp TCP/IP và giao thức MQTT (thường tiêu tốn từ vài giây đến hàng chục giây), cấu trúc đa nhiệm phân lõi phát huy vai trò quan trọng. Tác vụ Sensor Task trên Core 1 vẫn tiếp tục duy trì hoạt động thu thập dữ liệu độc lập. Khi Hàng đợi (Queue) trên RAM đạt dung lượng tối đa do không được giải phóng, Sensor Task sẽ tự động kích hoạt cơ chế tràn đệm (Spill-over), ghi trực tiếp các bản tin mới sinh ra vào tệp offline.buf. Sự phân luồng tác vụ chặt chẽ này đảm bảo tính toàn vẹn của chuỗi dữ liệu hành trình, loại bỏ hoàn toàn rủi ro thất thoát gói tin trong các kịch bản chuyển giao trạng thái phức tạp.
+Cấu trúc bộ đệm hệ thống tệp tin ngoại tuyến
+Trong trạng thái mất kết nối mạng (PIPE_OFFLINE), toàn bộ luồng dữ liệu viễn trắc sẽ được hệ thống tái định tuyến trực tiếp xuống thẻ nhớ MicroSD. Nhằm đảm bảo tính toàn vẹn của dữ liệu dưới các điều kiện vận hành thực tế khắc nghiệt (như sụt áp đột ngột hoặc mất sóng kéo dài), kiến trúc hệ thống tệp tin được thiết kế tích hợp ba cơ chế cốt lõi:
+Tệp tích lũy ngoại tuyến (offline.buf): 
+Được mở ở chế độ ghi nối thêm (Append). Hệ thống thực hiện chu trình mở tệp, ghi dữ liệu và đóng tệp một cách khép kín để cải thiện tính toàn vẹn của hệ thống tệp FAT32 trong trường hợp nguồn điện không ổn định.
+Cơ chế hoàn nguyên (Rollback): 
+Khi mạng kết nối lại, tệp offline.buf được đổi tên thành offline.processing để cô lập gói dữ liệu cũ chuẩn bị gửi đi. Nếu quá trình gửi bị đứt đoạn do rớt mạng giữa chừng, hệ thống sẽ thực hiện thao tác hoàn nguyên (Rollback): đọc các chuỗi JSON chưa kịp gửi và ghi ngược trở lại tệp offline.buf để tránh thất thoát dữ liệu.
+Luân chuyển tệp nhật ký hành trình (Data Log Rotation):
+Bên cạnh tệp ngoại tuyến, hệ thống còn lưu trữ một bản sao các dữ liệu đã gửi thành công vào tệp data.log. Để hệ thống tệp FAT32 không bị quá tải khi hoạt động liên tục nhiều tháng, kỹ thuật luân chuyển tệp (Rotation) được áp dụng. Khi data.log đạt ngưỡng dung lượng tối đa (ví dụ 5MB), tệp sẽ được đóng gói và đổi tên theo mốc thời gian thực lấy từ trạm phát sóng di động qua lệnh AT+CCLK? (ví dụ: data_YYYYMMDD_HHMMSS.log). Một tiến trình dọn dẹp ngầm (Retention Policy) sẽ tự động quét và xóa các tệp lịch sử đã quá hạn lưu trữ (mặc định giữ tối đa 10 tệp của 5 ngày gần nhất). Đặc biệt, thuật toán này được lập trình để bỏ qua và bảo vệ tuyệt đối tệp offline.buf, đảm bảo dữ liệu chưa gửi không bao giờ bị tiến trình dọn dẹp xóa nhầm.
+Lưu đồ thuật toán định tuyến dữ liệu và bảo vệ hệ thống tệp tin ngoại tuyến
+Thuật toán đẩy bù dữ liệu đan xen
+Trong kịch bản thiết bị vừa khôi phục kết nối sau một thời gian dài ngoại tuyến, tệp offline.processing có thể chứa hàng ngàn bản ghi cũ. Nếu hệ thống ưu tiên truyền tải toàn bộ tệp này theo phương pháp tuyến tính (FIFO truyền thống), Transmit Task sẽ bị chiếm dụng hoàn toàn. Hậu quả là các dữ liệu cảm biến mới nhất (Live Data) sinh ra từ Core 1 sẽ bị kẹt lại trong hàng đợi RAM, khiến hệ thống giám sát trên Server bị "đóng băng" ở quá khứ và không thể hiển thị vị trí thời gian thực của tàu hỏa.
+Để giải quyết bài toán nút thắt cổ chai băng thông này, hệ thống triển khai thuật toán đẩy bù đan xen (Interleaved Flushing) dựa trên nguyên lý luân chuyển theo trọng số (Weighted Round Robin - WRR). Thuật toán được lập trình với tỷ lệ trọng số 4:10. Transmit Task sẽ tiến hành đọc và xuất bản 4 gói tin lịch sử từ thẻ nhớ (Slow-path), sau đó lập tức ngắt chu trình để nhường quyền ưu tiên xả tối đa 10 gói tin mới nhất đang tồn đọng trong hàng đợi RAM. Cơ chế luân phiên này đảm bảo tín hiệu định vị thời gian thực của tàu luôn được cập nhật xuyên suốt lên trung tâm điều hành, trong khi chuỗi dữ liệu quá khứ vẫn được đồng bộ ngầm một cách bền bỉ mà không làm nghẽn đường truyền viễn thông.
+Kỹ thuật điều tốc lấy mẫu thích ứng
+Nhằm giảm thiểu sức ép lên Hàng đợi RAM và tối ưu hóa tuổi thọ của thẻ nhớ (hạn chế chu kỳ ghi xóa do tràn đệm) khi tàu hỏa di chuyển qua các vùng lõm sóng kéo dài, kiến trúc hệ thống tích hợp kỹ thuật điều tốc lấy mẫu thích ứng (Adaptive Rate Limiting) dựa trên mức độ khả dụng của bộ đệm.
+Thay vì thu thập dữ liệu với tần suất cố định, Sensor Task liên tục giám sát trạng thái tắc nghẽn cục bộ. Cơ chế này được thiết kế kết hợp với kỹ thuật dải trễ (Hysteresis) để tránh hiện tượng dao động liên tục (Chattering). Cụ thể:
+Ngưỡng kích hoạt (Activation Threshold): Khi độ trễ truyền tải mạng tăng cao khiến Hàng đợi (Queue) bị lấp đầy vượt ngưỡng 50% dung lượng (> 10/20 slot), hệ thống sẽ ghi nhận cảnh báo Queue congested và cờ hiệu adaptive_slow lập tức được kích hoạt.
+Ngưỡng khôi phục (Recovery Threshold): Cờ adaptive_slow sẽ chỉ được tắt đi khi dung lượng Queue giảm xuống dưới mức 25% (< 5 gói tin). Khoảng chênh lệch từ 25% đến 50% này tạo ra một dải trễ an toàn, đảm bảo hệ thống không bị chuyển trạng thái liên tục khi số lượng gói tin dao động quanh mốc 50%.
+Trích đoạn mã nguồn xử lý tín hiệu nghẽn Hàng đợi (Queue Congested) và Khôi phục (Recovered) bằng cơ chế Trễ từ (Hysteresis)
+Kết quả là, chu kỳ lấy mẫu của cảm biến (thông qua hàm vTaskDelay) được tự động kéo giãn gấp đôi. Kỹ thuật điều tiết ngược (Backpressure) này giúp hệ thống chủ động giảm tốc độ phát sinh dữ liệu từ phía nguồn (Producer), qua đó gia tăng đáng kể thời gian chịu tải của thiết bị trong điều kiện gián đoạn truyền thông. Hơn nữa, cơ chế này không chỉ loại bỏ triệt để rủi ro tràn hàng đợi trên RAM (Queue Overflow), mà còn giảm áp lực ghi liên tục lên thẻ nhớ MicroSD, ngăn ngừa hiệu quả hiện tượng thắt cổ chai (bottleneck) trong tiến trình lưu trữ ngoại tuyến.
+Cơ chế đồng bộ thời gian qua mạng viễn thông
+Do nền tảng phần cứng ESP32 không được trang bị khối thời gian thực (Hardware RTC) duy trì bằng nguồn pin độc lập, hệ thống sẽ mất thông tin về thời gian mỗi khi xảy ra sự cố mất điện. Để khắc phục hạn chế này, Watchdog Task (đảm nhiệm vai trò giám sát nền) được cấp quyền định kỳ gọi hàm lte_time_sync(). Thông qua tập lệnh AT+CCLK?, thiết bị sẽ truy vấn trực tiếp mốc thời gian chuẩn từ trạm phát sóng viễn thông (Base Station) theo chu kỳ 5 phút một lần.
+Thay vì sử dụng mốc thời gian này để nhúng vào từng gói tin JSON (vốn chỉ cần sử dụng bộ đếm Uptime now_ms() nội bộ để tối ưu hiệu suất), cơ chế đồng bộ này phục vụ một mục đích kiến trúc quan trọng hơn: Cung cấp hệ quy chiếu vững chắc cho thuật toán luân chuyển tệp tin (Data Log Rotation).
+Việc nắm giữ mốc thời gian thực tế cho phép hệ thống phân mảnh và định danh các tệp nhật ký dữ liệu chuẩn xác theo cấu trúc ngày giờ thực tế (ví dụ: data_YYYYMMDD_HHMM.log). Từ đó, hệ thống có thể thực thi chính sách dọn dẹp dữ liệu (Retention Policy) một cách tự động và an toàn—nhận diện và xóa các tệp quá hạn 5 ngày tuổi để giải phóng thẻ nhớ mà không cần tốn chi phí trang bị thêm mô-đun RTC phần cứng (như DS3231).
+Tổng kết lại, toàn bộ kiến trúc điều phối luồng Store-and-Forward (bao gồm lưu trữ ngoại tuyến thẻ nhớ, đẩy bù đan xen và điều chỉnh tần suất lấy mẫu) được mô hình hóa trực quan thông qua lưu đồ thuật toán tổng quát sau:
+Lưu đồ thuật toán cơ chế chuyển đổi luồng dữ liệu theo trạng thái mạng
+Cơ chế điều khiển và giám sát từ xa
+Thiết bị không chỉ đóng vai trò truyền tin viễn trắc một chiều mà còn hỗ trợ cơ chế giao tiếp hai chiều. Quá trình lắng nghe được thiết lập thông qua giao thức MQTT (đăng ký theo dõi Topic MQTT_TOPIC_CMD), cho phép thiết bị tiếp nhận lệnh điều khiển dưới định dạng JSON từ hệ thống máy chủ:
+Minh họa cấu trúc gói tin điều khiển định dạng JSON gửi từ máy chủ đến thiết bị
+Dữ liệu nhận được sẽ được đưa vào Bảng phân phối lệnh (Command Dispatch). Bảng này định nghĩa các hàm xử lý tương ứng cho từng loại lệnh tại thiết bị:
+Bảng phân phối lệnh điều khiển từ xa (Command Dispatch) tại thiết bị
+Sau khi thực thi hàm phân tích cú pháp và xử lý lệnh (ví dụ: hàm prv_cmd_set_interval), thiết bị sẽ xuất bản một bản tin xác nhận (ACK) về lại máy chủ thông qua Topic phản hồi (MQTT_TOPIC_RESP). Ví dụ, bản tin phản hồi cho lệnh cài đặt chu kỳ sẽ có định dạng:
+Bản tin MQTT phản hồi xác nhận thực thi thành công lệnh điều khiển set_interval từ máy chủ
+Để làm rõ hơn về tiến trình giao tiếp bất đồng bộ này, Hình 3.13 
+mô tả biểu đồ tuần tự (Sequence Diagram) toàn bộ vòng đời của một luồng lệnh hai chiều: từ lúc máy chủ phát lệnh, thiết bị tiếp nhận, phân tích cú pháp cho đến khi hoàn tất việc đóng gói và gửi bản tin xác nhận (ACK).
+Biểu đồ tuần tự minh họa dòng thời gian của chu trình nhận lệnh điều khiển và phản hồi (ACK)
+Tổng quan lại, toàn bộ cấu trúc kiến trúc của cơ chế điều khiển và giám sát từ xa được tổng hợp và thể hiện trực quan thông qua sơ đồ khối tại Hình 3.17. Thiết kế này không chỉ dừng lại ở việc thay đổi tham số cấu hình tĩnh, mà còn mở ra khả năng chẩn đoán bộ nhớ, hay thậm chí khởi động lại hệ thống từ xa, giúp giảm thiểu tối đa chi phí bảo trì trực tiếp đối với các thiết bị IoT vận hành trên phương tiện di chuyển liên tục.
+Sơ đồ khối nguyên lý hoạt động của cơ chế điều khiển và giám sát từ xa
+TRIỂN KHAI VÀ ĐÁNH GIÁ KẾT QUẢ
+Chạy thử bằng breadboard tại nhà
+Hiện tại phần cứng đang test bằng breadboard, sử dụng phần mềm MQTT Explorer được cấu hình làm máy chủ
+Cấu hình các topic
+Thiết lập thông số kết nối MQTT Explorer
+Log khi có mạng chạy bình thường
+Bản tin telemetry hiển thị trên MQTT Explorer
+Tín hiệu mạng bị ngắt và hệ thống tự động lưu offline
+Tự động tìm cách kết nối mạng và gửi lại những bản tin offline
+Chứng minh cơ chế điều khiển từ xa
+KẾT LUẬN

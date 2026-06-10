@@ -1,0 +1,29 @@
+idf_component_register(
+    SRCS
+        "main.c"
+        "hal/lte_at.c"
+        "drivers/sd_log.c"
+        "services/mqtt_service.c"
+        "services/sensor_fake.c"
+        "services/pipeline.c"
+        "services/cmd_handler.c"
+        "utils/logger.c"
+    INCLUDE_DIRS
+        "."
+        "config"
+        "hal"
+        "drivers"
+        "services"
+        "utils"
+    REQUIRES
+        driver
+        esp_timer
+        fatfs
+        sdmmc
+        freertos
+        esp_common
+        nvs_flash
+        vfs
+        spi_flash
+        log
+)

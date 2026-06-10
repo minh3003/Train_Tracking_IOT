@@ -1,0 +1,791 @@
+Executing action: flash
+Running ninja in directory C:\DATN_Aplus\Demo_test\train_tracking_iot\build
+Executing "ninja flash"...
+[1/5] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\DATN_Aplus\Demo_test\train_tracking_iot\build\esp-idf\esptool_py && C:\Esp-idf\ENV\python_env\idf5.4_py3.11_env\Scripts\python.exe C:/Esp-idf/ENV/frameworks/esp-idf-v5.4.4/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/DATN_Aplus/Demo_test/train_tracking_iot/build/partition_table/partition-table.bin C:/DATN_Aplus/Demo_test/train_tracking_iot/build/train_tracking_iot.bin"
+train_tracking_iot.bin binary size 0x516a0 bytes. Smallest app partition is 0x100000 bytes. 0xae960 bytes (68%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\DATN_Aplus\Demo_test\train_tracking_iot\build\bootloader\esp-idf\esptool_py && C:\Esp-idf\ENV\python_env\idf5.4_py3.11_env\Scripts\python.exe C:/Esp-idf/ENV/frameworks/esp-idf-v5.4.4/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/DATN_Aplus/Demo_test/train_tracking_iot/build/bootloader/bootloader.bin"
+Bootloader binary size 0x65b0 bytes. 0xa50 bytes (9%) free.
+[3/5] No install step for 'bootloader'
+[4/5] Completed 'bootloader'
+[4/5] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Esp-idf\ENV\frameworks\esp-idf-v5.4.4\components\esptool_py && C:\Esp-idf\ENV\tools\cmake\3.30.2\bin\cmake.exe -D IDF_PATH=C:/Esp-idf/ENV/frameworks/esp-idf-v5.4.4 -D SERIAL_TOOL=C:/Esp-idf/ENV/python_env/idf5.4_py3.11_env/Scripts/python.exe;;C:/Esp-idf/ENV/frameworks/esp-idf-v5.4.4/components/esptool_py/esptool/esptool.py;--chip;esp32 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args -D WORKING_DIRECTORY=C:/DATN_Aplus/Demo_test/train_tracking_iot/build -P C:/Esp-idf/ENV/frameworks/esp-idf-v5.4.4/components/esptool_py/run_serial_tool.cmake"
+esptool.py --chip esp32 -p COM3 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 2MB 0x1000 bootloader/bootloader.bin 0x10000 train_tracking_iot.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.11.0
+Serial port COM3
+Connecting....
+Chip is ESP32-D0WD-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: 08:d1:f9:de:01:1c
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x00061fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 26032 bytes to 16434...
+Writing at 0x00001000... (50 %)
+Writing at 0x00007571... (100 %)
+Wrote 26032 bytes (16434 compressed) at 0x00001000 in 0.6 seconds (effective 361.3 kbit/s)...
+Hash of data verified.
+Compressed 333472 bytes to 191089...
+Writing at 0x00010000... (8 %)
+Writing at 0x0001ca94... (16 %)
+Writing at 0x000260de... (25 %)
+Writing at 0x0002bd1a... (33 %)
+Writing at 0x00031f24... (41 %)
+Writing at 0x0003786a... (50 %)
+Writing at 0x0003d523... (58 %)
+Writing at 0x00043084... (66 %)
+Writing at 0x00048cfd... (75 %)
+Writing at 0x0004e5a8... (83 %)
+Writing at 0x00057555... (91 %)
+Writing at 0x0005d321... (100 %)
+Wrote 333472 bytes (191089 compressed) at 0x00010000 in 5.0 seconds (effective 535.0 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 335.9 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+Executing action: monitor
+Running idf_monitor in directory C:\DATN_Aplus\Demo_test\train_tracking_iot
+Executing "C:\Esp-idf\ENV\python_env\idf5.4_py3.11_env\Scripts\python.exe C:\Esp-idf\ENV\frameworks\esp-idf-v5.4.4\tools/idf_monitor.py -p COM3 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 C:\DATN_Aplus\Demo_test\train_tracking_iot\build\train_tracking_iot.elf --force-color -m 'C:\Esp-idf\ENV\python_env\idf5.4_py3.11_env\Scripts\python.exe' 'C:\Esp-idf\ENV\frameworks\esp-idf-v5.4.4\tools\idf.py' '-p' 'COM3'"...
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6280
+lo�ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6280
+load:0x40078000,len:15736
+load:0x40080400,len:4
+load:0x40080404,len:3920
+entry 0x40080648
+I (29) boot: ESP-IDF HEAD-HASH-NOTFOUND 2nd stage bootloader
+I (29) boot: compile time May 22 2026 03:01:27
+I (30) boot: Multicore bootloader
+I (32) boot: chip revision: v3.1
+I (35) boot.esp32: SPI Speed      : 40MHz
+I (38) boot.esp32: SPI Mode       : DIO
+I (42) boot.esp32: SPI Flash Size : 2MB
+I (45) boot: Enabling RNG early entropy source...
+I (50) boot: Partition Table:
+I (53) boot: ## Label            Usage          Type ST Offset   Length
+I (59) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (72) boot:  2 factory          factory app      00 00 00010000 00100000
+I (78) boot: End of partition table
+I (82) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=110a4h ( 69796) map
+I (113) esp_image: segment 1: paddr=000210cc vaddr=3ffb0000 size=02a84h ( 10884) load
+I (117) esp_image: segment 2: paddr=00023b58 vaddr=40080000 size=0c4c0h ( 50368) load
+I (137) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=2d444h (185412) map
+I (201) esp_image: segment 4: paddr=0005d46c vaddr=4008c4c0 size=041e8h ( 16872) load
+I (207) esp_image: segment 5: paddr=0006165c vaddr=50000000 size=0001ch (    28) load
+I (216) boot: Loaded app from partition at offset 0x10000
+I (216) boot: Disabling RNG early entropy source...
+I (226) cpu_start: Multicore app
+I (235) cpu_start: GPIO 3 and 1 are used as console UART I/O pins
+I (235) cpu_start: Pro cpu start user code
+I (235) cpu_start: cpu freq: 160000000 Hz
+I (237) app_init: Application information:
+I (241) app_init: Project name:     train_tracking_iot
+I (245) app_init: App version:      1
+I (249) app_init: Compile time:     May 22 2026 02:59:24
+I (254) app_init: ELF file SHA256:  f43bcb24d...
+I (258) app_init: ESP-IDF:          HEAD-HASH-NOTFOUND
+I (263) efuse_init: Min chip rev:     v0.0
+I (267) efuse_init: Max chip rev:     v3.99 
+I (271) efuse_init: Chip rev:         v3.1
+I (275) heap_init: Initializing. RAM available for dynamic allocation:
+I (281) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM
+I (286) heap_init: At 3FFB4498 len 0002BB68 (174 KiB): DRAM
+I (291) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM
+I (297) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
+I (302) heap_init: At 400906A8 len 0000F958 (62 KiB): IRAM
+I (309) spi_flash: detected chip: generic
+I (311) spi_flash: flash io: dio
+W (314) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (327) main_task: Started on CPU0
+I (330) main_task: Calling app_main()
+I (365) MAIN: ======================================
+I (366) MAIN:   TRAIN TRACKING IOT
+I (366) MAIN:   LTE + MQTT + SD + Offline Buffer
+I (367) MAIN:   Build: Jun  4 2026 07:40:46
+I (371) MAIN: ======================================
+I (375) MAIN: Free heap: 292644 bytes
+I (379) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (387) SD: Init SD | CS=5 SCK=18 MOSI=23 MISO=19
+I (393) gpio: GPIO[5]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
+I (401) sdspi_transaction: cmd=52, R1 response: command not supported
+I (448) sdspi_transaction: cmd=5, R1 response: command not supported
+I (474) SD: SD mounted [OK] | SD16G | 14910MB
+I (490) LTE_AT: UART1 OK | TX=GPIO26 RX=GPIO27 Baud=115200
+I (490) MAIN: Waiting 5s for A7680C boot...
+I (5490) PIPELINE: Pipeline init | SD=OK QueueSize=20
+I (5490) MAIN: Spawning tasks...
+I (5490) PIPELINE: transmit_task started
+I (5490) PIPELINE: sensor_task started
+I (5490) PIPELINE: watchdog_task started
+I (5490) LTE_AT: ==================================
+I (5502) LTE_AT:    A7680C LTE INIT SEQUENCE
+I (5506) LTE_AT: ==================================
+I (5510) LTE_AT: [1/8] Module alive...
+I (5490) MAIN: All tasks spawned [OK]
+I (5517) MAIN: System running...
+I (5520) main_task: Returned from app_main()
+I (5614) LTE_AT: >>> AT
+I (5667) LTE_AT: <<< ||OK||
+I (5667) LTE_AT:   [OK] ALIVE
+I (5667) LTE_AT: >>> ATE0
+I (5720) LTE_AT: <<< ||OK||
+I (6120) LTE_AT: [2/8] SIM card...
+I (6120) LTE_AT: >>> AT+CPIN?
+I (6175) LTE_AT: <<< ||+CPIN: READY||||OK||
+I (6175) LTE_AT:   [OK] SIM READY
+I (6475) LTE_AT: [3/8] Signal...
+I (6475) LTE_AT: >>> AT+CSQ
+I (6529) LTE_AT: <<< ||+CSQ: 26,99||||OK||
+I (6529) LTE_AT:   [OK] RSSI=26/31 (Excellent)
+I (6829) LTE_AT: [4/8] Network (max 60s)...
+I (6829) LTE_AT: >>> AT+CREG?
+I (6884) LTE_AT: <<< ||+CREG: 0,1||||OK||
+I (6884) LTE_AT:   [OK] REGISTERED (stat=1, home)
+I (6884) LTE_AT: [5/8] Internet (APN: v-internet)...
+I (6885) LTE_AT: >>> AT+CGDCONT=1,"IP","v-internet"
+I (6941) LTE_AT: <<< ||OK||
+I (7441) LTE_AT: >>> AT+CGACT=1,1
+I (7495) LTE_AT: <<< ||OK||
+I (9495) LTE_AT: >>> AT+CGPADDR=1
+I (9552) LTE_AT: <<< ||+CGPADDR: 1,9.166.187.47||||OK||
+I (9552) LTE_AT:   [OK] IP = 9.166.187.47
+I (9552) LTE_AT: [6/8] Opening TCP/IP stack...
+I (9553) LTE_AT: >>> AT+NETCLOSE
+I (9614) LTE_AT: <<< ||OK||||+NETCLOSE: 0||
+I (11614) LTE_AT: >>> AT+NETOPEN
+I (11673) LTE_AT: <<< ||OK||||+NETOPEN: 0||
+I (11673) LTE_AT:   [OK] TCP stack ready
+I (12673) LTE_AT: [7/8] DNS resolution...
+I (12673) LTE_AT:   [A] Carrier DNS...
+I (12673) LTE_AT: >>> AT+CDNSGIP="broker.emqx.io"
+I (12934) LTE_AT: <<< ||+CDNSGIP: 1,"broker.emqx.io","35.172.255.228"||+CDNSGIP: 2,"broker.emqx.io","34.243.217.54"||+CDNSGIP: 3,"broker.emqx.io","44.232.241.40"||||OK||
+I (12937) LTE_AT:   [OK] Carrier DNS
+I (12941) LTE_AT:   Resolved: 35.172.255.228
+I (12945) LTE_AT: [8/8] Broker IP = 35.172.255.228
+I (13449) LTE_AT: ==================================
+I (13449) LTE_AT:   LTE READY [OK]
+I (13449) LTE_AT: ==================================
+I (13450) MQTT: Connecting >> broker.emqx.io:8883 (TLS)
+I (13455) MQTT: Step 1: Cleanup...
+I (13958) LTE_AT: >>> AT+CMQTTDISC=0,60
+I (14261) LTE_AT: <<< ||OK||||+CMQTTDISC: 0,0||
+I (14561) LTE_AT: >>> AT+CMQTTREL=0
+I (14616) LTE_AT: <<< ||OK||
+I (14916) LTE_AT: >>> AT+CMQTTSTOP
+I (14972) LTE_AT: <<< ||OK||||+CMQTTSTOP: 0||
+I (15972) MQTT: Step 2: CMQTTSTART...
+I (15972) LTE_AT: >>> AT+CMQTTSTART
+I (16028) LTE_AT: <<< ||OK||||+CMQTTSTART: 0||
+I (16028) MQTT:   [OK] Engine started
+I (16528) MQTT: Step 3: CMQTTACCQ...
+I (16528) LTE_AT: >>> AT+CMQTTACCQ=0,"traintrack_sv20203510",1
+I (16585) LTE_AT: <<< ||OK||
+I (16585) MQTT:   [OK] Client acquired
+I (17085) MQTT: Step 4: SSL config...
+I (17085) LTE_AT: >>> AT+CSSLCFG="sslversion",0,4
+I (17140) LTE_AT: <<< ||OK||
+I (17340) LTE_AT: >>> AT+CSSLCFG="authmode",0,0
+I (17395) LTE_AT: <<< ||OK||
+I (17595) LTE_AT: >>> AT+CSSLCFG="enableSNI",0,1
+I (17650) LTE_AT: <<< ||OK||
+I (17850) LTE_AT: >>> AT+CMQTTSSLCFG=0,0
+I (17905) LTE_AT: <<< ||OK||
+I (17905) MQTT:   [OK] SSL linked
+I (18405) MQTT: Step 5: CMQTTCONNECT...
+I (18405) MQTT:   [A] Trying hostname: broker.emqx.io
+I (18405) MQTT: >>> AT+CMQTTCONNECT=0,"tcp://broker.emqx.io:8883",60,1
+I (22510) MQTT:   URC found: +CMQTTCONNECT: 0,0
+I (22510) MQTT: MQTT CONNECTED [OK] broker.emqx.io:8883
+I (22710) LTE_AT: >>> AT+CMQTTTOPIC=0,28
+I (22765) LTE_AT: <<< ||>
+I (23020) LTE_AT: >>> AT+CMQTTPAYLOAD=0,42
+I (23075) LTE_AT: <<< ||>
+I (23331) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (23386) LTE_AT: <<< ||OK||
+I (23386) MQTT: PUB OK >> [traintrack/sv20203510/status]
+I (25386) LTE_AT: >>> AT+CMQTTSUBTOPIC=0,29,1
+I (25441) LTE_AT: <<< ||>
+I (25696) LTE_AT: >>> AT+CMQTTSUB=0
+I (25750) LTE_AT: <<< ||OK||
+I (25750) MQTT: SUB OK >> [traintrack/sv20203510/command]
+I (26751) PIPELINE: Flushing offline buffer (312859 bytes)...
+I (26954) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (27009) LTE_AT: <<< ||>
+I (27264) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (27319) LTE_AT: <<< ||>
+I (27583) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (27638) LTE_AT: <<< ||OK||
+I (27638) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (28138) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (28193) LTE_AT: <<< ||>
+I (28448) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (28503) LTE_AT: <<< ||>
+I (28767) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (28822) LTE_AT: <<< ||OK||
+I (28822) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (29322) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (29377) LTE_AT: <<< ||>
+I (29632) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (29687) LTE_AT: <<< ||>
+I (29951) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (30006) LTE_AT: <<< ||OK||
+I (30006) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (30508) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (30563) LTE_AT: <<< ||>
+I (30818) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (30873) LTE_AT: <<< ||>
+I (31137) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (31192) LTE_AT: <<< ||OK||
+I (31192) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (31692) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (31747) LTE_AT: <<< ||>
+I (32002) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (32057) LTE_AT: <<< ||>
+I (32321) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (32376) LTE_AT: <<< ||OK||
+I (32376) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (32876) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (32931) LTE_AT: <<< ||>
+I (33186) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (33241) LTE_AT: <<< ||>
+I (33505) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (33560) LTE_AT: <<< ||OK||
+I (33560) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (34060) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (34115) LTE_AT: <<< ||>
+I (34370) LTE_AT: >>> AT+CMQTTPAYLOAD=0,135
+I (34425) LTE_AT: <<< ||>
+I (34689) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (34744) LTE_AT: <<< ||OK||
+I (34744) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (35246) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (35301) LTE_AT: <<< ||>
+I (35556) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (35611) LTE_AT: <<< ||>
+I (35875) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (35930) LTE_AT: <<< ||OK||
+I (35930) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (35930) LTE_AT: >>> AT+CSQ
+I (35985) LTE_AT: <<< ||+CSQ: 26,99||||OK||
+I (35985) PIPELINE: WDG: RSSI=26 | State=3 | Drops=0
+I (36430) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (36485) LTE_AT: <<< ||>
+I (36740) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (36795) LTE_AT: <<< ||>
+I (37059) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (37114) LTE_AT: <<< ||OK||
+I (37114) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (37614) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (37669) LTE_AT: <<< ||>
+I (37924) LTE_AT: >>> AT+CMQTTPAYLOAD=0,140
+I (37979) LTE_AT: <<< ||>
+I (38243) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (38298) LTE_AT: <<< ||OK||
+I (38298) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (38798) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (38853) LTE_AT: <<< ||>
+I (39108) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (39163) LTE_AT: <<< ||>
+I (39427) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (39482) LTE_AT: <<< ||OK||
+I (39482) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (39984) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (35985) PIPELINE: WDG: data=-1B offline=-1B queue=5/20
+I (40039) LTE_AT: <<< ||>
+I (40294) LTE_AT: >>> AT+CMQTTPAYLOAD=0,140
+I (40349) LTE_AT: <<< ||>
+I (40613) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (40668) LTE_AT: <<< ||OK||
+I (40668) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (41168) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (41223) LTE_AT: <<< ||>
+I (41478) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (41533) LTE_AT: <<< ||>
+I (41797) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (41852) LTE_AT: <<< ||OK||
+I (41852) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (42352) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (42407) LTE_AT: <<< ||>
+I (42662) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (42717) LTE_AT: <<< ||>
+I (42981) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (43036) LTE_AT: <<< ||OK||
+I (43036) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (43538) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (43593) LTE_AT: <<< ||>
+I (43848) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (43903) LTE_AT: <<< ||>
+I (44167) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (44222) LTE_AT: <<< ||OK||
+I (44222) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (44722) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (44777) LTE_AT: <<< ||>
+I (45032) LTE_AT: >>> AT+CMQTTPAYLOAD=0,135
+I (45087) LTE_AT: <<< ||>
+I (45351) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (45406) LTE_AT: <<< ||OK||
+I (45406) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (45906) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (45961) LTE_AT: <<< ||>
+I (46216) LTE_AT: >>> AT+CMQTTPAYLOAD=0,135
+I (46271) LTE_AT: <<< ||>
+I (46535) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (46590) LTE_AT: <<< ||OK||
+I (46590) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (47090) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (47145) LTE_AT: <<< ||>
+I (47400) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (47455) LTE_AT: <<< ||>
+I (47719) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (47775) LTE_AT: <<< ||OK||
+I (47775) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (48277) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (48332) LTE_AT: <<< ||>
+I (48587) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (48642) LTE_AT: <<< ||>
+I (48906) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (48961) LTE_AT: <<< ||OK||
+I (48961) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (49461) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (49516) LTE_AT: <<< ||>
+I (49771) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (49826) LTE_AT: <<< ||>
+I (50090) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (50145) LTE_AT: <<< ||OK||
+I (50145) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (50645) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (50700) LTE_AT: <<< ||>
+I (50955) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (51010) LTE_AT: <<< ||>
+I (51275) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (51330) LTE_AT: <<< ||OK||
+I (51330) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (51830) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (51885) LTE_AT: <<< ||>
+I (52140) LTE_AT: >>> AT+CMQTTPAYLOAD=0,140
+I (52195) LTE_AT: <<< ||>
+I (52459) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (52514) LTE_AT: <<< ||OK||
+I (52514) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (53016) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (53071) LTE_AT: <<< ||>
+I (53326) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (53381) LTE_AT: <<< ||>
+I (53645) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (53700) LTE_AT: <<< ||OK||
+I (53700) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (54200) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (54255) LTE_AT: <<< ||>
+I (54510) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (54565) LTE_AT: <<< ||>
+I (54829) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (54884) LTE_AT: <<< ||OK||
+I (54884) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (55384) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (55440) LTE_AT: <<< ||>
+I (55695) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (55750) LTE_AT: <<< ||>
+I (56014) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (56069) LTE_AT: <<< ||OK||
+I (56069) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (56571) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (56626) LTE_AT: <<< ||>
+I (56881) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (56936) LTE_AT: <<< ||>
+I (57200) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (57255) LTE_AT: <<< ||OK||
+I (57255) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (57755) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (57810) LTE_AT: <<< ||>
+I (58065) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (58120) LTE_AT: <<< ||>
+I (58384) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (58439) LTE_AT: <<< ||OK||
+I (58439) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (58939) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (58994) LTE_AT: <<< ||>
+I (59249) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (59304) LTE_AT: <<< ||>
+I (59568) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (59623) LTE_AT: <<< ||OK||
+I (59623) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (60123) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (60178) LTE_AT: <<< ||>
+I (60433) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (60488) LTE_AT: <<< ||>
+I (60752) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (60807) LTE_AT: <<< ||OK||
+I (60807) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (61309) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (61364) LTE_AT: <<< ||>
+I (61619) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (61674) LTE_AT: <<< ||>
+I (61938) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (61993) LTE_AT: <<< ||OK||
+I (61993) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (62493) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (62548) LTE_AT: <<< ||>
+I (62803) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (62858) LTE_AT: <<< ||>
+I (63122) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (63177) LTE_AT: <<< ||OK||
+I (63177) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (63677) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (63732) LTE_AT: <<< ||>
+I (63987) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (64042) LTE_AT: <<< ||>
+I (64306) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (64361) LTE_AT: <<< ||OK||
+I (64361) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (64861) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (64916) LTE_AT: <<< ||>
+I (65171) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (65226) LTE_AT: <<< ||>
+I (65490) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (65545) LTE_AT: <<< ||OK||
+I (65545) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (66047) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (66102) LTE_AT: <<< ||>
+I (66357) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (66412) LTE_AT: <<< ||>
+I (66676) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (66731) LTE_AT: <<< ||OK||
+I (66731) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (67231) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (67286) LTE_AT: <<< ||>
+I (67541) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (67596) LTE_AT: <<< ||>
+I (67860) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (67915) LTE_AT: <<< ||OK||
+I (67915) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (68415) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (68470) LTE_AT: <<< ||>
+I (68725) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (68780) LTE_AT: <<< ||>
+I (69044) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (69099) LTE_AT: <<< ||OK||
+I (69099) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (69601) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (69656) LTE_AT: <<< ||>
+I (69911) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (69966) LTE_AT: <<< ||>
+I (70230) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (70285) LTE_AT: <<< ||OK||
+I (70285) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (70285) LTE_AT: >>> AT+CSQ
+I (70340) LTE_AT: <<< ||+CSQ: 25,99||||OK||
+I (70340) PIPELINE: WDG: RSSI=25 | State=3 | Drops=0
+I (70785) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (70840) LTE_AT: <<< ||>
+I (71095) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (71150) LTE_AT: <<< ||>
+I (71414) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (71469) LTE_AT: <<< ||OK||
+I (71469) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (71969) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (72024) LTE_AT: <<< ||>
+I (72279) LTE_AT: >>> AT+CMQTTPAYLOAD=0,140
+I (72334) LTE_AT: <<< ||>
+I (72599) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (72654) LTE_AT: <<< ||OK||
+I (72654) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (73154) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (73209) LTE_AT: <<< ||>
+I (73464) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (73519) LTE_AT: <<< ||>
+I (73783) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (73838) LTE_AT: <<< ||OK||
+I (73838) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (70340) PIPELINE: WDG: data=-1B offline=-1B queue=16/20
+I (74340) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (74395) LTE_AT: <<< ||>
+I (74650) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (74705) LTE_AT: <<< ||>
+I (74969) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (75024) LTE_AT: <<< ||OK||
+I (75024) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (75524) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (75579) LTE_AT: <<< ||>
+I (75834) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (75889) LTE_AT: <<< ||>
+I (76153) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (76208) LTE_AT: <<< ||OK||
+I (76208) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (76708) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (76763) LTE_AT: <<< ||>
+I (77018) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (77073) LTE_AT: <<< ||>
+I (77337) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (77392) LTE_AT: <<< ||OK||
+I (77392) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (77892) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (77947) LTE_AT: <<< ||>
+I (78202) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (78257) LTE_AT: <<< ||>
+I (78521) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (78576) LTE_AT: <<< ||OK||
+I (78576) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (79078) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (79133) LTE_AT: <<< ||>
+I (79388) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (79443) LTE_AT: <<< ||>
+I (79707) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (79762) LTE_AT: <<< ||OK||
+I (79762) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (80262) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (80317) LTE_AT: <<< ||>
+I (80572) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (80627) LTE_AT: <<< ||>
+I (80891) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (80946) LTE_AT: <<< ||OK||
+I (80946) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (81446) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (81501) LTE_AT: <<< ||>
+I (81756) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (81811) LTE_AT: <<< ||>
+I (82075) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (82130) LTE_AT: <<< ||OK||
+I (82130) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (82630) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (82685) LTE_AT: <<< ||>
+I (82940) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (82995) LTE_AT: <<< ||>
+I (83259) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (83314) LTE_AT: <<< ||OK||
+I (83314) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (83816) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (83871) LTE_AT: <<< ||>
+I (84126) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (84181) LTE_AT: <<< ||>
+I (84445) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (84500) LTE_AT: <<< ||OK||
+I (84500) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (85000) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (85055) LTE_AT: <<< ||>
+I (85310) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (85365) LTE_AT: <<< ||>
+I (85629) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (85684) LTE_AT: <<< ||OK||
+I (85684) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (86184) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (86239) LTE_AT: <<< ||>
+I (86494) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (86549) LTE_AT: <<< ||>
+I (86813) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (86868) LTE_AT: <<< ||OK||
+I (86868) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (87370) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (87425) LTE_AT: <<< ||>
+I (87680) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (87735) LTE_AT: <<< ||>
+I (87999) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (88054) LTE_AT: <<< ||OK||
+I (88054) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (88554) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (88609) LTE_AT: <<< ||>
+I (88864) LTE_AT: >>> AT+CMQTTPAYLOAD=0,140
+I (88919) LTE_AT: <<< ||>
+W (89015) SD: append: mutex timeout
+W (89015) PIPELINE: Queue full - SD FAIL #21 (overflow: 1)
+I (89183) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (89238) LTE_AT: <<< ||OK||
+I (89238) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (89738) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (89793) LTE_AT: <<< ||>
+I (90048) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (90103) LTE_AT: <<< ||>
+I (90367) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (90422) LTE_AT: <<< ||OK||
+I (90422) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (90922) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (90977) LTE_AT: <<< ||>
+I (91232) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (91287) LTE_AT: <<< ||>
+I (91551) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (91606) LTE_AT: <<< ||OK||
+I (91606) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (92108) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (92163) LTE_AT: <<< ||>
+I (92418) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (92473) LTE_AT: <<< ||>
+I (92737) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (92792) LTE_AT: <<< ||OK||
+I (92792) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (93292) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (93347) LTE_AT: <<< ||>
+I (93602) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (93657) LTE_AT: <<< ||>
+I (93922) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (93977) LTE_AT: <<< ||OK||
+I (93977) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (94477) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (94532) LTE_AT: <<< ||>
+I (94787) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (94842) LTE_AT: <<< ||>
+I (95106) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (95161) LTE_AT: <<< ||OK||
+I (95161) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (95661) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (95716) LTE_AT: <<< ||>
+I (95971) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (96026) LTE_AT: <<< ||>
+I (96290) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (96345) LTE_AT: <<< ||OK||
+I (96345) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (96847) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (96902) LTE_AT: <<< ||>
+I (97157) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (97212) LTE_AT: <<< ||>
+I (97476) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+W (97517) SD: append: mutex timeout
+W (97517) PIPELINE: Queue full - SD FAIL #22 (overflow: 2)
+I (97531) LTE_AT: <<< ||OK||
+I (97531) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (98031) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (98086) LTE_AT: <<< ||>
+I (98341) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (98396) LTE_AT: <<< ||>
+I (98660) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (98715) LTE_AT: <<< ||OK||
+I (98715) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (99215) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (99270) LTE_AT: <<< ||>
+I (99525) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (99580) LTE_AT: <<< ||>
+I (99844) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (99899) LTE_AT: <<< ||OK||
+I (99899) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (100401) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (100456) LTE_AT: <<< ||>
+I (100711) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (100766) LTE_AT: <<< ||>
+I (101030) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (101085) LTE_AT: <<< ||OK||
+I (101085) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (101585) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (101661) LTE_AT: <<< ||+CMQTTTOPIC: 0,14||||ERROR||||+CMQTTPUB: 0,0||
+E (101661) MQTT: Data-mode prompt FAIL: AT+CMQTTTOPIC=0,31
+E (101961) MQTT: PUB topic FAIL
+I (101961) PIPELINE: Flush: 63 sent, 1 failed
+I (102361) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (102416) LTE_AT: <<< ||>
+I (102671) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (102726) LTE_AT: <<< ||>
+I (102990) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (103045) LTE_AT: <<< ||OK||
+I (103045) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (103467) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (103522) LTE_AT: <<< ||>
+I (103777) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (103832) LTE_AT: <<< ||>
+I (104096) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (104151) LTE_AT: <<< ||OK||
+I (104151) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (104352) LTE_AT: >>> AT+CSQ
+I (104422) LTE_AT: <<< ||+CSQ: 25,99||||OK||||+CMQTTPUB: 0,0||
+I (104422) PIPELINE: WDG: RSSI=25 | State=3 | Drops=2
+I (104422) PIPELINE: WDG: data=224112B offline=312859B queue=18/20
+I (104627) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (104682) LTE_AT: <<< ||>
+I (104937) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (104992) LTE_AT: <<< ||>
+I (105256) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (105311) LTE_AT: <<< ||OK||
+I (105311) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (105732) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (105787) LTE_AT: <<< ||>
+I (106042) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (106097) LTE_AT: <<< ||>
+I (106361) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (106416) LTE_AT: <<< ||OK||
+I (106416) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (106840) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (106896) LTE_AT: <<< ||>
+I (107151) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (107206) LTE_AT: <<< ||>
+I (107470) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (107525) LTE_AT: <<< ||OK||
+I (107525) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (107946) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (108001) LTE_AT: <<< ||>
+I (108256) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (108311) LTE_AT: <<< ||>
+I (108575) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (108630) LTE_AT: <<< ||OK||
+I (108630) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (109051) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (109106) LTE_AT: <<< ||>
+I (109361) LTE_AT: >>> AT+CMQTTPAYLOAD=0,136
+I (109416) LTE_AT: <<< ||>
+I (109680) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (109735) LTE_AT: <<< ||OK||
+I (109735) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (110159) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (110214) LTE_AT: <<< ||>
+I (110469) LTE_AT: >>> AT+CMQTTPAYLOAD=0,137
+I (110524) LTE_AT: <<< ||>
+I (110788) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (110843) LTE_AT: <<< ||OK||
+I (110843) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (111264) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (111319) LTE_AT: <<< ||>
+I (111574) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (111629) LTE_AT: <<< ||>
+I (111893) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (111948) LTE_AT: <<< ||OK||
+I (111948) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (112369) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (112424) LTE_AT: <<< ||>
+I (112679) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (112734) LTE_AT: <<< ||>
+I (112998) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (113053) LTE_AT: <<< ||OK||
+I (113053) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (113474) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (113529) LTE_AT: <<< ||>
+I (113784) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (113839) LTE_AT: <<< ||>
+I (114103) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (114158) LTE_AT: <<< ||OK||
+I (114158) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (114603) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (114658) LTE_AT: <<< ||>
+I (114913) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (114968) LTE_AT: <<< ||>
+I (115232) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (115287) LTE_AT: <<< ||OK||
+I (115287) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (115708) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (115763) LTE_AT: <<< ||>
+I (116018) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (116073) LTE_AT: <<< ||>
+I (116337) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (116392) LTE_AT: <<< ||OK||
+I (116392) MQTT: PUB OK >> [traintrack/sv20203510/telemetry]
+I (116813) LTE_AT: >>> AT+CMQTTTOPIC=0,31
+I (116868) LTE_AT: <<< ||>
+I (117123) LTE_AT: >>> AT+CMQTTPAYLOAD=0,140
+I (117178) LTE_AT: <<< ||>
+Done

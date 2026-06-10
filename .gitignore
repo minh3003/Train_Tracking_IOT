@@ -1,0 +1,18 @@
+# ESP-IDF
+build/
+sdkconfig.old
+sdkconfig
+
+# Visual Studio Code
+.vscode/
+
+# Python (if any)
+__pycache__/
+*.pyc
+
+# Local Logs and text files
+*.log
+train_tracking_error_logs.txt
+log.train_tracking_iot.*.txt
+train_tracking_iot_review.txt
+train_tracking_source_for_notebooklm.txt
