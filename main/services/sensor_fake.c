@@ -1,4 +1,5 @@
 #include "sensor_fake.h"
+#include "sys_config.h"
 #include "esp_timer.h"
 #include "esp_random.h"
 #include <stdio.h>
@@ -30,19 +31,23 @@ void sensor_fake_read(sensor_data_t *out)
     out->accel_y     = (int16_t)(esp_random() % 300 - 150);
     out->accel_z     = 16200 + (int16_t)(esp_random() % 400 - 200);
     out->gyro_x      = (int16_t)(esp_random() % 100 - 50);
-    out->temperature_c = 28 + (int8_t)(esp_random() % 5);
+    out->temperature_c = 28 + (int16_t)(esp_random() % 5);  /* [M4-FIX] int16_t */
 
     out->timestamp_ms = ts;
     out->seq          = s_seq;
 }
 
 void sensor_build_json(const sensor_data_t *d,
-                        char *buf, size_t len)
+                        char *buf, size_t len,
+                        const char *time_iso, uint16_t boot_id)
 {
     snprintf(buf, len,
              "{"
+             "\"dev\":\"%s\","
+             "\"bid\":%u,"
              "\"seq\":%lu,"
              "\"ts\":%lu,"
+             "\"time\":\"%s\","
              "\"lat\":%.6f,"
              "\"lon\":%.6f,"
              "\"speed\":%.1f,"
@@ -54,8 +59,11 @@ void sensor_build_json(const sensor_data_t *d,
              "\"temp\":%d,"
              "\"gps_ok\":%s"
              "}",
+             DEVICE_ID,
+             (unsigned)boot_id,
              (unsigned long)d->seq,
              (unsigned long)d->timestamp_ms,
+             time_iso ? time_iso : "0000-00-00T00:00:00",
              d->latitude,
              d->longitude,
              d->speed_kmh,

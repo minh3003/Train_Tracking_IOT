@@ -90,7 +90,7 @@ static bool prv_send_data(const char *at_cmd, const char *data, size_t len)
         return false;
     }
 
-    vTaskDelay(pdMS_TO_TICKS(200));
+    vTaskDelay(pdMS_TO_TICKS(50)); /* [OPT] 200->50ms: modem da tra OK, cho ngan hon */
     return true;
 }
 
@@ -265,7 +265,7 @@ esp_err_t mqtt_service_publish(const char *topic, const char *payload, uint8_t q
 
     /* Drain moi URC con sot lai tu pub truoc (+CMQTTPUB, etc) */
     lte_at_flush();
-    vTaskDelay(pdMS_TO_TICKS(100));
+    vTaskDelay(pdMS_TO_TICKS(20)); /* [OPT] 100->20ms: flush nhanh hon, khong can doi lau */
     {
         char drain[256];
         int n = lte_at_read(drain, sizeof(drain), 50);
@@ -299,7 +299,7 @@ esp_err_t mqtt_service_publish(const char *topic, const char *payload, uint8_t q
         TickType_t deadline = xTaskGetTickCount() + pdMS_TO_TICKS(15000);
         while (xTaskGetTickCount() < deadline) {
             char buf[512];
-            int got = lte_at_read(buf, sizeof(buf), 200);
+            int got = lte_at_read(buf, sizeof(buf), 50); /* [OPT] 200->50ms: poll nhanh hon de phat hien PUBACK som */
             if (got > 0) {
                 if (strstr(buf, "+CMQTTPUB: 0,")) pub_done = true;
                 mqtt_service_push_urc(buf);

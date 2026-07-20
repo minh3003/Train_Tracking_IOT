@@ -75,8 +75,8 @@ static bool prv_make_rotated_name(char *out, size_t out_len)
     }
 
     for (int i = DATA_LOG_MAX_FILES - 1; i >= 1; i--) {
-        char old_fn[32];
-        char new_fn[32];
+        char old_fn[48];
+        char new_fn[48];
         char old_path[128];
         char new_path[128];
 
@@ -100,7 +100,36 @@ static void prv_rotate_data_log_locked(void)
     char active[128];
     struct stat st;
     prv_path(active, sizeof(active), SD_FILE_DATA);
-    if (stat(active, &st) != 0 || st.st_size < DATA_LOG_MAX_BYTES) return;
+    
+    if (stat(active, &st) != 0 || st.st_size == 0) return;
+
+    bool should_rotate = false;
+
+    /* 1. Size-based Rotation: Dung luong >= 5MB */
+    if (st.st_size >= DATA_LOG_MAX_BYTES) {
+        should_rotate = true;
+    }
+
+    /* 2. Time-based Rotation: Chuyen ngay moi */
+    lte_time_t t;
+    static int s_last_day = -1;
+    if (lte_time_get(&t)) {
+        int current_day = lte_time_days_since_2000(&t);
+        if (s_last_day == -1) {
+            /* Khoi tao lan dau */
+            s_last_day = current_day;
+        } else if (current_day != s_last_day) {
+            should_rotate = true;
+        }
+        
+        /* FIXED: Luon dong bo s_last_day neu file duoc cat (bat ke do Time hay do Size)
+           De tranh bi cat file 100 bytes o lan ghi tiep theo. */
+        if (should_rotate) {
+            s_last_day = current_day;
+        }
+    }
+
+    if (!should_rotate) return;
 
     char rotated_fn[64];
     char rotated_path[128];
@@ -136,7 +165,15 @@ static void prv_cleanup_data_logs_locked(void)
     DIR *dir = opendir(SD_MOUNT_POINT);
     if (!dir) return;
 
-    data_log_entry_t entries[DATA_LOG_MAX_FILES + 16];
+    /* FIXED: Cấp phát động để tránh Stack Overflow. Mảng này tốn ~8.3KB, không được để trên Stack của task RTOS! */
+    int max_entries = DATA_LOG_MAX_FILES + 50;
+    data_log_entry_t *entries = malloc(sizeof(data_log_entry_t) * max_entries);
+    if (!entries) {
+        closedir(dir);
+        LOG_E(TAG, "cleanup OOM");
+        return;
+    }
+
     int count = 0;
     lte_time_t cur_time;
     bool has_time = lte_time_get(&cur_time);
@@ -144,7 +181,7 @@ static void prv_cleanup_data_logs_locked(void)
 
     struct dirent *ent;
     while ((ent = readdir(dir)) != NULL) {
-        if (count >= (int)(sizeof(entries) / sizeof(entries[0]))) break;
+        if (count >= max_entries) break;
         if (strncmp(ent->d_name, "data_", 5) != 0 ||
             strstr(ent->d_name, ".log") == NULL) {
             continue;
@@ -152,6 +189,8 @@ static void prv_cleanup_data_logs_locked(void)
 
         lte_time_t log_time = {0};
         int stamp = 0;
+        bool keep = true;
+
         if (prv_parse_data_log_date(ent->d_name, &log_time)) {
             int days = lte_time_days_since_2000(&log_time);
             stamp = days * 86400 + log_time.hour * 3600 +
@@ -159,12 +198,8 @@ static void prv_cleanup_data_logs_locked(void)
 
             if (cur_days >= 0 && days >= 0 &&
                 cur_days - days >= DATA_LOG_RETENTION_DAYS) {
-                char path[128];
-                prv_path(path, sizeof(path), ent->d_name);
-                if (remove(path) == 0) {
-                    LOG_I(TAG, "Deleted old data log: %s", ent->d_name);
-                }
-                continue;
+                /* FIXED: Tuyệt đối không gọi remove() khi đang duyệt DIR (FatFS undefined behavior) */
+                keep = false; 
             }
         } else {
             stamp = count;
@@ -173,12 +208,26 @@ static void prv_cleanup_data_logs_locked(void)
         strncpy(entries[count].fn, ent->d_name, sizeof(entries[count].fn) - 1);
         entries[count].fn[sizeof(entries[count].fn) - 1] = '\0';
         entries[count].stamp = stamp;
-        entries[count].keep = true;
+        entries[count].keep = keep;
         count++;
     }
     closedir(dir);
 
-    int keep_count = count;
+    /* An toàn để xoá file vì đã đóng DIR */
+    int keep_count = 0;
+
+    for (int i = 0; i < count; i++) {
+        if (!entries[i].keep) {
+            char path[128];
+            prv_path(path, sizeof(path), entries[i].fn);
+            if (remove(path) == 0) {
+                LOG_I(TAG, "Deleted old data log: %s", entries[i].fn);
+            }
+        } else {
+            keep_count++;
+        }
+    }
+
     while (keep_count > DATA_LOG_MAX_FILES) {
         int oldest = -1;
         for (int i = 0; i < count; i++) {
@@ -197,6 +246,8 @@ static void prv_cleanup_data_logs_locked(void)
         entries[oldest].keep = false;
         keep_count--;
     }
+
+    free(entries);
 }
 
 esp_err_t sd_log_init(void)
@@ -275,7 +326,7 @@ esp_err_t sd_log_reinit(void)
         return ESP_ERR_TIMEOUT;
     }
 
-    /* Unmount neu dang mounted (giai phong SPI device, giu lai SPI bus) */
+    /* Unmount neu dang mounted (esp_vfs_fat_sdcard_unmount tu dong giai phong SPI device) */
     if (s_mounted) {
         esp_vfs_fat_sdcard_unmount(SD_MOUNT_POINT, s_card);
         s_card = NULL;
@@ -286,7 +337,6 @@ esp_err_t sd_log_reinit(void)
     /* Cho SD card on dinh */
     vTaskDelay(pdMS_TO_TICKS(1000));
 
-    /* Remount voi cung config (SPI bus da init tu truoc, khong can init lai) */
     esp_vfs_fat_sdmmc_mount_config_t mcfg = {
         .format_if_mount_failed = false,
         .max_files              = 5,
@@ -301,7 +351,33 @@ esp_err_t sd_log_reinit(void)
     slot.gpio_cs = SD_PIN_CS;
     slot.host_id = host.slot;
 
+    /* [H3-FIX] Lan mount dau tien */
     esp_err_t r = esp_vfs_fat_sdspi_mount(SD_MOUNT_POINT, &host, &slot, &mcfg, &s_card);
+
+    if (r != ESP_OK) {
+        /* Fallback: SPI bus co the bi loi trang thai sau khi card bi rut.
+         * Thu giai phong va init lai SPI bus truoc khi mount lan 2. */
+        LOG_W(TAG, "SD reinit: mount fail (%s), retrying with SPI bus reinit...",
+              esp_err_to_name(r));
+        spi_bus_free(host.slot);
+        vTaskDelay(pdMS_TO_TICKS(500));
+
+        spi_bus_config_t bus = {
+            .mosi_io_num     = SD_PIN_MOSI,
+            .miso_io_num     = SD_PIN_MISO,
+            .sclk_io_num     = SD_PIN_SCK,
+            .quadwp_io_num   = -1,
+            .quadhd_io_num   = -1,
+            .max_transfer_sz = 4096,
+        };
+        esp_err_t bus_r = spi_bus_initialize(host.slot, &bus, SDSPI_DEFAULT_DMA);
+        if (bus_r == ESP_OK) {
+            r = esp_vfs_fat_sdspi_mount(SD_MOUNT_POINT, &host, &slot, &mcfg, &s_card);
+        } else {
+            LOG_E(TAG, "SD reinit: SPI bus reinit FAIL: %s", esp_err_to_name(bus_r));
+        }
+    }
+
     if (r == ESP_OK) {
         s_mounted = true;
         LOG_I(TAG, "SD reinit [OK] | %s | %lluMB",
@@ -376,6 +452,7 @@ bool sd_log_dump(const char *fn)
 
 long sd_log_file_size(const char *fn)
 {
+    if (!s_mounted || !fn) return -1;  /* [M5-FIX] */
     if (s_sd_mutex && xSemaphoreTake(s_sd_mutex, pdMS_TO_TICKS(2000)) != pdTRUE) {
         return -1;
     }
@@ -389,6 +466,7 @@ long sd_log_file_size(const char *fn)
 
 bool sd_log_file_exists(const char *fn)
 {
+    if (!s_mounted || !fn) return false;  /* [M5-FIX] */
     if (s_sd_mutex && xSemaphoreTake(s_sd_mutex, pdMS_TO_TICKS(2000)) != pdTRUE) {
         return false;
     }
@@ -402,6 +480,7 @@ bool sd_log_file_exists(const char *fn)
 
 bool sd_log_delete(const char *fn)
 {
+    if (!s_mounted || !fn) return false;  /* [M5-FIX] */
     if (s_sd_mutex && xSemaphoreTake(s_sd_mutex, pdMS_TO_TICKS(2000)) != pdTRUE) {
         return false;
     }
@@ -445,6 +524,7 @@ bool sd_log_rename(const char *old_fn, const char *new_fn)
 
 int sd_log_count_lines(const char *fn)
 {
+    if (!s_mounted || !fn) return -1;  /* [M5-FIX] */
     if (s_sd_mutex && xSemaphoreTake(s_sd_mutex, pdMS_TO_TICKS(2000)) != pdTRUE) {
         return -1;
     }
@@ -468,31 +548,10 @@ int sd_log_count_lines(const char *fn)
     return cnt;
 }
 
-FILE *sd_log_open_read(const char *fn)
-{
-    if (s_sd_mutex && xSemaphoreTake(s_sd_mutex, pdMS_TO_TICKS(2000)) != pdTRUE) {
-        return NULL;
-    }
-    char path[128];
-    prv_path(path, sizeof(path), fn);
-    FILE *f = fopen(path, "r");
-    if (!f) {
-        LOG_E(TAG, "open_read fail: %s", path);
-    }
-    if (s_sd_mutex) xSemaphoreGive(s_sd_mutex);
-    return f;
-}
-
-void sd_log_close_read(FILE *f)
-{
-    if (!f) return;
-    fclose(f);
-}
-
-int sd_log_read_lines(const char *fn, long offset,
+int sd_log_read_lines(const char *fn, long *offset,
                       char lines[][PAYLOAD_MAX_LEN], int max_lines)
 {
-    if (!s_mounted || !fn || !lines || max_lines <= 0) return 0;
+    if (!s_mounted || !fn || !offset || !lines || max_lines <= 0) return 0;
     if (s_sd_mutex && xSemaphoreTake(s_sd_mutex, pdMS_TO_TICKS(2000)) != pdTRUE) {
         return -1;
     }
@@ -503,7 +562,15 @@ int sd_log_read_lines(const char *fn, long offset,
         if (s_sd_mutex) xSemaphoreGive(s_sd_mutex);
         return -1;
     }
-    if (offset > 0) fseek(f, offset, SEEK_SET);
+    /* [C1-FIX] Kiem tra ket qua fseek de tranh undefined behavior khi I/O loi */
+    if (*offset > 0) {
+        if (fseek(f, *offset, SEEK_SET) != 0) {
+            LOG_W(TAG, "read_lines: fseek fail (offset=%ld)", *offset);
+            fclose(f);
+            if (s_sd_mutex) xSemaphoreGive(s_sd_mutex);
+            return -1;
+        }
+    }
 
     int count = 0;
     while (count < max_lines && fgets(lines[count], PAYLOAD_MAX_LEN, f)) {
@@ -512,6 +579,10 @@ int sd_log_read_lines(const char *fn, long offset,
         if (strlen(lines[count]) < 2) continue;
         count++;
     }
+
+    /* [C1-FIX] ftell co the tra -1 khi I/O loi, giu lai offset cu neu vay */
+    long new_offset = ftell(f);
+    *offset = (new_offset >= 0) ? new_offset : *offset;
     fclose(f);
     if (s_sd_mutex) xSemaphoreGive(s_sd_mutex);
     return count;

@@ -22,6 +22,54 @@
 
 #define TAG "MAIN"
 
+/* --- Network Fault Injection (Hardware Network Kill Switch) --- */
+/* Cam day Jumper vao GND -> Kich hoat trang thai mat song gia lap */
+/* GPIO25: Co tich hop tro keo noi (internal pull-up), an toan khi ho mach */
+#define NET_CUT_PIN 25
+volatile bool g_net_cut_active = false;
+
+static void net_fault_task(void *arg)
+{
+    gpio_reset_pin(NET_CUT_PIN);
+    gpio_set_direction(NET_CUT_PIN, GPIO_MODE_INPUT);
+    gpio_set_pull_mode(NET_CUT_PIN, GPIO_PULLUP_ONLY);
+
+    bool last_state = true;
+
+    while (1) {
+        bool current_state = gpio_get_level(NET_CUT_PIN);
+        
+        /* Phat hien trang thai day thay doi */
+        if (current_state != last_state) {
+            /* Software Debounce 50ms */
+            vTaskDelay(pdMS_TO_TICKS(50));
+            
+            if (gpio_get_level(NET_CUT_PIN) == current_state) {
+                last_state = current_state;
+                
+                if (current_state == 0) {
+                    /* Cam day Jumper vao GND -> Kich hoat mat song gia lap */
+                    g_net_cut_active = true;
+                    LOG_E(TAG, ">>> NET FAULT INJECTED (Network Killed) <<<");
+                    /* [C3-FIX] KHONG goi lte_at_send truc tiep tai day!
+                     * net_fault_task chay Priority 2, thap hon transmit_task (Prio 4)
+                     * dang co the giu UART mutex toi 15-25 giay (publish + URC wait).
+                     * Goi AT truc tiep se bi timeout va khong co tac dung.
+                     * transmit_task va watchdog se detect g_net_cut_active = true
+                     * va chuyen sang PIPE_OFFLINE de xu ly. */
+                } else {
+                    /* Rut day Jumper ra khoi GND (Pull-up keo len 1) -> Phuc hoi mang */
+                    g_net_cut_active = false;
+                    LOG_I(TAG, ">>> NET FAULT CLEARED (Network Restored) <<<");
+                    /* [C3-FIX] Tuong tu: transmit_task se tu detect flag = false
+                     * va trigger PIPE_RECONNECTING de ket noi lai. */
+                }
+            }
+        }
+        vTaskDelay(pdMS_TO_TICKS(50));
+    }
+}
+
 void app_main(void)
 {
     /* NVS Init */
@@ -77,7 +125,11 @@ void app_main(void)
                 "task_transmit", 8192, NULL, 4, NULL, 0);
 
     xTaskCreatePinnedToCore(pipeline_watchdog_task,
-                "task_watchdog", 4096, NULL, 5, NULL, 0);
+                "task_watchdog", 8192, NULL, 5, NULL, 0);
+
+    /* Task Network Fault Injection: lang nghe Jumper Wire GPIO25 de gia lap mat song */
+    xTaskCreatePinnedToCore(net_fault_task,
+                "task_net_fault", 3072, NULL, 2, NULL, 0);
 
     LOG_I(TAG, "All tasks spawned [OK]");
     LOG_I(TAG, "System running...");

@@ -211,7 +211,10 @@ void cmd_handler_process(const char *payload, int pay_len)
     if (!payload || pay_len <= 2) return;
 
     /* Dam bao null-terminated (caller da lam nhung phong thu) */
-    char buf[256];
+    /* [M3-FIX] Tang buffer tu 256 -> 512 (= PAYLOAD_MAX_LEN) de tranh
+     * truncate payload JSON dai tu MQTT broker. Payload bi cat se khien
+     * prv_json_str parse sai va lenh bi reject sai. */
+    char buf[512];
     int copy_len = (pay_len < (int)sizeof(buf) - 1) ? pay_len : (int)sizeof(buf) - 1;
     memcpy(buf, payload, copy_len);
     buf[copy_len] = '\0';

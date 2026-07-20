@@ -1,0 +1,4252 @@
+I (29) boot: ESP-IDF HEAD-HASH-NOTFOUND 2nd stage bootloader
+I (29) boot: compile time Jun 12 2026 17:33:58
+I (30) boot: Multicore bootloader
+I (32) boot: chip revision: v3.1
+I (35) boot.esp32: SPI Speed      : 40MHz
+I (38) boot.esp32: SPI Mode       : DIO
+I (42) boot.esp32: SPI Flash Size : 2MB
+I (45) boot: Enabling RNG early entropy source...
+I (50) boot: Partition Table:
+I (53) boot: ## Label            Usage          Type ST Offset   Length
+I (59) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (72) boot:  2 factory          factory app      00 00 00010000 00100000
+I (78) boot: End of partition table
+I (82) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=124a4h ( 74916) map
+I (115) esp_image: segment 1: paddr=000224cc vaddr=3ffb0000 size=02a84h ( 10884) load
+I (119) esp_image: segment 2: paddr=00024f58 vaddr=40080000 size=0b0c0h ( 45248) load
+I (137) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=30each (200364) map
+I (206) esp_image: segment 4: paddr=00060ed4 vaddr=4008b0c0 size=055e8h ( 21992) load
+I (214) esp_image: segment 5: paddr=000664c4 vaddr=50000000 size=0001ch (    28) load
+I (222) boot: Loaded app from partition at offset 0x10000
+I (223) boot: Disabling RNG early entropy source...
+I (233) cpu_start: Multicore app
+I (242) cpu_start: GPIO 3 and 1 are used as console UART I/O pins
+I (242) cpu_start: Pro cpu start user code
+I (242) cpu_start: cpu freq: 160000000 Hz
+I (244) app_init: Application information:
+I (248) app_init: Project name:     train_tracking_iot
+I (252) app_init: App version:      703ca70-dirty
+I (257) app_init: Compile time:     Jun 12 2026 17:33:47
+I (262) app_init: ELF file SHA256:  e4951a086...
+I (266) app_init: ESP-IDF:          HEAD-HASH-NOTFOUND
+I (271) efuse_init: Min chip rev:     v0.0
+I (275) efuse_init: Max chip rev:     v3.99 
+I (279) efuse_init: Chip rev:         v3.1
+I (283) heap_init: Initializing. RAM available for dynamic allocation:
+I (289) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM
+I (294) heap_init: At 3FFB4CF0 len 0002B310 (172 KiB): DRAM
+I (299) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM
+I (305) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
+I (310) heap_init: At 400906A8 len 0000F958 (62 KiB): IRAM
+I (317) spi_flash: detected chip: generic
+I (319) spi_flash: flash io: dio
+W (322) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (335) main_task: Started on CPU0
+I (338) main_task: Calling app_main()
+I (374) MAIN: ======================================
+I (375) MAIN:   TRAIN TRACKING IOT
+I (375) MAIN:   LTE + MQTT + SD + Offline Buffer
+I (376) MAIN:   Build: Jun 25 2026 17:01:56
+I (380) MAIN: ======================================
+I (385) MAIN: Free heap: 290476 bytes
+I (388) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (396) SD: Init SD | CS=5 SCK=18 MOSI=23 MISO=19
+I (402) gpio: GPIO[5]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
+I (410) sdspi_transaction: cmd=52, R1 response: command not supported
+I (457) sdspi_transaction: cmd=5, R1 response: command not supported
+I (483) SD: SD mounted [OK] | SD16G | 14910MB
+I (500) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (502) LTE_AT: UART1 OK | TX=GPIO26 RX=GPIO27 Baud=115200 RST=GPIO4
+I (504) MAIN: Waiting 5s for A7680C boot...
+I (5510) CMD: cmd_handler init | 4 commands registered
+I (5511) PIPELINE: Pipeline init | SD=OK QueueSize=100 BootID=0x001D (29)
+I (5511) MAIN: Spawning tasks...
+I (5514) PIPELINE: transmit_task started
+I (5514) PIPELINE: sensor_task started
+I (5518) PIPELINE: watchdog_task started
+I (5517) LTE_AT: ==================================
+I (5529) LTE_AT:    A7680C LTE INIT SEQUENCE
+I (5533) LTE_AT: ==================================
+I (5538) LTE_AT: [1/8] Module alive...
+I (5518) gpio: GPIO[25]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (5518) MAIN: All tasks spawned [OK]
+I (5553) MAIN: System running...
+I (5556) main_task: Returned from app_main()
+I (5661) LTE_AT: >>> AT
+I (5714) LTE_AT: <<< AT|||OK||
+I (5714) LTE_AT:   [OK] ALIVE
+I (5734) LTE_AT: >>> ATE0
+I (5787) LTE_AT: <<< ATE0|||OK||
+I (6207) LTE_AT: >>> AT+CTZU=1
+I (6263) LTE_AT: <<< ||OK||
+I (6283) LTE_AT: >>> AT+CTZR=1
+I (6336) LTE_AT: <<< ||OK||
+I (6336) LTE_AT: [2/8] SIM card...
+I (6356) LTE_AT: >>> AT+CPIN?
+I (6412) LTE_AT: <<< ||+CPIN: READY||||OK||
+I (6412) LTE_AT:   [OK] SIM READY
+I (6712) LTE_AT: [3/8] Signal...
+I (6732) LTE_AT: >>> AT+CSQ
+I (6787) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (6787) LTE_AT:   [OK] RSSI=23/31 (Excellent)
+I (7087) LTE_AT: [4/8] Network (max 60s)...
+I (7107) LTE_AT: >>> AT+CREG?
+I (7162) LTE_AT: <<< ||+CREG: 0,1||||OK||
+I (7162) LTE_AT:   [OK] REGISTERED (stat=1, home)
+I (7162) LTE_AT: [4.5/8] Network time...
+I (7182) LTE_AT: >>> AT+CTZU=1
+I (7238) LTE_AT: <<< ||OK||
+I (7458) LTE_AT: >>> AT+CTZR=1
+I (7511) LTE_AT: <<< ||OK||
+I (7731) LTE_AT: >>> AT+CCLK?
+I (7790) LTE_AT: <<< ||+CCLK: "26/06/26,03:06:57+28"||||OK||
+I (7790) LTE_AT: LTE time synced: 2026-06-26 03:06:57 tz=28
+I (7790) LTE_AT: [5/8] Internet (APN: v-internet)...
+I (7814) LTE_AT: >>> AT+CGDCONT=1,"IP","v-internet"
+I (7869) LTE_AT: <<< ||OK||
+I (8389) LTE_AT: >>> AT+CGACT=1,1
+I (8444) LTE_AT: <<< ||OK||
+I (8522) PIPELINE: Time Anchor captured: Boot Epoch = 1782443209 (tz_offset=25200s)
+I (10464) LTE_AT: >>> AT+CGPADDR=1
+I (10521) LTE_AT: <<< ||+CGPADDR: 1,6.219.71.175||||OK||
+I (10521) LTE_AT:   [OK] IP = 6.219.71.175
+I (10521) LTE_AT: [6/8] Opening TCP/IP stack...
+I (10543) LTE_AT: >>> AT+NETCLOSE
+I (10599) LTE_AT: <<< ||+NETCLOSE: 2||||ERROR||
+I (12619) LTE_AT: >>> AT+NETOPEN
+I (12678) LTE_AT: <<< ||OK||||+NETOPEN: 0||
+I (12678) LTE_AT:   [OK] TCP stack ready
+I (13678) LTE_AT: [7/8] DNS resolution...
+I (13678) LTE_AT:   [A] Carrier DNS...
+I (13698) LTE_AT: >>> AT+CDNSGIP="broker.emqx.io"
+I (14706) LTE_AT: <<< ||+CDNSGIP: 1,"broker.emqx.io","44.232.241.40"||+CDNSGIP: 2,"broker.emqx.io","35.172.255.228"||+CDNSGIP: 3,"broker.emqx.io","34.243.217.54"||||OK||
+I (14709) LTE_AT:   [OK] Carrier DNS
+I (14713) LTE_AT:   Resolved: 44.232.241.40
+I (14717) LTE_AT: [8/8] Broker IP = 44.232.241.40
+I (15221) LTE_AT: ==================================
+I (15221) LTE_AT:   LTE READY [OK]
+I (15221) LTE_AT: ==================================
+I (15222) MQTT: Connecting >> broker.emqx.io:8883 (TLS)
+I (15227) MQTT: Step 1: Cleanup...
+I (15770) LTE_AT: >>> AT+CMQTTDISC=0,60
+I (15827) LTE_AT: <<< ||+CMQTTDISC: 0,11||||ERROR||
+I (16147) LTE_AT: >>> AT+CMQTTREL=0
+I (16201) LTE_AT: <<< ||ERROR||
+I (16521) LTE_AT: >>> AT+CMQTTSTOP
+I (16575) LTE_AT: <<< ||ERROR||
+I (17595) MQTT: Step 2: CMQTTSTART...
+I (17615) LTE_AT: >>> AT+CMQTTSTART
+I (17671) LTE_AT: <<< ||OK||||+CMQTTSTART: 0||
+I (17671) MQTT:   [OK] Engine started
+I (18171) MQTT: Step 3: CMQTTACCQ...
+I (18191) LTE_AT: >>> AT+CMQTTACCQ=0,"traintrack_Bamboo",1
+I (18247) LTE_AT: <<< ||OK||
+I (18247) MQTT:   [OK] Client acquired
+I (18747) MQTT: Step 4: SSL config...
+I (18767) LTE_AT: >>> AT+CSSLCFG="sslversion",0,4
+I (18822) LTE_AT: <<< ||OK||
+I (19042) LTE_AT: >>> AT+CSSLCFG="authmode",0,0
+I (19097) LTE_AT: <<< ||OK||
+I (19317) LTE_AT: >>> AT+CSSLCFG="enableSNI",0,1
+I (19372) LTE_AT: <<< ||OK||
+I (19592) LTE_AT: >>> AT+CMQTTSSLCFG=0,0
+I (19647) LTE_AT: <<< ||OK||
+I (19647) MQTT:   [OK] SSL linked
+I (20147) MQTT: Step 5: CMQTTCONNECT...
+I (20147) MQTT:   [A] Trying hostname: broker.emqx.io
+I (20167) MQTT: >>> AT+CMQTTCONNECT=0,"tcp://broker.emqx.io:8883",60,1
+I (24450) MQTT:   URC found: +CMQTTCONNECT: 0,0
+I (24450) MQTT: MQTT CONNECTED [OK] broker.emqx.io:8883
+I (24590) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (24644) LTE_AT: <<< ||>
+I (24788) LTE_AT: >>> AT+CMQTTPAYLOAD=0,42
+I (24843) LTE_AT: <<< ||>
+I (24969) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (25024) LTE_AT: <<< ||OK||
+I (25205) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (27265) LTE_AT: >>> AT+CMQTTSUBTOPIC=0,25,1
+I (27320) LTE_AT: <<< ||>
+I (27444) LTE_AT: >>> AT+CMQTTSUB=0
+I (27498) LTE_AT: <<< ||OK||
+I (27498) MQTT: SUB OK >> [traintrack/Bamboo/command]
+I (28839) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (28894) LTE_AT: <<< ||>
+I (29039) LTE_AT: >>> AT+CMQTTPAYLOAD=0,189
+I (29094) LTE_AT: <<< ||>
+I (29233) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (29288) LTE_AT: <<< ||OK||
+I (29465) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (29828) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (29883) LTE_AT: <<< ||>
+I (30028) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (30083) LTE_AT: <<< ||>
+I (30222) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (30276) LTE_AT: <<< ||OK||
+I (30455) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (30818) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (30873) LTE_AT: <<< ||>
+I (31018) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (31073) LTE_AT: <<< ||>
+I (31212) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (31267) LTE_AT: <<< ||OK||
+I (31445) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (31810) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (31865) LTE_AT: <<< ||>
+I (32010) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (32065) LTE_AT: <<< ||>
+I (32204) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (32258) LTE_AT: <<< ||OK||
+I (32499) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (32862) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (32917) LTE_AT: <<< ||>
+I (33062) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (33117) LTE_AT: <<< ||>
+I (33256) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (33311) LTE_AT: <<< ||OK||
+I (33505) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (33868) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (33923) LTE_AT: <<< ||>
+I (34068) LTE_AT: >>> AT+CMQTTPAYLOAD=0,189
+I (34123) LTE_AT: <<< ||>
+I (34262) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (34316) LTE_AT: <<< ||OK||
+I (34495) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (34862) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (34917) LTE_AT: <<< ||>
+I (35062) LTE_AT: >>> AT+CMQTTPAYLOAD=0,189
+I (35117) LTE_AT: <<< ||>
+I (35256) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (35310) LTE_AT: <<< ||OK||
+I (35495) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (35737) LTE_AT: >>> AT+CSQ
+I (35792) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (35792) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (35812) LTE_AT: >>> AT+CTZU=1
+I (35868) LTE_AT: <<< ||OK||
+I (36008) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (36063) LTE_AT: <<< ||>
+I (36208) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (36263) LTE_AT: <<< ||>
+I (36402) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (36457) LTE_AT: <<< ||OK||
+I (36635) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (36655) LTE_AT: >>> AT+CTZR=1
+I (36709) LTE_AT: <<< ||OK||
+I (36929) LTE_AT: >>> AT+CCLK?
+I (36988) LTE_AT: <<< ||+CCLK: "26/06/26,03:07:26+28"||||OK||
+I (36988) LTE_AT: LTE time synced: 2026-06-26 03:07:26 tz=28
+I (36989) PIPELINE: WDG: data=106008B offline=0B processing=0B queue=2/100
+I (36994) PIPELINE: WDG: heap_free=173492 heap_min=172620
+I (36999) PIPELINE: WDG: pkt produced=11 delivered=8 offline=0 dropped=0
+I (37146) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (37201) LTE_AT: <<< ||>
+I (37346) LTE_AT: >>> AT+CMQTTPAYLOAD=0,138
+I (37401) LTE_AT: <<< ||>
+I (37535) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (37590) LTE_AT: <<< ||OK||
+I (37775) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (37915) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (37970) LTE_AT: <<< ||>
+I (38115) LTE_AT: >>> AT+CMQTTPAYLOAD=0,188
+I (38170) LTE_AT: <<< ||>
+I (38309) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (38364) LTE_AT: <<< ||OK||
+I (38545) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (38907) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (38962) LTE_AT: <<< ||>
+I (39107) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (39162) LTE_AT: <<< ||>
+I (39301) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (39355) LTE_AT: <<< ||OK||
+I (39536) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (39898) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (39953) LTE_AT: <<< ||>
+I (40098) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (40153) LTE_AT: <<< ||>
+I (40292) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (40347) LTE_AT: <<< ||OK||
+I (40525) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (40890) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (40945) LTE_AT: <<< ||>
+I (41090) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (41145) LTE_AT: <<< ||>
+I (41284) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (41339) LTE_AT: <<< ||OK||
+I (41516) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (41878) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (41933) LTE_AT: <<< ||>
+I (42078) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (42133) LTE_AT: <<< ||>
+I (42272) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (42327) LTE_AT: <<< ||OK||
+I (42505) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (44727) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (44782) LTE_AT: <<< ||>
+I (44927) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (44982) LTE_AT: <<< ||>
+I (45121) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (45176) LTE_AT: <<< ||OK||
+I (45363) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (47676) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (47731) LTE_AT: <<< ||>
+I (47876) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (47931) LTE_AT: <<< ||>
+I (48070) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (48124) LTE_AT: <<< ||OK||
+I (48305) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (50838) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (50893) LTE_AT: <<< ||>
+I (51038) LTE_AT: >>> AT+CMQTTPAYLOAD=0,188
+I (51093) LTE_AT: <<< ||>
+I (51232) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (51287) LTE_AT: <<< ||OK||
+I (51466) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (53691) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (53746) LTE_AT: <<< ||>
+I (53891) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (53946) LTE_AT: <<< ||>
+I (54085) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (54140) LTE_AT: <<< ||OK||
+I (54325) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (56858) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (56913) LTE_AT: <<< ||>
+I (57058) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (57113) LTE_AT: <<< ||>
+I (57252) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (57307) LTE_AT: <<< ||OK||
+I (57485) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (59708) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (59763) LTE_AT: <<< ||>
+I (59908) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (59963) LTE_AT: <<< ||>
+I (60102) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (60157) LTE_AT: <<< ||OK||
+I (60335) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (62870) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (62925) LTE_AT: <<< ||>
+I (63070) LTE_AT: >>> AT+CMQTTPAYLOAD=0,188
+I (63125) LTE_AT: <<< ||>
+I (63264) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (63319) LTE_AT: <<< ||OK||
+I (63496) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (65722) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (65777) LTE_AT: <<< ||>
+I (65922) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (65977) LTE_AT: <<< ||>
+I (66116) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (66171) LTE_AT: <<< ||OK||
+I (66355) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (67837) LTE_AT: >>> AT+CSQ
+I (67892) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (67892) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (67912) LTE_AT: >>> AT+CTZU=1
+I (67968) LTE_AT: <<< ||OK||
+I (68188) LTE_AT: >>> AT+CTZR=1
+I (68241) LTE_AT: <<< ||OK||
+I (68498) LTE_AT: >>> AT+CCLK?
+I (68557) LTE_AT: <<< ||+CCLK: "26/06/26,03:07:58+28"||||OK||
+I (68557) LTE_AT: LTE time synced: 2026-06-26 03:07:58 tz=28
+I (68558) PIPELINE: WDG: data=108498B offline=0B processing=0B queue=0/100
+I (68563) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (68568) PIPELINE: WDG: pkt produced=22 delivered=21 offline=0 dropped=0
+I (68715) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (68771) LTE_AT: <<< ||>
+I (68915) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (68970) LTE_AT: <<< ||>
+I (69104) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (69159) LTE_AT: <<< ||OK||
+I (69336) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (69476) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (69531) LTE_AT: <<< ||>
+I (69676) LTE_AT: >>> AT+CMQTTPAYLOAD=0,189
+I (69731) LTE_AT: <<< ||>
+I (69870) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (69925) LTE_AT: <<< ||OK||
+I (70105) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (71710) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (71765) LTE_AT: <<< ||>
+I (71910) LTE_AT: >>> AT+CMQTTPAYLOAD=0,189
+I (71965) LTE_AT: <<< ||>
+I (72104) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (72159) LTE_AT: <<< ||OK||
+I (72345) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (74877) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (74932) LTE_AT: <<< ||>
+I (75077) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (75132) LTE_AT: <<< ||>
+I (75271) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (75326) LTE_AT: <<< ||OK||
+I (75513) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (77738) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (77793) LTE_AT: <<< ||>
+I (77938) LTE_AT: >>> AT+CMQTTPAYLOAD=0,189
+I (77993) LTE_AT: <<< ||>
+I (78132) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (78186) LTE_AT: <<< ||OK||
+I (78373) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (80687) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (80742) LTE_AT: <<< ||>
+I (80887) LTE_AT: >>> AT+CMQTTPAYLOAD=0,188
+I (80942) LTE_AT: <<< ||>
+I (81081) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (81136) LTE_AT: <<< ||OK||
+I (81315) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (83847) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (83902) LTE_AT: <<< ||>
+I (84047) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (84102) LTE_AT: <<< ||>
+I (84241) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (84296) LTE_AT: <<< ||OK||
+I (84483) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (86708) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (86763) LTE_AT: <<< ||>
+I (86908) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (86963) LTE_AT: <<< ||>
+I (87102) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (87157) LTE_AT: <<< ||OK||
+I (87335) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (89867) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (89922) LTE_AT: <<< ||>
+I (90067) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (90122) LTE_AT: <<< ||>
+I (90261) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (90316) LTE_AT: <<< ||OK||
+I (90495) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (92718) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (92773) LTE_AT: <<< ||>
+I (92918) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (92973) LTE_AT: <<< ||>
+I (93112) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (93167) LTE_AT: <<< ||OK||
+I (93345) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (95880) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (95935) LTE_AT: <<< ||>
+I (96080) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (96135) LTE_AT: <<< ||>
+I (96274) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (96329) LTE_AT: <<< ||OK||
+I (96513) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (98735) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (98790) LTE_AT: <<< ||>
+I (98935) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (98990) LTE_AT: <<< ||>
+I (99129) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (99184) LTE_AT: <<< ||OK||
+I (99365) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (99385) LTE_AT: >>> AT+CSQ
+I (99440) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (99440) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (99460) LTE_AT: >>> AT+CTZU=1
+I (99516) LTE_AT: <<< ||OK||
+I (99736) LTE_AT: >>> AT+CTZR=1
+I (99789) LTE_AT: <<< ||OK||
+I (100046) LTE_AT: >>> AT+CCLK?
+I (100105) LTE_AT: <<< ||+CCLK: "26/06/26,03:08:29+28"||||OK||
+I (100105) LTE_AT: LTE time synced: 2026-06-26 03:08:29 tz=28
+I (100106) PIPELINE: WDG: data=110602B offline=0B processing=0B queue=0/100
+I (100111) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (100116) PIPELINE: WDG: pkt produced=32 delivered=32 offline=0 dropped=0
+I (100264) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (100319) LTE_AT: <<< ||>
+I (100463) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (100518) LTE_AT: <<< ||>
+I (100652) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (100706) LTE_AT: <<< ||OK||
+I (100894) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (101854) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (101909) LTE_AT: <<< ||>
+I (102054) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (102109) LTE_AT: <<< ||>
+I (102248) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (102303) LTE_AT: <<< ||OK||
+I (102500) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (104723) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (104778) LTE_AT: <<< ||>
+I (104923) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (104978) LTE_AT: <<< ||>
+I (105117) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (105172) LTE_AT: <<< ||OK||
+I (105363) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (107896) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (107951) LTE_AT: <<< ||>
+I (108096) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (108151) LTE_AT: <<< ||>
+I (108290) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (108344) LTE_AT: <<< ||OK||
+I (108526) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (110753) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (110808) LTE_AT: <<< ||>
+I (110953) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (111008) LTE_AT: <<< ||>
+I (111147) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (111202) LTE_AT: <<< ||OK||
+I (111386) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (113698) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (113753) LTE_AT: <<< ||>
+I (113898) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (113953) LTE_AT: <<< ||>
+I (114092) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (114146) LTE_AT: <<< ||OK||
+I (114326) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (116858) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (116913) LTE_AT: <<< ||>
+I (117058) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (117113) LTE_AT: <<< ||>
+I (117252) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (117306) LTE_AT: <<< ||OK||
+I (117486) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (119711) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (119766) LTE_AT: <<< ||>
+I (119911) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (119966) LTE_AT: <<< ||>
+I (120105) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (120159) LTE_AT: <<< ||OK||
+I (120346) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (122878) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (122933) LTE_AT: <<< ||>
+I (123078) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (123133) LTE_AT: <<< ||>
+I (123272) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (123327) LTE_AT: <<< ||OK||
+I (123506) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (125732) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (125787) LTE_AT: <<< ||>
+I (125932) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (125987) LTE_AT: <<< ||>
+I (126126) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (126181) LTE_AT: <<< ||OK||
+I (126366) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (128899) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (128954) LTE_AT: <<< ||>
+I (129099) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (129154) LTE_AT: <<< ||>
+I (129293) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (129348) LTE_AT: <<< ||OK||
+I (129526) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (131009) LTE_AT: >>> AT+CSQ
+I (131064) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (131064) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (131084) LTE_AT: >>> AT+CTZU=1
+I (131140) LTE_AT: <<< ||OK||
+I (131360) LTE_AT: >>> AT+CTZR=1
+I (131413) LTE_AT: <<< ||OK||
+I (131670) LTE_AT: >>> AT+CCLK?
+I (131729) LTE_AT: <<< ||+CCLK: "26/06/26,03:09:01+28"||||OK||
+I (131729) LTE_AT: LTE time synced: 2026-06-26 03:09:01 tz=28
+I (131730) PIPELINE: WDG: data=112531B offline=0B processing=0B queue=0/100
+I (131735) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (131740) PIPELINE: WDG: pkt produced=43 delivered=42 offline=0 dropped=0
+I (131888) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (131943) LTE_AT: <<< ||>
+I (132087) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (132142) LTE_AT: <<< ||>
+I (132276) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (132331) LTE_AT: <<< ||OK||
+I (132525) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (132665) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (132720) LTE_AT: <<< ||>
+I (132865) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (132920) LTE_AT: <<< ||>
+I (133059) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (133114) LTE_AT: <<< ||OK||
+I (133306) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (134911) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (134966) LTE_AT: <<< ||>
+I (135111) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (135166) LTE_AT: <<< ||>
+I (135305) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (135359) LTE_AT: <<< ||OK||
+I (135537) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (137760) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (137815) LTE_AT: <<< ||>
+I (137960) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (138015) LTE_AT: <<< ||>
+I (138154) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (138208) LTE_AT: <<< ||OK||
+I (138386) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (140707) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (140762) LTE_AT: <<< ||>
+I (140907) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (140962) LTE_AT: <<< ||>
+I (141101) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (141156) LTE_AT: <<< ||OK||
+I (141336) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (143871) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (143926) LTE_AT: <<< ||>
+I (144071) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (144126) LTE_AT: <<< ||>
+I (144265) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (144320) LTE_AT: <<< ||OK||
+I (144498) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (146721) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (146776) LTE_AT: <<< ||>
+I (146921) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (146976) LTE_AT: <<< ||>
+I (147115) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (147169) LTE_AT: <<< ||OK||
+I (147356) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (149891) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (149946) LTE_AT: <<< ||>
+I (150091) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (150146) LTE_AT: <<< ||>
+I (150285) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (150340) LTE_AT: <<< ||OK||
+I (150516) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (152741) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (152796) LTE_AT: <<< ||>
+I (152941) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (152996) LTE_AT: <<< ||>
+I (153135) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (153189) LTE_AT: <<< ||OK||
+I (153373) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (155905) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (155960) LTE_AT: <<< ||>
+I (156105) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (156160) LTE_AT: <<< ||>
+I (156299) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (156354) LTE_AT: <<< ||OK||
+I (156536) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (158761) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (158816) LTE_AT: <<< ||>
+I (158961) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (159016) LTE_AT: <<< ||>
+I (159155) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (159210) LTE_AT: <<< ||OK||
+I (159387) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (161920) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (161975) LTE_AT: <<< ||>
+I (162120) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (162175) LTE_AT: <<< ||>
+I (162314) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (162369) LTE_AT: <<< ||OK||
+I (162547) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (162567) LTE_AT: >>> AT+CSQ
+I (162622) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (162622) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (162642) LTE_AT: >>> AT+CTZU=1
+I (162698) LTE_AT: <<< ||OK||
+I (162918) LTE_AT: >>> AT+CTZR=1
+I (162971) LTE_AT: <<< ||OK||
+I (163228) LTE_AT: >>> AT+CCLK?
+I (163287) LTE_AT: <<< ||+CCLK: "26/06/26,03:09:32+28"||||OK||
+I (163287) LTE_AT: LTE time synced: 2026-06-26 03:09:32 tz=28
+I (163288) PIPELINE: WDG: data=114658B offline=0B processing=0B queue=0/100
+I (163293) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (163298) PIPELINE: WDG: pkt produced=53 delivered=53 offline=0 dropped=0
+I (163446) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (163501) LTE_AT: <<< ||>
+I (163645) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (163700) LTE_AT: <<< ||>
+I (163834) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (163889) LTE_AT: <<< ||OK||
+I (164067) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (164717) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (164772) LTE_AT: <<< ||>
+I (164917) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (164972) LTE_AT: <<< ||>
+I (165111) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (165165) LTE_AT: <<< ||OK||
+I (165347) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (167882) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (167937) LTE_AT: <<< ||>
+I (168082) LTE_AT: >>> AT+CMQTTPAYLOAD=0,189
+I (168137) LTE_AT: <<< ||>
+I (168276) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (168331) LTE_AT: <<< ||OK||
+I (168516) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (170739) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (170794) LTE_AT: <<< ||>
+I (170939) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (170994) LTE_AT: <<< ||>
+I (171133) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (171188) LTE_AT: <<< ||OK||
+I (171366) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (173901) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (173956) LTE_AT: <<< ||>
+I (174101) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (174156) LTE_AT: <<< ||>
+I (174295) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (174350) LTE_AT: <<< ||OK||
+I (174527) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (176750) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (176805) LTE_AT: <<< ||>
+I (176950) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (177005) LTE_AT: <<< ||>
+I (177144) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (177199) LTE_AT: <<< ||OK||
+I (177388) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (179921) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (179976) LTE_AT: <<< ||>
+I (180121) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (180176) LTE_AT: <<< ||>
+I (180315) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (180370) LTE_AT: <<< ||OK||
+I (180548) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (182773) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (182828) LTE_AT: <<< ||>
+I (182973) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (183028) LTE_AT: <<< ||>
+I (183167) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (183222) LTE_AT: <<< ||OK||
+I (183463) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (185722) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (185777) LTE_AT: <<< ||>
+I (185922) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (185977) LTE_AT: <<< ||>
+I (186116) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (186170) LTE_AT: <<< ||OK||
+I (186357) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (188891) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (188946) LTE_AT: <<< ||>
+I (189091) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (189146) LTE_AT: <<< ||>
+I (189285) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (189340) LTE_AT: <<< ||OK||
+I (189525) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (191750) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (191805) LTE_AT: <<< ||>
+I (191950) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (192005) LTE_AT: <<< ||>
+I (192144) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (192198) LTE_AT: <<< ||OK||
+I (192377) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (194170) LTE_AT: >>> AT+CSQ
+I (194225) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (194225) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (194245) LTE_AT: >>> AT+CTZU=1
+I (194301) LTE_AT: <<< ||OK||
+I (194521) LTE_AT: >>> AT+CTZR=1
+I (194574) LTE_AT: <<< ||OK||
+I (194725) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (194779) LTE_AT: <<< ||>
+I (194924) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (194979) LTE_AT: <<< ||>
+I (195118) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (195173) LTE_AT: <<< ||OK||
+I (195357) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (195377) LTE_AT: >>> AT+CCLK?
+I (195436) LTE_AT: <<< ||+CCLK: "26/06/26,03:10:05+28"||||OK||
+I (195436) LTE_AT: LTE time synced: 2026-06-26 03:10:05 tz=28
+I (195437) PIPELINE: WDG: data=116780B offline=0B processing=0B queue=0/100
+I (195442) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (195447) PIPELINE: WDG: pkt produced=64 delivered=64 offline=0 dropped=0
+I (195595) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (195650) LTE_AT: <<< ||>
+I (195794) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (195849) LTE_AT: <<< ||>
+I (195983) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (196038) LTE_AT: <<< ||OK||
+I (196217) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (197895) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (197950) LTE_AT: <<< ||>
+I (198095) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (198150) LTE_AT: <<< ||>
+I (198289) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (198344) LTE_AT: <<< ||OK||
+I (198527) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (200749) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (200804) LTE_AT: <<< ||>
+I (200949) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (201004) LTE_AT: <<< ||>
+I (201143) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (201197) LTE_AT: <<< ||OK||
+I (201377) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (203909) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (203964) LTE_AT: <<< ||>
+I (204109) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (204164) LTE_AT: <<< ||>
+I (204303) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (204358) LTE_AT: <<< ||OK||
+I (204537) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (206762) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (206817) LTE_AT: <<< ||>
+I (206962) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (207017) LTE_AT: <<< ||>
+I (207156) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (207211) LTE_AT: <<< ||OK||
+I (207397) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (209929) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (209984) LTE_AT: <<< ||>
+I (210129) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (210184) LTE_AT: <<< ||>
+I (210323) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (210377) LTE_AT: <<< ||OK||
+I (210558) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (212780) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (212835) LTE_AT: <<< ||>
+I (212980) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (213035) LTE_AT: <<< ||>
+I (213174) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (213228) LTE_AT: <<< ||OK||
+I (213408) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (215732) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (215787) LTE_AT: <<< ||>
+I (215932) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (215987) LTE_AT: <<< ||>
+I (216126) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (216180) LTE_AT: <<< ||OK||
+I (216368) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (218900) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (218955) LTE_AT: <<< ||>
+I (219100) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (219155) LTE_AT: <<< ||>
+I (219294) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (219349) LTE_AT: <<< ||OK||
+I (219530) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (221755) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (221810) LTE_AT: <<< ||>
+I (221955) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (222010) LTE_AT: <<< ||>
+I (222149) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (222204) LTE_AT: <<< ||OK||
+I (222390) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (224923) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (224978) LTE_AT: <<< ||>
+I (225123) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (225178) LTE_AT: <<< ||>
+I (225317) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (225372) LTE_AT: <<< ||OK||
+I (225560) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (226423) LTE_AT: >>> AT+CSQ
+I (226478) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (226478) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (226498) LTE_AT: >>> AT+CTZU=1
+I (226554) LTE_AT: <<< ||OK||
+I (226774) LTE_AT: >>> AT+CTZR=1
+I (226827) LTE_AT: <<< ||OK||
+I (227084) LTE_AT: >>> AT+CCLK?
+I (227143) LTE_AT: <<< ||+CCLK: "26/06/26,03:10:36+28"||||OK||
+I (227143) LTE_AT: LTE time synced: 2026-06-26 03:10:36 tz=28
+I (227144) PIPELINE: WDG: data=118712B offline=0B processing=0B queue=0/100
+I (227149) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (227154) PIPELINE: WDG: pkt produced=74 delivered=74 offline=0 dropped=0
+I (227302) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (227357) LTE_AT: <<< ||>
+I (227501) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (227556) LTE_AT: <<< ||>
+I (227690) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (227745) LTE_AT: <<< ||OK||
+I (227930) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (228070) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (228125) LTE_AT: <<< ||>
+I (228270) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (228325) LTE_AT: <<< ||>
+I (228464) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (228519) LTE_AT: <<< ||OK||
+I (228700) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (230925) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (230980) LTE_AT: <<< ||>
+I (231125) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (231180) LTE_AT: <<< ||>
+I (231319) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (231373) LTE_AT: <<< ||OK||
+I (231560) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (233783) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (233838) LTE_AT: <<< ||>
+I (233983) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (234038) LTE_AT: <<< ||>
+I (234177) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (234232) LTE_AT: <<< ||OK||
+I (234420) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (236739) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (236794) LTE_AT: <<< ||>
+I (236939) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (236994) LTE_AT: <<< ||>
+I (237133) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (237188) LTE_AT: <<< ||OK||
+I (237372) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (239910) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (239965) LTE_AT: <<< ||>
+I (240110) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (240165) LTE_AT: <<< ||>
+I (240304) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (240359) LTE_AT: <<< ||OK||
+I (240540) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (242762) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (242817) LTE_AT: <<< ||>
+I (242962) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (243017) LTE_AT: <<< ||>
+I (243156) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (243211) LTE_AT: <<< ||OK||
+I (243409) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (245944) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (245999) LTE_AT: <<< ||>
+I (246144) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (246199) LTE_AT: <<< ||>
+I (246338) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (246393) LTE_AT: <<< ||OK||
+I (246580) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (248803) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (248858) LTE_AT: <<< ||>
+I (249003) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (249058) LTE_AT: <<< ||>
+I (249197) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (249251) LTE_AT: <<< ||OK||
+I (249440) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (251744) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (251799) LTE_AT: <<< ||>
+I (251944) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (251999) LTE_AT: <<< ||>
+I (252138) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (252193) LTE_AT: <<< ||OK||
+I (252388) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (254923) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (254978) LTE_AT: <<< ||>
+I (255123) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (255178) LTE_AT: <<< ||>
+I (255317) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (255372) LTE_AT: <<< ||OK||
+I (255560) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (257782) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (257837) LTE_AT: <<< ||>
+I (257983) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (258038) LTE_AT: <<< ||>
+I (258177) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (258232) LTE_AT: <<< ||OK||
+I (258420) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (258440) LTE_AT: >>> AT+CSQ
+I (258495) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (258495) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (258515) LTE_AT: >>> AT+CTZU=1
+I (258571) LTE_AT: <<< ||OK||
+I (258791) LTE_AT: >>> AT+CTZR=1
+I (258844) LTE_AT: <<< ||OK||
+I (259101) LTE_AT: >>> AT+CCLK?
+I (259160) LTE_AT: <<< ||+CCLK: "26/06/26,03:11:08+28"||||OK||
+I (259160) LTE_AT: LTE time synced: 2026-06-26 03:11:08 tz=28
+I (259161) PIPELINE: WDG: data=120837B offline=0B processing=0B queue=0/100
+I (259166) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (259171) PIPELINE: WDG: pkt produced=85 delivered=85 offline=0 dropped=0
+I (259319) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (259374) LTE_AT: <<< ||>
+I (259518) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (259573) LTE_AT: <<< ||>
+I (259707) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (259762) LTE_AT: <<< ||OK||
+I (259950) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (260910) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (260965) LTE_AT: <<< ||>
+I (261110) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (261165) LTE_AT: <<< ||>
+I (261304) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (261358) LTE_AT: <<< ||OK||
+I (261540) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (263763) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (263818) LTE_AT: <<< ||>
+I (263963) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (264018) LTE_AT: <<< ||>
+I (264157) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (264212) LTE_AT: <<< ||OK||
+I (264400) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (266933) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (266988) LTE_AT: <<< ||>
+I (267133) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (267188) LTE_AT: <<< ||>
+I (267327) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (267382) LTE_AT: <<< ||OK||
+I (267581) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (269806) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (269861) LTE_AT: <<< ||>
+I (270006) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (270061) LTE_AT: <<< ||>
+I (270200) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (270254) LTE_AT: <<< ||OK||
+I (270440) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (272751) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (272806) LTE_AT: <<< ||>
+I (272951) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (273006) LTE_AT: <<< ||>
+I (273145) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (273200) LTE_AT: <<< ||OK||
+I (273380) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (275913) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (275968) LTE_AT: <<< ||>
+I (276113) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (276168) LTE_AT: <<< ||>
+I (276307) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (276362) LTE_AT: <<< ||OK||
+I (276550) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (278775) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (278830) LTE_AT: <<< ||>
+I (278975) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (279030) LTE_AT: <<< ||>
+I (279169) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (279223) LTE_AT: <<< ||OK||
+I (279411) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (281944) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (281999) LTE_AT: <<< ||>
+I (282144) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (282199) LTE_AT: <<< ||>
+I (282338) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (282392) LTE_AT: <<< ||OK||
+I (282580) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (284807) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (284862) LTE_AT: <<< ||>
+I (285007) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (285062) LTE_AT: <<< ||>
+I (285201) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (285255) LTE_AT: <<< ||OK||
+I (285448) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (287756) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (287811) LTE_AT: <<< ||>
+I (287956) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (288011) LTE_AT: <<< ||>
+I (288150) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (288205) LTE_AT: <<< ||OK||
+I (288390) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (289970) LTE_AT: >>> AT+CSQ
+I (290025) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (290025) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (290045) LTE_AT: >>> AT+CTZU=1
+I (290101) LTE_AT: <<< ||OK||
+I (290321) LTE_AT: >>> AT+CTZR=1
+I (290374) LTE_AT: <<< ||OK||
+I (290631) LTE_AT: >>> AT+CCLK?
+I (290690) LTE_AT: <<< ||+CCLK: "26/06/26,03:11:40+28"||||OK||
+I (290690) LTE_AT: LTE time synced: 2026-06-26 03:11:40 tz=28
+I (290691) PIPELINE: WDG: data=122766B offline=0B processing=0B queue=0/100
+I (290696) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (290701) PIPELINE: WDG: pkt produced=96 delivered=95 offline=0 dropped=0
+I (290849) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (290903) LTE_AT: <<< ||>
+I (291047) LTE_AT: >>> AT+CMQTTPAYLOAD=0,139
+I (291102) LTE_AT: <<< ||>
+I (291236) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (291291) LTE_AT: <<< ||OK||
+I (291478) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (291618) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (291673) LTE_AT: <<< ||>
+I (291818) LTE_AT: >>> AT+CMQTTPAYLOAD=0,189
+I (291873) LTE_AT: <<< ||>
+I (292012) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (292067) LTE_AT: <<< ||OK||
+I (292250) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (293855) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (293910) LTE_AT: <<< ||>
+I (294055) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (294110) LTE_AT: <<< ||>
+I (294249) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (294304) LTE_AT: <<< ||OK||
+I (294490) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (296759) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (296814) LTE_AT: <<< ||>
+I (296959) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (297014) LTE_AT: <<< ||>
+I (297153) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (297207) LTE_AT: <<< ||OK||
+I (297398) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (299930) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (299985) LTE_AT: <<< ||>
+I (300130) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (300185) LTE_AT: <<< ||>
+I (300324) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (300379) LTE_AT: <<< ||OK||
+I (300560) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (302785) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (302840) LTE_AT: <<< ||>
+I (302985) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (303040) LTE_AT: <<< ||>
+I (303179) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (303234) LTE_AT: <<< ||OK||
+I (303430) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (305962) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (306017) LTE_AT: <<< ||>
+I (306162) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (306217) LTE_AT: <<< ||>
+I (306356) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (306411) LTE_AT: <<< ||OK||
+I (306591) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (308817) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (308872) LTE_AT: <<< ||>
+I (309017) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (309072) LTE_AT: <<< ||>
+I (309211) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (309265) LTE_AT: <<< ||OK||
+I (309450) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (311764) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (311819) LTE_AT: <<< ||>
+I (311964) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (312019) LTE_AT: <<< ||>
+I (312158) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (312213) LTE_AT: <<< ||OK||
+I (312401) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (314934) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (314989) LTE_AT: <<< ||>
+I (315134) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (315189) LTE_AT: <<< ||>
+I (315328) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (315383) LTE_AT: <<< ||OK||
+I (315571) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (317796) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (317851) LTE_AT: <<< ||>
+I (317996) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (318051) LTE_AT: <<< ||>
+I (318190) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (318245) LTE_AT: <<< ||OK||
+I (318431) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (320964) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (321019) LTE_AT: <<< ||>
+I (321164) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (321219) LTE_AT: <<< ||>
+I (321358) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (321413) LTE_AT: <<< ||OK||
+I (321601) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (321621) LTE_AT: >>> AT+CSQ
+I (321676) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (321676) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (321696) LTE_AT: >>> AT+CTZU=1
+I (321752) LTE_AT: <<< ||OK||
+I (321972) LTE_AT: >>> AT+CTZR=1
+I (322025) LTE_AT: <<< ||OK||
+I (322282) LTE_AT: >>> AT+CCLK?
+I (322341) LTE_AT: <<< ||+CCLK: "26/06/26,03:12:11+28"||||OK||
+I (322341) LTE_AT: LTE time synced: 2026-06-26 03:12:11 tz=28
+I (322342) PIPELINE: WDG: data=124885B offline=0B processing=0B queue=0/100
+I (322347) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (322352) PIPELINE: WDG: pkt produced=106 delivered=106 offline=0 dropped=0
+I (322500) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (322555) LTE_AT: <<< ||>
+I (322699) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (322754) LTE_AT: <<< ||>
+I (322889) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (322944) LTE_AT: <<< ||OK||
+I (323142) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (323792) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (323847) LTE_AT: <<< ||>
+I (323992) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (324047) LTE_AT: <<< ||>
+I (324186) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (324240) LTE_AT: <<< ||OK||
+I (324421) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (326958) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (327013) LTE_AT: <<< ||>
+I (327158) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (327213) LTE_AT: <<< ||>
+I (327352) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (327407) LTE_AT: <<< ||OK||
+I (327599) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (329821) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (329876) LTE_AT: <<< ||>
+I (330021) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (330076) LTE_AT: <<< ||>
+I (330215) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (330270) LTE_AT: <<< ||OK||
+I (330459) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (332771) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (332826) LTE_AT: <<< ||>
+I (332971) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (333026) LTE_AT: <<< ||>
+I (333165) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (333219) LTE_AT: <<< ||OK||
+I (333401) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (335933) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (335988) LTE_AT: <<< ||>
+I (336133) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (336188) LTE_AT: <<< ||>
+I (336327) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (336382) LTE_AT: <<< ||OK||
+I (336622) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (338844) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (338899) LTE_AT: <<< ||>
+I (339044) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (339099) LTE_AT: <<< ||>
+I (339238) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (339292) LTE_AT: <<< ||OK||
+I (339481) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (341774) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (341829) LTE_AT: <<< ||>
+I (341974) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (342029) LTE_AT: <<< ||>
+I (342168) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (342222) LTE_AT: <<< ||OK||
+I (342462) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (344775) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (344830) LTE_AT: <<< ||>
+I (344975) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (345030) LTE_AT: <<< ||>
+I (345169) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (345223) LTE_AT: <<< ||OK||
+I (345411) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (347943) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (347998) LTE_AT: <<< ||>
+I (348143) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (348198) LTE_AT: <<< ||>
+I (348337) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (348391) LTE_AT: <<< ||OK||
+I (348571) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (350796) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (350851) LTE_AT: <<< ||>
+I (350996) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (351051) LTE_AT: <<< ||>
+I (351190) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (351245) LTE_AT: <<< ||OK||
+I (351431) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (353223) LTE_AT: >>> AT+CSQ
+I (353278) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (353278) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (353298) LTE_AT: >>> AT+CTZU=1
+I (353354) LTE_AT: <<< ||OK||
+I (353574) LTE_AT: >>> AT+CTZR=1
+I (353627) LTE_AT: <<< ||OK||
+I (353778) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (353832) LTE_AT: <<< ||>
+I (353977) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (354032) LTE_AT: <<< ||>
+I (354171) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (354226) LTE_AT: <<< ||OK||
+I (354411) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (354431) LTE_AT: >>> AT+CCLK?
+I (354490) LTE_AT: <<< ||+CCLK: "26/06/26,03:12:44+28"||||OK||
+I (354490) LTE_AT: LTE time synced: 2026-06-26 03:12:44 tz=28
+I (354491) PIPELINE: WDG: data=127003B offline=0B processing=0B queue=0/100
+I (354496) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (354501) PIPELINE: WDG: pkt produced=117 delivered=117 offline=0 dropped=0
+I (354649) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (354704) LTE_AT: <<< ||>
+I (354849) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (354904) LTE_AT: <<< ||>
+I (355038) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (355093) LTE_AT: <<< ||OK||
+I (355281) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (356946) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (357001) LTE_AT: <<< ||>
+I (357146) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (357201) LTE_AT: <<< ||>
+I (357340) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (357394) LTE_AT: <<< ||OK||
+I (357581) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (359804) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (359859) LTE_AT: <<< ||>
+I (360004) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (360059) LTE_AT: <<< ||>
+I (360198) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (360253) LTE_AT: <<< ||OK||
+I (360441) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (362974) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (363029) LTE_AT: <<< ||>
+I (363174) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (363229) LTE_AT: <<< ||>
+I (363368) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (363423) LTE_AT: <<< ||OK||
+I (363611) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (365836) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (365891) LTE_AT: <<< ||>
+I (366036) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (366091) LTE_AT: <<< ||>
+I (366230) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (366285) LTE_AT: <<< ||OK||
+I (366471) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (368783) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (368838) LTE_AT: <<< ||>
+I (368983) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (369038) LTE_AT: <<< ||>
+I (369177) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (369232) LTE_AT: <<< ||OK||
+I (369411) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (371947) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (372002) LTE_AT: <<< ||>
+I (372147) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (372202) LTE_AT: <<< ||>
+I (372341) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (372396) LTE_AT: <<< ||OK||
+I (372581) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (374806) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (374861) LTE_AT: <<< ||>
+I (375006) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (375061) LTE_AT: <<< ||>
+I (375200) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (375254) LTE_AT: <<< ||OK||
+I (375441) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (377973) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (378028) LTE_AT: <<< ||>
+I (378173) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (378228) LTE_AT: <<< ||>
+I (378367) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (378421) LTE_AT: <<< ||OK||
+I (378601) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (380826) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (380881) LTE_AT: <<< ||>
+I (381026) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (381081) LTE_AT: <<< ||>
+I (381220) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (381274) LTE_AT: <<< ||OK||
+I (381710) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (383932) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (383987) LTE_AT: <<< ||>
+I (384132) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (384187) LTE_AT: <<< ||>
+I (384326) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (384380) LTE_AT: <<< ||OK||
+I (384569) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (385431) LTE_AT: >>> AT+CSQ
+I (385486) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (385486) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (385506) LTE_AT: >>> AT+CTZU=1
+I (385562) LTE_AT: <<< ||OK||
+I (385782) LTE_AT: >>> AT+CTZR=1
+I (385835) LTE_AT: <<< ||OK||
+I (386092) LTE_AT: >>> AT+CCLK?
+I (386151) LTE_AT: <<< ||+CCLK: "26/06/26,03:13:15+28"||||OK||
+I (386151) LTE_AT: LTE time synced: 2026-06-26 03:13:15 tz=28
+I (386152) PIPELINE: WDG: data=128935B offline=0B processing=0B queue=0/100
+I (386157) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (386162) PIPELINE: WDG: pkt produced=127 delivered=127 offline=0 dropped=0
+I (386310) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (386365) LTE_AT: <<< ||>
+I (386510) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (386565) LTE_AT: <<< ||>
+I (386699) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (386753) LTE_AT: <<< ||OK||
+I (386941) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (387081) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (387136) LTE_AT: <<< ||>
+I (387281) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (387336) LTE_AT: <<< ||>
+I (387475) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (387530) LTE_AT: <<< ||OK||
+I (387711) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (389936) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (389991) LTE_AT: <<< ||>
+I (390136) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (390191) LTE_AT: <<< ||>
+I (390330) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (390385) LTE_AT: <<< ||OK||
+I (390571) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (392793) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (392848) LTE_AT: <<< ||>
+I (392993) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (393048) LTE_AT: <<< ||>
+I (393187) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (393241) LTE_AT: <<< ||OK||
+I (393422) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (395954) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (396009) LTE_AT: <<< ||>
+I (396154) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (396209) LTE_AT: <<< ||>
+I (396348) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (396403) LTE_AT: <<< ||OK||
+I (396591) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (398816) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (398871) LTE_AT: <<< ||>
+I (399016) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (399071) LTE_AT: <<< ||>
+I (399210) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (399265) LTE_AT: <<< ||OK||
+I (399451) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (401984) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (402039) LTE_AT: <<< ||>
+I (402184) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (402239) LTE_AT: <<< ||>
+I (402378) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (402433) LTE_AT: <<< ||OK||
+I (402631) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (404856) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (404911) LTE_AT: <<< ||>
+I (405056) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (405111) LTE_AT: <<< ||>
+I (405250) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (405305) LTE_AT: <<< ||OK||
+I (405492) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (407796) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (407851) LTE_AT: <<< ||>
+I (407996) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (408051) LTE_AT: <<< ||>
+I (408190) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (408245) LTE_AT: <<< ||OK||
+I (408432) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (410965) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (411020) LTE_AT: <<< ||>
+I (411165) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (411220) LTE_AT: <<< ||>
+I (411359) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (411414) LTE_AT: <<< ||OK||
+I (411601) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (413828) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (413883) LTE_AT: <<< ||>
+I (414028) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (414083) LTE_AT: <<< ||>
+I (414222) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (414277) LTE_AT: <<< ||OK||
+I (414469) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (417001) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (417056) LTE_AT: <<< ||>
+I (417201) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (417256) LTE_AT: <<< ||>
+I (417395) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (417449) LTE_AT: <<< ||OK||
+I (417632) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (417652) LTE_AT: >>> AT+CSQ
+I (417707) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (417707) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (417727) LTE_AT: >>> AT+CTZU=1
+I (417783) LTE_AT: <<< ||OK||
+I (418003) LTE_AT: >>> AT+CTZR=1
+I (418056) LTE_AT: <<< ||OK||
+I (418313) LTE_AT: >>> AT+CCLK?
+I (418372) LTE_AT: <<< ||+CCLK: "26/06/26,03:13:48+28"||||OK||
+I (418372) LTE_AT: LTE time synced: 2026-06-26 03:13:48 tz=28
+I (418373) PIPELINE: WDG: data=131061B offline=0B processing=0B queue=0/100
+I (418378) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (418383) PIPELINE: WDG: pkt produced=138 delivered=138 offline=0 dropped=0
+I (418531) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (418586) LTE_AT: <<< ||>
+I (418730) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (418785) LTE_AT: <<< ||>
+I (418919) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (418974) LTE_AT: <<< ||OK||
+I (419170) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (419820) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (419875) LTE_AT: <<< ||>
+I (420020) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (420075) LTE_AT: <<< ||>
+I (420214) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (420268) LTE_AT: <<< ||OK||
+I (420452) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (422994) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (423049) LTE_AT: <<< ||>
+I (423194) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (423249) LTE_AT: <<< ||>
+I (423388) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (423443) LTE_AT: <<< ||OK||
+I (423632) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (425856) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (425911) LTE_AT: <<< ||>
+I (426056) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (426111) LTE_AT: <<< ||>
+I (426250) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (426304) LTE_AT: <<< ||OK||
+I (426544) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (428803) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (428858) LTE_AT: <<< ||>
+I (429003) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (429058) LTE_AT: <<< ||>
+I (429197) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (429251) LTE_AT: <<< ||OK||
+I (429432) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (431965) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (432020) LTE_AT: <<< ||>
+I (432165) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (432220) LTE_AT: <<< ||>
+I (432359) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (432414) LTE_AT: <<< ||OK||
+I (432602) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (434825) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (434880) LTE_AT: <<< ||>
+I (435025) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (435080) LTE_AT: <<< ||>
+I (435219) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (435274) LTE_AT: <<< ||OK||
+I (435462) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (437997) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (438052) LTE_AT: <<< ||>
+I (438197) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (438252) LTE_AT: <<< ||>
+I (438391) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (438446) LTE_AT: <<< ||OK||
+I (438632) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (440855) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (440910) LTE_AT: <<< ||>
+I (441055) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (441110) LTE_AT: <<< ||>
+I (441249) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (441304) LTE_AT: <<< ||OK||
+I (441492) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (443808) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (443863) LTE_AT: <<< ||>
+I (444008) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (444063) LTE_AT: <<< ||>
+I (444202) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (444257) LTE_AT: <<< ||OK||
+I (444442) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (446975) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (447030) LTE_AT: <<< ||>
+I (447175) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (447230) LTE_AT: <<< ||>
+I (447369) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (447424) LTE_AT: <<< ||OK||
+I (447622) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (449190) LTE_AT: >>> AT+CSQ
+I (449245) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (449245) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (449265) LTE_AT: >>> AT+CTZU=1
+I (449321) LTE_AT: <<< ||OK||
+I (449541) LTE_AT: >>> AT+CTZR=1
+I (449594) LTE_AT: <<< ||OK||
+I (449851) LTE_AT: >>> AT+CCLK?
+I (449910) LTE_AT: <<< ||+CCLK: "26/06/26,03:14:19+28"||||OK||
+I (449910) LTE_AT: LTE time synced: 2026-06-26 03:14:19 tz=28
+I (449911) PIPELINE: WDG: data=133003B offline=0B processing=0B queue=0/100
+I (449916) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (449921) PIPELINE: WDG: pkt produced=149 delivered=148 offline=0 dropped=0
+I (450069) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (450124) LTE_AT: <<< ||>
+I (450268) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (450323) LTE_AT: <<< ||>
+I (450458) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (450513) LTE_AT: <<< ||OK||
+I (450702) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (450842) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (450897) LTE_AT: <<< ||>
+I (451042) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (451097) LTE_AT: <<< ||>
+I (451236) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (451291) LTE_AT: <<< ||OK||
+I (451472) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (452811) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (452866) LTE_AT: <<< ||>
+I (453011) LTE_AT: >>> AT+CMQTTPAYLOAD=0,196
+I (453066) LTE_AT: <<< ||>
+I (453205) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (453260) LTE_AT: <<< ||OK||
+I (453450) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (455982) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (456037) LTE_AT: <<< ||>
+I (456182) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (456237) LTE_AT: <<< ||>
+I (456376) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (456430) LTE_AT: <<< ||OK||
+I (456612) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (458834) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (458889) LTE_AT: <<< ||>
+I (459034) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (459089) LTE_AT: <<< ||>
+I (459228) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (459283) LTE_AT: <<< ||OK||
+I (459462) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (461997) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (462052) LTE_AT: <<< ||>
+I (462197) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (462252) LTE_AT: <<< ||>
+I (462391) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (462446) LTE_AT: <<< ||OK||
+I (462632) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (464854) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (464909) LTE_AT: <<< ||>
+I (465054) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (465109) LTE_AT: <<< ||>
+I (465248) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (465302) LTE_AT: <<< ||OK||
+I (465482) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (468017) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (468072) LTE_AT: <<< ||>
+I (468217) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (468272) LTE_AT: <<< ||>
+I (468411) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (468466) LTE_AT: <<< ||OK||
+I (468652) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (470874) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (470929) LTE_AT: <<< ||>
+I (471074) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (471129) LTE_AT: <<< ||>
+I (471268) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (471322) LTE_AT: <<< ||OK||
+I (471502) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (473818) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (473873) LTE_AT: <<< ||>
+I (474018) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (474073) LTE_AT: <<< ||>
+I (474212) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (474267) LTE_AT: <<< ||OK||
+I (474452) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (476987) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (477042) LTE_AT: <<< ||>
+I (477187) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (477242) LTE_AT: <<< ||>
+I (477381) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (477436) LTE_AT: <<< ||OK||
+I (477622) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (479845) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (479900) LTE_AT: <<< ||>
+I (480045) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (480100) LTE_AT: <<< ||>
+I (480239) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (480293) LTE_AT: <<< ||OK||
+I (480482) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (480725) LTE_AT: >>> AT+CSQ
+I (480780) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (480780) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (480800) LTE_AT: >>> AT+CTZU=1
+I (480856) LTE_AT: <<< ||OK||
+I (481076) LTE_AT: >>> AT+CTZR=1
+I (481129) LTE_AT: <<< ||OK||
+I (481386) LTE_AT: >>> AT+CCLK?
+I (481445) LTE_AT: <<< ||+CCLK: "26/06/26,03:14:51+28"||||OK||
+I (481445) LTE_AT: LTE time synced: 2026-06-26 03:14:51 tz=28
+I (481446) PIPELINE: WDG: data=135138B offline=0B processing=0B queue=0/100
+I (481451) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (481456) PIPELINE: WDG: pkt produced=159 delivered=159 offline=0 dropped=0
+I (481604) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (481659) LTE_AT: <<< ||>
+I (481803) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (481858) LTE_AT: <<< ||>
+I (481993) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (482048) LTE_AT: <<< ||OK||
+I (482232) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (482882) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (482937) LTE_AT: <<< ||>
+I (483082) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (483137) LTE_AT: <<< ||>
+I (483276) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (483331) LTE_AT: <<< ||OK||
+I (483512) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (485822) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (485877) LTE_AT: <<< ||>
+I (486022) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (486077) LTE_AT: <<< ||>
+I (486216) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (486271) LTE_AT: <<< ||OK||
+I (486452) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (488985) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (489040) LTE_AT: <<< ||>
+I (489185) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (489240) LTE_AT: <<< ||>
+I (489379) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (489434) LTE_AT: <<< ||OK||
+I (489622) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (491848) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (491903) LTE_AT: <<< ||>
+I (492048) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (492103) LTE_AT: <<< ||>
+I (492242) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (492296) LTE_AT: <<< ||OK||
+I (492482) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (495015) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (495070) LTE_AT: <<< ||>
+I (495215) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (495270) LTE_AT: <<< ||>
+I (495409) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (495464) LTE_AT: <<< ||OK||
+I (495652) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (497877) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (497932) LTE_AT: <<< ||>
+I (498077) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (498132) LTE_AT: <<< ||>
+I (498271) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (498326) LTE_AT: <<< ||OK||
+I (498520) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (500827) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (500882) LTE_AT: <<< ||>
+I (501027) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (501082) LTE_AT: <<< ||>
+I (501221) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (501275) LTE_AT: <<< ||OK||
+I (501462) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (503994) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (504049) LTE_AT: <<< ||>
+I (504194) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (504249) LTE_AT: <<< ||>
+I (504388) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (504442) LTE_AT: <<< ||OK||
+I (504622) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (506844) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (506899) LTE_AT: <<< ||>
+I (507044) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (507099) LTE_AT: <<< ||>
+I (507238) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (507293) LTE_AT: <<< ||OK||
+I (507473) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (510008) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (510063) LTE_AT: <<< ||>
+I (510208) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (510263) LTE_AT: <<< ||>
+I (510402) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (510457) LTE_AT: <<< ||OK||
+I (510643) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (512435) LTE_AT: >>> AT+CSQ
+I (512490) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (512490) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (512510) LTE_AT: >>> AT+CTZU=1
+I (512566) LTE_AT: <<< ||OK||
+I (512786) LTE_AT: >>> AT+CTZR=1
+I (512839) LTE_AT: <<< ||OK||
+I (512979) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (513034) LTE_AT: <<< ||>
+I (513179) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (513234) LTE_AT: <<< ||>
+I (513373) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (513428) LTE_AT: <<< ||OK||
+I (513612) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (513632) LTE_AT: >>> AT+CCLK?
+I (513691) LTE_AT: <<< ||+CCLK: "26/06/26,03:15:23+28"||||OK||
+I (513691) LTE_AT: LTE time synced: 2026-06-26 03:15:23 tz=28
+I (513692) PIPELINE: WDG: data=137267B offline=0B processing=0B queue=0/100
+I (513697) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (513702) PIPELINE: WDG: pkt produced=170 delivered=170 offline=0 dropped=0
+I (513850) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (513905) LTE_AT: <<< ||>
+I (514049) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (514104) LTE_AT: <<< ||>
+I (514238) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (514293) LTE_AT: <<< ||OK||
+I (514472) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (515837) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (515892) LTE_AT: <<< ||>
+I (516037) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (516092) LTE_AT: <<< ||>
+I (516231) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (516285) LTE_AT: <<< ||OK||
+I (516472) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (519005) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (519060) LTE_AT: <<< ||>
+I (519205) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (519260) LTE_AT: <<< ||>
+I (519399) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (519454) LTE_AT: <<< ||OK||
+I (519643) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (521865) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (521920) LTE_AT: <<< ||>
+I (522065) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (522120) LTE_AT: <<< ||>
+I (522259) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (522313) LTE_AT: <<< ||OK||
+I (522503) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (525038) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (525093) LTE_AT: <<< ||>
+I (525238) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (525293) LTE_AT: <<< ||>
+I (525432) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (525487) LTE_AT: <<< ||OK||
+I (525673) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (527896) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (527951) LTE_AT: <<< ||>
+I (528096) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (528151) LTE_AT: <<< ||>
+I (528290) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (528345) LTE_AT: <<< ||OK||
+I (528533) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (530837) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (530892) LTE_AT: <<< ||>
+I (531037) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (531092) LTE_AT: <<< ||>
+I (531231) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (531286) LTE_AT: <<< ||OK||
+I (531473) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (534008) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (534063) LTE_AT: <<< ||>
+I (534208) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (534263) LTE_AT: <<< ||>
+I (534402) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (534457) LTE_AT: <<< ||OK||
+I (534643) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (536866) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (536921) LTE_AT: <<< ||>
+I (537066) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (537121) LTE_AT: <<< ||>
+I (537260) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (537315) LTE_AT: <<< ||OK||
+I (537503) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (540040) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (540095) LTE_AT: <<< ||>
+I (540240) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (540295) LTE_AT: <<< ||>
+I (540434) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (540489) LTE_AT: <<< ||OK||
+I (540673) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (542895) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (542950) LTE_AT: <<< ||>
+I (543095) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (543150) LTE_AT: <<< ||>
+I (543289) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (543343) LTE_AT: <<< ||OK||
+I (543533) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (544492) LTE_AT: >>> AT+CSQ
+I (544547) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (544547) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (544567) LTE_AT: >>> AT+CTZU=1
+I (544623) LTE_AT: <<< ||OK||
+I (544843) LTE_AT: >>> AT+CTZR=1
+I (544896) LTE_AT: <<< ||OK||
+I (545153) LTE_AT: >>> AT+CCLK?
+I (545212) LTE_AT: <<< ||+CCLK: "26/06/26,03:15:54+28"||||OK||
+I (545212) LTE_AT: LTE time synced: 2026-06-26 03:15:54 tz=28
+I (545213) PIPELINE: WDG: data=139201B offline=0B processing=0B queue=0/100
+I (545218) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (545223) PIPELINE: WDG: pkt produced=180 delivered=180 offline=0 dropped=0
+I (545371) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (545426) LTE_AT: <<< ||>
+I (545570) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (545625) LTE_AT: <<< ||>
+I (545759) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (545813) LTE_AT: <<< ||OK||
+I (545993) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (546133) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (546188) LTE_AT: <<< ||>
+I (546333) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (546388) LTE_AT: <<< ||>
+I (546527) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (546582) LTE_AT: <<< ||OK||
+I (546827) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (549052) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (549107) LTE_AT: <<< ||>
+I (549252) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (549307) LTE_AT: <<< ||>
+I (549446) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (549501) LTE_AT: <<< ||OK||
+I (549683) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (551906) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (551961) LTE_AT: <<< ||>
+I (552106) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (552161) LTE_AT: <<< ||>
+I (552300) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (552355) LTE_AT: <<< ||OK||
+I (552543) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (554845) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (554900) LTE_AT: <<< ||>
+I (555045) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (555100) LTE_AT: <<< ||>
+I (555239) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (555294) LTE_AT: <<< ||OK||
+I (555483) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (558015) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (558070) LTE_AT: <<< ||>
+I (558215) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (558270) LTE_AT: <<< ||>
+I (558409) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (558464) LTE_AT: <<< ||OK||
+I (558653) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (560875) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (560930) LTE_AT: <<< ||>
+I (561075) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (561130) LTE_AT: <<< ||>
+I (561269) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (561324) LTE_AT: <<< ||OK||
+I (561505) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (564040) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (564095) LTE_AT: <<< ||>
+I (564240) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (564295) LTE_AT: <<< ||>
+I (564434) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (564489) LTE_AT: <<< ||OK||
+I (564673) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (566896) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (566951) LTE_AT: <<< ||>
+I (567096) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (567151) LTE_AT: <<< ||>
+I (567290) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (567345) LTE_AT: <<< ||OK||
+I (567533) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (569850) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (569905) LTE_AT: <<< ||>
+I (570050) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (570105) LTE_AT: <<< ||>
+I (570244) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (570299) LTE_AT: <<< ||OK||
+I (570483) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (573018) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (573073) LTE_AT: <<< ||>
+I (573218) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (573273) LTE_AT: <<< ||>
+I (573412) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (573467) LTE_AT: <<< ||OK||
+I (573653) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (575876) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (575931) LTE_AT: <<< ||>
+I (576076) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (576131) LTE_AT: <<< ||>
+I (576270) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (576325) LTE_AT: <<< ||OK||
+I (576513) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (576533) LTE_AT: >>> AT+CSQ
+I (576588) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (576588) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (576608) LTE_AT: >>> AT+CTZU=1
+I (576664) LTE_AT: <<< ||OK||
+I (576884) LTE_AT: >>> AT+CTZR=1
+I (576937) LTE_AT: <<< ||OK||
+I (577194) LTE_AT: >>> AT+CCLK?
+I (577253) LTE_AT: <<< ||+CCLK: "26/06/26,03:16:26+28"||||OK||
+I (577253) LTE_AT: LTE time synced: 2026-06-26 03:16:26 tz=28
+I (577254) PIPELINE: WDG: data=141332B offline=0B processing=0B queue=0/100
+I (577259) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (577264) PIPELINE: WDG: pkt produced=191 delivered=191 offline=0 dropped=0
+I (577412) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (577467) LTE_AT: <<< ||>
+I (577611) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (577666) LTE_AT: <<< ||>
+I (577800) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (577855) LTE_AT: <<< ||OK||
+I (578043) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (579003) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (579058) LTE_AT: <<< ||>
+I (579203) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (579258) LTE_AT: <<< ||>
+I (579397) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (579451) LTE_AT: <<< ||OK||
+I (579633) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (581856) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (581911) LTE_AT: <<< ||>
+I (582056) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (582111) LTE_AT: <<< ||>
+I (582250) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (582305) LTE_AT: <<< ||OK||
+I (582493) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (585028) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (585083) LTE_AT: <<< ||>
+I (585228) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (585283) LTE_AT: <<< ||>
+I (585422) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (585477) LTE_AT: <<< ||OK||
+I (585663) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (587888) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (587943) LTE_AT: <<< ||>
+I (588088) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (588143) LTE_AT: <<< ||>
+I (588282) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (588337) LTE_AT: <<< ||OK||
+I (588532) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (591064) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (591119) LTE_AT: <<< ||>
+I (591264) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (591319) LTE_AT: <<< ||>
+I (591458) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (591512) LTE_AT: <<< ||OK||
+I (591693) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (593915) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (593970) LTE_AT: <<< ||>
+I (594115) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (594170) LTE_AT: <<< ||>
+I (594309) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (594364) LTE_AT: <<< ||OK||
+I (594543) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (596859) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (596914) LTE_AT: <<< ||>
+I (597059) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (597115) LTE_AT: <<< ||>
+I (597254) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (597309) LTE_AT: <<< ||OK||
+I (597504) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (599860) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (599915) LTE_AT: <<< ||>
+I (600060) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (600115) LTE_AT: <<< ||>
+I (600254) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (600309) LTE_AT: <<< ||OK||
+I (600493) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (603062) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (603117) LTE_AT: <<< ||>
+I (603262) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (603317) LTE_AT: <<< ||>
+I (603456) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (603511) LTE_AT: <<< ||OK||
+I (603694) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (605949) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (606004) LTE_AT: <<< ||>
+I (606149) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (606204) LTE_AT: <<< ||>
+I (606343) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (606398) LTE_AT: <<< ||OK||
+I (606583) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (608098) LTE_AT: >>> AT+CSQ
+I (608153) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (608153) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (608173) LTE_AT: >>> AT+CTZU=1
+I (608229) LTE_AT: <<< ||OK||
+I (608449) LTE_AT: >>> AT+CTZR=1
+I (608502) LTE_AT: <<< ||OK||
+I (608759) LTE_AT: >>> AT+CCLK?
+I (608818) LTE_AT: <<< ||+CCLK: "26/06/26,03:16:58+28"||||OK||
+I (608818) LTE_AT: LTE time synced: 2026-06-26 03:16:58 tz=28
+I (608819) PIPELINE: WDG: data=143266B offline=0B processing=0B queue=0/100
+I (608824) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (608829) PIPELINE: WDG: pkt produced=202 delivered=201 offline=0 dropped=0
+I (608977) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (609032) LTE_AT: <<< ||>
+I (609176) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (609231) LTE_AT: <<< ||>
+I (609365) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (609419) LTE_AT: <<< ||OK||
+I (609611) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (609751) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (609806) LTE_AT: <<< ||>
+I (609951) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (610006) LTE_AT: <<< ||>
+I (610145) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (610200) LTE_AT: <<< ||OK||
+I (610384) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (612066) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (612121) LTE_AT: <<< ||>
+I (612266) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (612321) LTE_AT: <<< ||>
+I (612460) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (612515) LTE_AT: <<< ||OK||
+I (612713) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (614936) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (614991) LTE_AT: <<< ||>
+I (615136) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (615191) LTE_AT: <<< ||>
+I (615330) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (615385) LTE_AT: <<< ||OK||
+I (615573) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (617866) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (617921) LTE_AT: <<< ||>
+I (618066) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (618121) LTE_AT: <<< ||>
+I (618260) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (618315) LTE_AT: <<< ||OK||
+I (618505) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (621040) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (621095) LTE_AT: <<< ||>
+I (621240) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (621295) LTE_AT: <<< ||>
+I (621434) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (621489) LTE_AT: <<< ||OK||
+I (621673) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (623896) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (623951) LTE_AT: <<< ||>
+I (624096) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (624151) LTE_AT: <<< ||>
+I (624290) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (624345) LTE_AT: <<< ||OK||
+I (624541) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (627078) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (627133) LTE_AT: <<< ||>
+I (627278) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (627333) LTE_AT: <<< ||>
+I (627472) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (627527) LTE_AT: <<< ||OK||
+I (627715) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (629937) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (629992) LTE_AT: <<< ||>
+I (630137) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (630192) LTE_AT: <<< ||>
+I (630331) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (630385) LTE_AT: <<< ||OK||
+I (630575) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (632871) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (632926) LTE_AT: <<< ||>
+I (633071) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (633126) LTE_AT: <<< ||>
+I (633265) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (633320) LTE_AT: <<< ||OK||
+I (633514) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (636049) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (636104) LTE_AT: <<< ||>
+I (636249) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (636304) LTE_AT: <<< ||>
+I (636443) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (636498) LTE_AT: <<< ||OK||
+I (636693) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (638915) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (638970) LTE_AT: <<< ||>
+I (639115) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (639170) LTE_AT: <<< ||>
+I (639309) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (639364) LTE_AT: <<< ||OK||
+I (639544) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (639786) LTE_AT: >>> AT+CSQ
+I (639841) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (639841) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (639861) LTE_AT: >>> AT+CTZU=1
+I (639917) LTE_AT: <<< ||OK||
+I (640137) LTE_AT: >>> AT+CTZR=1
+I (640190) LTE_AT: <<< ||OK||
+I (640447) LTE_AT: >>> AT+CCLK?
+I (640506) LTE_AT: <<< ||+CCLK: "26/06/26,03:17:30+28"||||OK||
+I (640506) LTE_AT: LTE time synced: 2026-06-26 03:17:30 tz=28
+I (640507) PIPELINE: WDG: data=145397B offline=0B processing=0B queue=0/100
+I (640512) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (640517) PIPELINE: WDG: pkt produced=212 delivered=212 offline=0 dropped=0
+I (640665) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (640720) LTE_AT: <<< ||>
+I (640864) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (640919) LTE_AT: <<< ||>
+I (641054) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (641109) LTE_AT: <<< ||OK||
+I (641294) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (641944) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (641999) LTE_AT: <<< ||>
+I (642144) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (642199) LTE_AT: <<< ||>
+I (642338) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (642392) LTE_AT: <<< ||OK||
+I (642574) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (644875) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (644930) LTE_AT: <<< ||>
+I (645075) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (645130) LTE_AT: <<< ||>
+I (645269) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (645323) LTE_AT: <<< ||OK||
+I (645504) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (648036) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (648091) LTE_AT: <<< ||>
+I (648236) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (648291) LTE_AT: <<< ||>
+I (648430) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (648484) LTE_AT: <<< ||OK||
+I (648664) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (650889) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (650944) LTE_AT: <<< ||>
+I (651089) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (651144) LTE_AT: <<< ||>
+I (651283) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (651337) LTE_AT: <<< ||OK||
+I (651524) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (654057) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (654112) LTE_AT: <<< ||>
+I (654257) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (654312) LTE_AT: <<< ||>
+I (654451) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (654505) LTE_AT: <<< ||OK||
+I (654694) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (656917) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (656972) LTE_AT: <<< ||>
+I (657117) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (657172) LTE_AT: <<< ||>
+I (657311) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (657366) LTE_AT: <<< ||OK||
+I (657554) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (660089) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (660144) LTE_AT: <<< ||>
+I (660289) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (660344) LTE_AT: <<< ||>
+I (660483) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (660538) LTE_AT: <<< ||OK||
+I (660724) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (662947) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (663002) LTE_AT: <<< ||>
+I (663147) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (663202) LTE_AT: <<< ||>
+I (663341) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (663395) LTE_AT: <<< ||OK||
+I (663584) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (665882) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (665937) LTE_AT: <<< ||>
+I (666082) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (666137) LTE_AT: <<< ||>
+I (666276) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (666330) LTE_AT: <<< ||OK||
+I (666514) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (669047) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (669102) LTE_AT: <<< ||>
+I (669247) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (669302) LTE_AT: <<< ||>
+I (669441) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (669496) LTE_AT: <<< ||OK||
+I (669692) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (671487) LTE_AT: >>> AT+CSQ
+I (671542) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (671542) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (671562) LTE_AT: >>> AT+CTZU=1
+I (671618) LTE_AT: <<< ||OK||
+I (671838) LTE_AT: >>> AT+CTZR=1
+I (671891) LTE_AT: <<< ||OK||
+I (672031) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (672086) LTE_AT: <<< ||>
+I (672231) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (672286) LTE_AT: <<< ||>
+I (672425) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (672479) LTE_AT: <<< ||OK||
+I (672664) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (672684) LTE_AT: >>> AT+CCLK?
+I (672743) LTE_AT: <<< ||+CCLK: "26/06/26,03:18:02+28"||||OK||
+I (672743) LTE_AT: LTE time synced: 2026-06-26 03:18:02 tz=28
+I (672744) PIPELINE: WDG: data=147534B offline=0B processing=0B queue=0/100
+I (672749) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (672754) PIPELINE: WDG: pkt produced=223 delivered=223 offline=0 dropped=0
+I (672902) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (672957) LTE_AT: <<< ||>
+I (673101) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (673156) LTE_AT: <<< ||>
+I (673291) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (673346) LTE_AT: <<< ||OK||
+I (673534) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (674890) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (674945) LTE_AT: <<< ||>
+I (675090) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (675145) LTE_AT: <<< ||>
+I (675284) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (675339) LTE_AT: <<< ||OK||
+I (675524) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (678056) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (678111) LTE_AT: <<< ||>
+I (678256) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (678311) LTE_AT: <<< ||>
+I (678450) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (678504) LTE_AT: <<< ||OK||
+I (678693) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (680915) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (680970) LTE_AT: <<< ||>
+I (681115) LTE_AT: >>> AT+CMQTTPAYLOAD=0,196
+I (681170) LTE_AT: <<< ||>
+I (681309) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (681364) LTE_AT: <<< ||OK||
+I (681544) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (684079) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (684134) LTE_AT: <<< ||>
+I (684279) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (684334) LTE_AT: <<< ||>
+I (684473) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (684528) LTE_AT: <<< ||OK||
+I (684714) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (686936) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (686991) LTE_AT: <<< ||>
+I (687136) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (687191) LTE_AT: <<< ||>
+I (687330) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (687385) LTE_AT: <<< ||OK||
+I (687564) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (690099) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (690154) LTE_AT: <<< ||>
+I (690299) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (690354) LTE_AT: <<< ||>
+I (690493) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (690548) LTE_AT: <<< ||OK||
+I (690735) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (692957) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (693012) LTE_AT: <<< ||>
+I (693157) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (693212) LTE_AT: <<< ||>
+I (693351) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (693406) LTE_AT: <<< ||OK||
+I (693594) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (695892) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (695947) LTE_AT: <<< ||>
+I (696092) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (696147) LTE_AT: <<< ||>
+I (696286) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (696341) LTE_AT: <<< ||OK||
+I (696533) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (699068) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (699123) LTE_AT: <<< ||>
+I (699268) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (699323) LTE_AT: <<< ||>
+I (699462) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (699517) LTE_AT: <<< ||OK||
+I (699704) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (701927) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (701982) LTE_AT: <<< ||>
+I (702127) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (702182) LTE_AT: <<< ||>
+I (702321) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (702375) LTE_AT: <<< ||OK||
+I (702564) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (703737) LTE_AT: >>> AT+CSQ
+I (703792) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (703792) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (703812) LTE_AT: >>> AT+CTZU=1
+I (703868) LTE_AT: <<< ||OK||
+I (704088) LTE_AT: >>> AT+CTZR=1
+I (704141) LTE_AT: <<< ||OK||
+I (704398) LTE_AT: >>> AT+CCLK?
+I (704457) LTE_AT: <<< ||+CCLK: "26/06/26,03:18:34+28"||||OK||
+I (704457) LTE_AT: LTE time synced: 2026-06-26 03:18:34 tz=28
+I (704458) PIPELINE: WDG: data=149472B offline=0B processing=0B queue=0/100
+I (704463) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (704468) PIPELINE: WDG: pkt produced=233 delivered=233 offline=0 dropped=0
+I (704616) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (704671) LTE_AT: <<< ||>
+I (704815) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (704870) LTE_AT: <<< ||>
+I (705004) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (705059) LTE_AT: <<< ||OK||
+I (705245) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (705385) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (705440) LTE_AT: <<< ||>
+I (705585) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (705640) LTE_AT: <<< ||>
+I (705779) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (705834) LTE_AT: <<< ||OK||
+I (706014) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (707929) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (707984) LTE_AT: <<< ||>
+I (708129) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (708184) LTE_AT: <<< ||>
+I (708323) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (708378) LTE_AT: <<< ||OK||
+I (708564) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (711097) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (711152) LTE_AT: <<< ||>
+I (711297) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (711352) LTE_AT: <<< ||>
+I (711491) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (711545) LTE_AT: <<< ||OK||
+I (711735) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (713962) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (714017) LTE_AT: <<< ||>
+I (714162) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (714217) LTE_AT: <<< ||>
+I (714356) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (714410) LTE_AT: <<< ||OK||
+I (714833) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (717055) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (717110) LTE_AT: <<< ||>
+I (717255) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (717310) LTE_AT: <<< ||>
+I (717449) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (717503) LTE_AT: <<< ||OK||
+I (717693) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (719915) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (719970) LTE_AT: <<< ||>
+I (720115) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (720170) LTE_AT: <<< ||>
+I (720309) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (720364) LTE_AT: <<< ||OK||
+I (720545) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (723080) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (723135) LTE_AT: <<< ||>
+I (723280) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (723335) LTE_AT: <<< ||>
+I (723474) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (723529) LTE_AT: <<< ||OK||
+I (723715) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (725937) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (725992) LTE_AT: <<< ||>
+I (726137) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (726192) LTE_AT: <<< ||>
+I (726331) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (726386) LTE_AT: <<< ||OK||
+I (726582) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (728903) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (728958) LTE_AT: <<< ||>
+I (729103) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (729158) LTE_AT: <<< ||>
+I (729297) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (729352) LTE_AT: <<< ||OK||
+I (729536) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (732071) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (732126) LTE_AT: <<< ||>
+I (732271) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (732326) LTE_AT: <<< ||>
+I (732465) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (732520) LTE_AT: <<< ||OK||
+I (732715) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (734938) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (734993) LTE_AT: <<< ||>
+I (735138) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (735193) LTE_AT: <<< ||>
+I (735332) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (735387) LTE_AT: <<< ||OK||
+I (735575) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (735595) LTE_AT: >>> AT+CSQ
+I (735650) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (735650) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (735670) LTE_AT: >>> AT+CTZU=1
+I (735726) LTE_AT: <<< ||OK||
+I (735946) LTE_AT: >>> AT+CTZR=1
+I (735999) LTE_AT: <<< ||OK||
+I (736256) LTE_AT: >>> AT+CCLK?
+I (736315) LTE_AT: <<< ||+CCLK: "26/06/26,03:19:05+28"||||OK||
+I (736315) LTE_AT: LTE time synced: 2026-06-26 03:19:05 tz=28
+I (736316) PIPELINE: WDG: data=151601B offline=0B processing=0B queue=0/100
+I (736321) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (736326) PIPELINE: WDG: pkt produced=244 delivered=244 offline=0 dropped=0
+I (736474) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (736529) LTE_AT: <<< ||>
+I (736673) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (736728) LTE_AT: <<< ||>
+I (736863) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (736918) LTE_AT: <<< ||OK||
+I (737105) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (738065) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (738120) LTE_AT: <<< ||>
+I (738265) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (738320) LTE_AT: <<< ||>
+I (738459) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (738513) LTE_AT: <<< ||OK||
+I (738695) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (740918) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (740973) LTE_AT: <<< ||>
+I (741118) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (741173) LTE_AT: <<< ||>
+I (741312) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (741366) LTE_AT: <<< ||OK||
+I (741555) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (744088) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (744143) LTE_AT: <<< ||>
+I (744288) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (744343) LTE_AT: <<< ||>
+I (744482) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (744537) LTE_AT: <<< ||OK||
+I (744725) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (746950) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (747005) LTE_AT: <<< ||>
+I (747150) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (747205) LTE_AT: <<< ||>
+I (747344) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (747398) LTE_AT: <<< ||OK||
+I (747593) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (749910) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (749965) LTE_AT: <<< ||>
+I (750110) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (750165) LTE_AT: <<< ||>
+I (750304) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (750358) LTE_AT: <<< ||OK||
+I (750545) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (753078) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (753133) LTE_AT: <<< ||>
+I (753278) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (753333) LTE_AT: <<< ||>
+I (753472) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (753526) LTE_AT: <<< ||OK||
+I (753715) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (755940) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (755995) LTE_AT: <<< ||>
+I (756140) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (756195) LTE_AT: <<< ||>
+I (756334) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (756389) LTE_AT: <<< ||OK||
+I (756575) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (759110) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (759165) LTE_AT: <<< ||>
+I (759310) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (759365) LTE_AT: <<< ||>
+I (759504) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (759559) LTE_AT: <<< ||OK||
+I (759745) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (761970) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (762025) LTE_AT: <<< ||>
+I (762170) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (762225) LTE_AT: <<< ||>
+I (762364) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (762418) LTE_AT: <<< ||OK||
+I (762614) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (764915) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (764970) LTE_AT: <<< ||>
+I (765115) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (765170) LTE_AT: <<< ||>
+I (765309) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (765364) LTE_AT: <<< ||OK||
+I (765545) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (767125) LTE_AT: >>> AT+CSQ
+I (767180) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (767180) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (767200) LTE_AT: >>> AT+CTZU=1
+I (767256) LTE_AT: <<< ||OK||
+I (767476) LTE_AT: >>> AT+CTZR=1
+I (767529) LTE_AT: <<< ||OK||
+I (767786) LTE_AT: >>> AT+CCLK?
+I (767845) LTE_AT: <<< ||+CCLK: "26/06/26,03:19:37+28"||||OK||
+I (767845) LTE_AT: LTE time synced: 2026-06-26 03:19:37 tz=28
+I (767846) PIPELINE: WDG: data=153540B offline=0B processing=0B queue=0/100
+I (767851) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (767856) PIPELINE: WDG: pkt produced=255 delivered=254 offline=0 dropped=0
+I (768004) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (768059) LTE_AT: <<< ||>
+I (768203) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (768258) LTE_AT: <<< ||>
+I (768393) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (768448) LTE_AT: <<< ||OK||
+I (768637) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (768777) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (768832) LTE_AT: <<< ||>
+I (768977) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (769032) LTE_AT: <<< ||>
+I (769171) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (769226) LTE_AT: <<< ||OK||
+I (769415) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (771020) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (771075) LTE_AT: <<< ||>
+I (771220) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (771275) LTE_AT: <<< ||>
+I (771414) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (771468) LTE_AT: <<< ||OK||
+I (771655) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (773918) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (773973) LTE_AT: <<< ||>
+I (774118) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (774173) LTE_AT: <<< ||>
+I (774312) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (774367) LTE_AT: <<< ||OK||
+I (774555) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (777090) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (777145) LTE_AT: <<< ||>
+I (777290) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (777345) LTE_AT: <<< ||>
+I (777484) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (777539) LTE_AT: <<< ||OK||
+I (777724) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (779946) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (780001) LTE_AT: <<< ||>
+I (780146) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (780201) LTE_AT: <<< ||>
+I (780340) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (780394) LTE_AT: <<< ||OK||
+I (780582) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (783115) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (783170) LTE_AT: <<< ||>
+I (783315) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (783370) LTE_AT: <<< ||>
+I (783509) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (783563) LTE_AT: <<< ||OK||
+I (783744) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (785969) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (786024) LTE_AT: <<< ||>
+I (786169) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (786224) LTE_AT: <<< ||>
+I (786363) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (786418) LTE_AT: <<< ||OK||
+I (786604) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (788923) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (788978) LTE_AT: <<< ||>
+I (789123) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (789178) LTE_AT: <<< ||>
+I (789317) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (789371) LTE_AT: <<< ||OK||
+I (789554) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (792087) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (792142) LTE_AT: <<< ||>
+I (792287) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (792342) LTE_AT: <<< ||>
+I (792481) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (792536) LTE_AT: <<< ||OK||
+I (792714) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (794939) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (794994) LTE_AT: <<< ||>
+I (795139) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (795194) LTE_AT: <<< ||>
+I (795333) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (795387) LTE_AT: <<< ||OK||
+I (795574) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (798108) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (798163) LTE_AT: <<< ||>
+I (798308) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (798363) LTE_AT: <<< ||>
+I (798502) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (798557) LTE_AT: <<< ||OK||
+I (798755) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (798775) LTE_AT: >>> AT+CSQ
+I (798830) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (798830) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (798850) LTE_AT: >>> AT+CTZU=1
+I (798906) LTE_AT: <<< ||OK||
+I (799126) LTE_AT: >>> AT+CTZR=1
+I (799179) LTE_AT: <<< ||OK||
+I (799436) LTE_AT: >>> AT+CCLK?
+I (799495) LTE_AT: <<< ||+CCLK: "26/06/26,03:20:09+28"||||OK||
+I (799495) LTE_AT: LTE time synced: 2026-06-26 03:20:09 tz=28
+I (799496) PIPELINE: WDG: data=155669B offline=0B processing=0B queue=0/100
+I (799501) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (799506) PIPELINE: WDG: pkt produced=265 delivered=265 offline=0 dropped=0
+I (799654) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (799708) LTE_AT: <<< ||>
+I (799853) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (799908) LTE_AT: <<< ||>
+I (800042) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (800097) LTE_AT: <<< ||OK||
+I (800284) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (800934) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (800989) LTE_AT: <<< ||>
+I (801134) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (801189) LTE_AT: <<< ||>
+I (801328) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (801383) LTE_AT: <<< ||OK||
+I (801573) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (804105) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (804160) LTE_AT: <<< ||>
+I (804305) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (804360) LTE_AT: <<< ||>
+I (804499) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (804554) LTE_AT: <<< ||OK||
+I (804735) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (806957) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (807012) LTE_AT: <<< ||>
+I (807157) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (807212) LTE_AT: <<< ||>
+I (807351) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (807406) LTE_AT: <<< ||OK||
+I (807584) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (810119) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (810174) LTE_AT: <<< ||>
+I (810319) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (810374) LTE_AT: <<< ||>
+I (810513) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (810568) LTE_AT: <<< ||OK||
+I (810754) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (812976) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (813031) LTE_AT: <<< ||>
+I (813176) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (813231) LTE_AT: <<< ||>
+I (813370) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (813424) LTE_AT: <<< ||OK||
+I (813604) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (816136) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (816191) LTE_AT: <<< ||>
+I (816336) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (816391) LTE_AT: <<< ||>
+I (816530) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (816585) LTE_AT: <<< ||OK||
+I (816764) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (818989) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (819044) LTE_AT: <<< ||>
+I (819189) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (819244) LTE_AT: <<< ||>
+I (819383) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (819437) LTE_AT: <<< ||OK||
+I (819624) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (821934) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (821989) LTE_AT: <<< ||>
+I (822134) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (822189) LTE_AT: <<< ||>
+I (822328) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (822382) LTE_AT: <<< ||OK||
+I (822564) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (825099) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (825154) LTE_AT: <<< ||>
+I (825299) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (825354) LTE_AT: <<< ||>
+I (825493) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (825548) LTE_AT: <<< ||OK||
+I (825735) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (827958) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (828013) LTE_AT: <<< ||>
+I (828158) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (828213) LTE_AT: <<< ||>
+I (828352) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (828406) LTE_AT: <<< ||OK||
+I (828594) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (830387) LTE_AT: >>> AT+CSQ
+I (830442) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (830442) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (830462) LTE_AT: >>> AT+CTZU=1
+I (830518) LTE_AT: <<< ||OK||
+I (830738) LTE_AT: >>> AT+CTZR=1
+I (830791) LTE_AT: <<< ||OK||
+I (830937) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (830991) LTE_AT: <<< ||>
+I (831136) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (831191) LTE_AT: <<< ||>
+I (831330) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (831385) LTE_AT: <<< ||OK||
+I (831565) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (831585) LTE_AT: >>> AT+CCLK?
+I (831644) LTE_AT: <<< ||+CCLK: "26/06/26,03:20:41+28"||||OK||
+I (831644) LTE_AT: LTE time synced: 2026-06-26 03:20:41 tz=28
+I (831645) PIPELINE: WDG: data=157793B offline=0B processing=0B queue=0/100
+I (831650) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (831655) PIPELINE: WDG: pkt produced=276 delivered=276 offline=0 dropped=0
+I (831803) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (831858) LTE_AT: <<< ||>
+I (832002) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (832058) LTE_AT: <<< ||>
+I (832193) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (832248) LTE_AT: <<< ||OK||
+I (832434) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (834100) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (834155) LTE_AT: <<< ||>
+I (834300) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (834355) LTE_AT: <<< ||>
+I (834494) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (834549) LTE_AT: <<< ||OK||
+I (834735) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (836967) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (837022) LTE_AT: <<< ||>
+I (837167) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (837222) LTE_AT: <<< ||>
+I (837361) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (837415) LTE_AT: <<< ||OK||
+I (837613) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (840146) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (840201) LTE_AT: <<< ||>
+I (840346) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (840401) LTE_AT: <<< ||>
+I (840540) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (840594) LTE_AT: <<< ||OK||
+I (840775) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (843000) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (843055) LTE_AT: <<< ||>
+I (843200) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (843255) LTE_AT: <<< ||>
+I (843394) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (843449) LTE_AT: <<< ||OK||
+I (843635) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (845942) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (845997) LTE_AT: <<< ||>
+I (846142) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (846197) LTE_AT: <<< ||>
+I (846336) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (846391) LTE_AT: <<< ||OK||
+I (846574) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (849109) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (849164) LTE_AT: <<< ||>
+I (849309) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (849364) LTE_AT: <<< ||>
+I (849503) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (849558) LTE_AT: <<< ||OK||
+I (849745) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (851967) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (852022) LTE_AT: <<< ||>
+I (852167) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (852222) LTE_AT: <<< ||>
+I (852361) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (852416) LTE_AT: <<< ||OK||
+I (852595) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (855127) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (855182) LTE_AT: <<< ||>
+I (855327) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (855382) LTE_AT: <<< ||>
+I (855521) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (855576) LTE_AT: <<< ||OK||
+I (855755) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (857981) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (858036) LTE_AT: <<< ||>
+I (858181) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (858236) LTE_AT: <<< ||>
+I (858375) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (858429) LTE_AT: <<< ||OK||
+I (858616) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (861148) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (861203) LTE_AT: <<< ||>
+I (861348) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (861403) LTE_AT: <<< ||>
+I (861542) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (861597) LTE_AT: <<< ||OK||
+I (861785) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (862647) LTE_AT: >>> AT+CSQ
+I (862702) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (862702) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (862722) LTE_AT: >>> AT+CTZU=1
+I (862778) LTE_AT: <<< ||OK||
+I (862998) LTE_AT: >>> AT+CTZR=1
+I (863051) LTE_AT: <<< ||OK||
+I (863308) LTE_AT: >>> AT+CCLK?
+I (863367) LTE_AT: <<< ||+CCLK: "26/06/26,03:21:12+28"||||OK||
+I (863367) LTE_AT: LTE time synced: 2026-06-26 03:21:12 tz=28
+I (863368) PIPELINE: WDG: data=159730B offline=0B processing=0B queue=0/100
+I (863373) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (863378) PIPELINE: WDG: pkt produced=286 delivered=286 offline=0 dropped=0
+I (863526) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (863580) LTE_AT: <<< ||>
+I (863724) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (863779) LTE_AT: <<< ||>
+I (863914) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (863969) LTE_AT: <<< ||OK||
+I (864155) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (864295) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (864350) LTE_AT: <<< ||>
+I (864495) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (864550) LTE_AT: <<< ||>
+I (864689) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (864744) LTE_AT: <<< ||OK||
+I (864925) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (867150) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (867205) LTE_AT: <<< ||>
+I (867350) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (867405) LTE_AT: <<< ||>
+I (867544) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (867599) LTE_AT: <<< ||OK||
+I (867795) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (870017) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (870072) LTE_AT: <<< ||>
+I (870217) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (870272) LTE_AT: <<< ||>
+I (870411) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (870466) LTE_AT: <<< ||OK||
+I (870645) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (872951) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (873006) LTE_AT: <<< ||>
+I (873151) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (873206) LTE_AT: <<< ||>
+I (873345) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (873400) LTE_AT: <<< ||OK||
+I (873585) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (876118) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (876173) LTE_AT: <<< ||>
+I (876318) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (876373) LTE_AT: <<< ||>
+I (876512) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (876567) LTE_AT: <<< ||OK||
+I (876763) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (878986) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (879041) LTE_AT: <<< ||>
+I (879186) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (879241) LTE_AT: <<< ||>
+I (879380) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (879435) LTE_AT: <<< ||OK||
+I (879615) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (882150) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (882205) LTE_AT: <<< ||>
+I (882350) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (882405) LTE_AT: <<< ||>
+I (882544) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (882599) LTE_AT: <<< ||OK||
+I (882790) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (885013) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (885068) LTE_AT: <<< ||>
+I (885213) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (885268) LTE_AT: <<< ||>
+I (885407) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (885461) LTE_AT: <<< ||OK||
+I (885645) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (887956) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (888011) LTE_AT: <<< ||>
+I (888156) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (888211) LTE_AT: <<< ||>
+I (888350) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (888405) LTE_AT: <<< ||OK||
+I (888585) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (891122) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (891177) LTE_AT: <<< ||>
+I (891322) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (891377) LTE_AT: <<< ||>
+I (891516) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (891571) LTE_AT: <<< ||OK||
+I (891755) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (893977) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (894032) LTE_AT: <<< ||>
+I (894177) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (894232) LTE_AT: <<< ||>
+I (894371) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (894426) LTE_AT: <<< ||OK||
+I (894613) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (894633) LTE_AT: >>> AT+CSQ
+I (894688) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (894688) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (894708) LTE_AT: >>> AT+CTZU=1
+I (894764) LTE_AT: <<< ||OK||
+I (894984) LTE_AT: >>> AT+CTZR=1
+I (895037) LTE_AT: <<< ||OK||
+I (895294) LTE_AT: >>> AT+CCLK?
+I (895353) LTE_AT: <<< ||+CCLK: "26/06/26,03:21:44+28"||||OK||
+I (895353) LTE_AT: LTE time synced: 2026-06-26 03:21:44 tz=28
+I (895354) PIPELINE: WDG: data=161851B offline=0B processing=0B queue=0/100
+I (895359) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (895364) PIPELINE: WDG: pkt produced=297 delivered=297 offline=0 dropped=0
+I (895512) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (895566) LTE_AT: <<< ||>
+I (895710) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (895765) LTE_AT: <<< ||>
+I (895899) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (895954) LTE_AT: <<< ||OK||
+I (896135) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (897095) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (897150) LTE_AT: <<< ||>
+I (897295) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (897350) LTE_AT: <<< ||>
+I (897489) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (897543) LTE_AT: <<< ||OK||
+I (897725) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (899960) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (900015) LTE_AT: <<< ||>
+I (900160) LTE_AT: >>> AT+CMQTTPAYLOAD=0,189
+I (900215) LTE_AT: <<< ||>
+I (900354) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (900409) LTE_AT: <<< ||OK||
+I (900595) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (903127) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (903182) LTE_AT: <<< ||>
+I (903327) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (903382) LTE_AT: <<< ||>
+I (903521) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (903576) LTE_AT: <<< ||OK||
+I (903755) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (905980) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (906035) LTE_AT: <<< ||>
+I (906180) LTE_AT: >>> AT+CMQTTPAYLOAD=0,190
+I (906235) LTE_AT: <<< ||>
+I (906374) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (906428) LTE_AT: <<< ||OK||
+I (906623) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (909155) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (909210) LTE_AT: <<< ||>
+I (909355) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (909410) LTE_AT: <<< ||>
+I (909549) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (909604) LTE_AT: <<< ||OK||
+I (909785) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (912007) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (912062) LTE_AT: <<< ||>
+I (912207) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (912262) LTE_AT: <<< ||>
+I (912401) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (912455) LTE_AT: <<< ||OK||
+I (912635) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (915170) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (915225) LTE_AT: <<< ||>
+I (915370) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (915425) LTE_AT: <<< ||>
+I (915564) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (915619) LTE_AT: <<< ||OK||
+I (915805) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (918028) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (918083) LTE_AT: <<< ||>
+I (918228) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (918283) LTE_AT: <<< ||>
+I (918422) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (918477) LTE_AT: <<< ||OK||
+I (918663) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (920967) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (921022) LTE_AT: <<< ||>
+I (921167) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (921222) LTE_AT: <<< ||>
+I (921361) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (921416) LTE_AT: <<< ||OK||
+I (921595) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (924128) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (924183) LTE_AT: <<< ||>
+I (924328) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (924383) LTE_AT: <<< ||>
+I (924522) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (924577) LTE_AT: <<< ||OK||
+I (924755) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (926238) LTE_AT: >>> AT+CSQ
+I (926293) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (926293) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (926313) LTE_AT: >>> AT+CTZU=1
+I (926369) LTE_AT: <<< ||OK||
+I (926589) LTE_AT: >>> AT+CTZR=1
+I (926642) LTE_AT: <<< ||OK||
+I (926899) LTE_AT: >>> AT+CCLK?
+I (926958) LTE_AT: <<< ||+CCLK: "26/06/26,03:22:16+28"||||OK||
+I (926958) LTE_AT: LTE time synced: 2026-06-26 03:22:16 tz=28
+I (926959) PIPELINE: WDG: data=163779B offline=0B processing=0B queue=0/100
+I (926964) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (926969) PIPELINE: WDG: pkt produced=308 delivered=307 offline=0 dropped=0
+I (927117) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (927172) LTE_AT: <<< ||>
+I (927316) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (927371) LTE_AT: <<< ||>
+I (927505) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (927559) LTE_AT: <<< ||OK||
+I (927746) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (927886) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (927941) LTE_AT: <<< ||>
+I (928086) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (928141) LTE_AT: <<< ||>
+I (928280) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (928335) LTE_AT: <<< ||OK||
+I (928515) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (930129) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (930184) LTE_AT: <<< ||>
+I (930329) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (930384) LTE_AT: <<< ||>
+I (930523) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (930578) LTE_AT: <<< ||OK||
+I (930765) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (932989) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (933044) LTE_AT: <<< ||>
+I (933189) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (933244) LTE_AT: <<< ||>
+I (933383) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (933438) LTE_AT: <<< ||OK||
+I (933634) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (936169) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (936224) LTE_AT: <<< ||>
+I (936369) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (936424) LTE_AT: <<< ||>
+I (936563) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (936618) LTE_AT: <<< ||OK||
+I (936815) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (939037) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (939092) LTE_AT: <<< ||>
+I (939237) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (939292) LTE_AT: <<< ||>
+I (939431) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (939486) LTE_AT: <<< ||OK||
+I (939665) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (941974) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (942029) LTE_AT: <<< ||>
+I (942174) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (942229) LTE_AT: <<< ||>
+I (942368) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (942423) LTE_AT: <<< ||OK||
+I (942605) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (945140) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (945195) LTE_AT: <<< ||>
+I (945340) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (945395) LTE_AT: <<< ||>
+I (945534) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (945589) LTE_AT: <<< ||OK||
+I (945784) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (948006) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (948061) LTE_AT: <<< ||>
+I (948206) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (948261) LTE_AT: <<< ||>
+I (948400) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (948454) LTE_AT: <<< ||OK||
+I (948636) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (951168) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (951223) LTE_AT: <<< ||>
+I (951368) LTE_AT: >>> AT+CMQTTPAYLOAD=0,189
+I (951423) LTE_AT: <<< ||>
+I (951562) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (951617) LTE_AT: <<< ||OK||
+I (951796) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (954021) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (954076) LTE_AT: <<< ||>
+I (954221) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (954276) LTE_AT: <<< ||>
+I (954415) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (954470) LTE_AT: <<< ||OK||
+I (954656) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (957188) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (957243) LTE_AT: <<< ||>
+I (957388) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (957443) LTE_AT: <<< ||>
+I (957582) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (957636) LTE_AT: <<< ||OK||
+I (957828) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (957848) LTE_AT: >>> AT+CSQ
+I (957903) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (957903) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (957923) LTE_AT: >>> AT+CTZU=1
+I (957979) LTE_AT: <<< ||OK||
+I (958199) LTE_AT: >>> AT+CTZR=1
+I (958252) LTE_AT: <<< ||OK||
+I (958509) LTE_AT: >>> AT+CCLK?
+I (958568) LTE_AT: <<< ||+CCLK: "26/06/26,03:22:48+28"||||OK||
+I (958568) LTE_AT: LTE time synced: 2026-06-26 03:22:48 tz=28
+I (958569) PIPELINE: WDG: data=165912B offline=0B processing=0B queue=0/100
+I (958574) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (958579) PIPELINE: WDG: pkt produced=318 delivered=318 offline=0 dropped=0
+I (958727) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (958782) LTE_AT: <<< ||>
+I (958926) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (958981) LTE_AT: <<< ||>
+I (959115) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (959169) LTE_AT: <<< ||OK||
+I (959356) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (960006) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (960061) LTE_AT: <<< ||>
+I (960206) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (960261) LTE_AT: <<< ||>
+I (960400) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (960454) LTE_AT: <<< ||OK||
+I (960636) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (963169) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (963224) LTE_AT: <<< ||>
+I (963369) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (963424) LTE_AT: <<< ||>
+I (963563) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (963618) LTE_AT: <<< ||OK||
+I (963806) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (966029) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (966084) LTE_AT: <<< ||>
+I (966229) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (966284) LTE_AT: <<< ||>
+I (966423) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (966478) LTE_AT: <<< ||OK||
+I (966666) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (968983) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (969038) LTE_AT: <<< ||>
+I (969183) LTE_AT: >>> AT+CMQTTPAYLOAD=0,196
+I (969238) LTE_AT: <<< ||>
+I (969377) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (969432) LTE_AT: <<< ||OK||
+I (969616) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (972151) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (972206) LTE_AT: <<< ||>
+I (972351) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (972406) LTE_AT: <<< ||>
+I (972545) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (972599) LTE_AT: <<< ||OK||
+I (972796) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (975018) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (975073) LTE_AT: <<< ||>
+I (975218) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (975273) LTE_AT: <<< ||>
+I (975412) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (975467) LTE_AT: <<< ||OK||
+I (975646) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (978181) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (978236) LTE_AT: <<< ||>
+I (978381) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (978436) LTE_AT: <<< ||>
+I (978575) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (978630) LTE_AT: <<< ||OK||
+I (978816) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (981039) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (981094) LTE_AT: <<< ||>
+I (981239) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (981294) LTE_AT: <<< ||>
+I (981433) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (981488) LTE_AT: <<< ||OK||
+I (981666) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (983988) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (984043) LTE_AT: <<< ||>
+I (984188) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (984243) LTE_AT: <<< ||>
+I (984382) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (984437) LTE_AT: <<< ||OK||
+I (984616) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (987148) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (987203) LTE_AT: <<< ||>
+I (987348) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (987403) LTE_AT: <<< ||>
+I (987542) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (987597) LTE_AT: <<< ||OK||
+I (987788) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (989376) LTE_AT: >>> AT+CSQ
+I (989431) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (989431) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (989451) LTE_AT: >>> AT+CTZU=1
+I (989507) LTE_AT: <<< ||OK||
+I (989727) LTE_AT: >>> AT+CTZR=1
+I (989780) LTE_AT: <<< ||OK||
+I (990037) LTE_AT: >>> AT+CCLK?
+I (990096) LTE_AT: <<< ||+CCLK: "26/06/26,03:23:19+28"||||OK||
+I (990096) LTE_AT: LTE time synced: 2026-06-26 03:23:19 tz=28
+I (990097) PIPELINE: WDG: data=167852B offline=0B processing=0B queue=0/100
+I (990102) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (990107) PIPELINE: WDG: pkt produced=329 delivered=328 offline=0 dropped=0
+I (990255) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (990310) LTE_AT: <<< ||>
+I (990454) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (990509) LTE_AT: <<< ||>
+I (990643) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (990697) LTE_AT: <<< ||OK||
+I (990876) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (991016) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (991071) LTE_AT: <<< ||>
+I (991216) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (991271) LTE_AT: <<< ||>
+I (991410) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (991465) LTE_AT: <<< ||OK||
+I (991655) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (992991) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (993046) LTE_AT: <<< ||>
+I (993191) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (993246) LTE_AT: <<< ||>
+I (993385) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (993439) LTE_AT: <<< ||OK||
+I (993626) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (996158) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (996213) LTE_AT: <<< ||>
+I (996358) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (996413) LTE_AT: <<< ||>
+I (996552) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (996606) LTE_AT: <<< ||OK||
+I (996786) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (999008) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (999063) LTE_AT: <<< ||>
+I (999208) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (999263) LTE_AT: <<< ||>
+I (999402) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (999456) LTE_AT: <<< ||OK||
+I (999636) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1002171) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1002226) LTE_AT: <<< ||>
+I (1002371) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1002426) LTE_AT: <<< ||>
+I (1002565) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1002620) LTE_AT: <<< ||OK||
+I (1002815) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1005038) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1005093) LTE_AT: <<< ||>
+I (1005238) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1005293) LTE_AT: <<< ||>
+I (1005432) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1005487) LTE_AT: <<< ||OK||
+I (1005674) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1007996) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1008051) LTE_AT: <<< ||>
+I (1008196) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1008251) LTE_AT: <<< ||>
+I (1008390) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1008444) LTE_AT: <<< ||OK||
+I (1008626) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1011159) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1011214) LTE_AT: <<< ||>
+I (1011359) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1011414) LTE_AT: <<< ||>
+I (1011553) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1011607) LTE_AT: <<< ||OK||
+I (1011786) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1014009) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1014064) LTE_AT: <<< ||>
+I (1014209) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1014264) LTE_AT: <<< ||>
+I (1014403) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1014458) LTE_AT: <<< ||OK||
+I (1014637) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1017174) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1017229) LTE_AT: <<< ||>
+I (1017374) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1017429) LTE_AT: <<< ||>
+I (1017568) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1017623) LTE_AT: <<< ||OK||
+I (1017815) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1020037) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1020092) LTE_AT: <<< ||>
+I (1020237) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1020292) LTE_AT: <<< ||>
+I (1020431) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1020485) LTE_AT: <<< ||OK||
+I (1020667) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1020912) LTE_AT: >>> AT+CSQ
+I (1020967) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (1020967) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (1020987) LTE_AT: >>> AT+CTZU=1
+I (1021043) LTE_AT: <<< ||OK||
+I (1021263) LTE_AT: >>> AT+CTZR=1
+I (1021316) LTE_AT: <<< ||OK||
+I (1021573) LTE_AT: >>> AT+CCLK?
+I (1021632) LTE_AT: <<< ||+CCLK: "26/06/26,03:23:51+28"||||OK||
+I (1021632) LTE_AT: LTE time synced: 2026-06-26 03:23:51 tz=28
+I (1021633) PIPELINE: WDG: data=169993B offline=0B processing=0B queue=0/100
+I (1021638) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1021644) PIPELINE: WDG: pkt produced=339 delivered=339 offline=0 dropped=0
+I (1021791) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1021846) LTE_AT: <<< ||>
+I (1021990) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1022045) LTE_AT: <<< ||>
+I (1022180) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1022234) LTE_AT: <<< ||OK||
+I (1022428) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1023078) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1023133) LTE_AT: <<< ||>
+I (1023278) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1023333) LTE_AT: <<< ||>
+I (1023472) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1023527) LTE_AT: <<< ||OK||
+I (1023706) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1026002) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1026057) LTE_AT: <<< ||>
+I (1026202) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1026257) LTE_AT: <<< ||>
+I (1026396) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1026451) LTE_AT: <<< ||OK||
+I (1026636) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1029168) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1029223) LTE_AT: <<< ||>
+I (1029368) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1029423) LTE_AT: <<< ||>
+I (1029562) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1029617) LTE_AT: <<< ||OK||
+I (1029796) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1032021) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1032076) LTE_AT: <<< ||>
+I (1032221) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1032276) LTE_AT: <<< ||>
+I (1032415) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1032470) LTE_AT: <<< ||OK||
+I (1032656) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1035188) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1035243) LTE_AT: <<< ||>
+I (1035388) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1035443) LTE_AT: <<< ||>
+I (1035582) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1035636) LTE_AT: <<< ||OK||
+I (1035825) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1038047) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1038102) LTE_AT: <<< ||>
+I (1038247) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1038302) LTE_AT: <<< ||>
+I (1038441) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1038496) LTE_AT: <<< ||OK||
+I (1038676) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1041211) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1041266) LTE_AT: <<< ||>
+I (1041411) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1041466) LTE_AT: <<< ||>
+I (1041605) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1041660) LTE_AT: <<< ||OK||
+I (1041854) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1044077) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1044132) LTE_AT: <<< ||>
+I (1044277) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1044332) LTE_AT: <<< ||>
+I (1044471) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1044526) LTE_AT: <<< ||OK||
+I (1044706) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1047009) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1047064) LTE_AT: <<< ||>
+I (1047209) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1047264) LTE_AT: <<< ||>
+I (1047403) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1047458) LTE_AT: <<< ||OK||
+I (1047636) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1050169) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1050224) LTE_AT: <<< ||>
+I (1050369) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1050424) LTE_AT: <<< ||>
+I (1050563) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1050618) LTE_AT: <<< ||OK||
+I (1050797) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1052590) LTE_AT: >>> AT+CSQ
+I (1052645) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (1052645) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (1052665) LTE_AT: >>> AT+CTZU=1
+I (1052721) LTE_AT: <<< ||OK||
+I (1052941) LTE_AT: >>> AT+CTZR=1
+I (1052994) LTE_AT: <<< ||OK||
+I (1053134) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1053189) LTE_AT: <<< ||>
+I (1053334) LTE_AT: >>> AT+CMQTTPAYLOAD=0,197
+I (1053389) LTE_AT: <<< ||>
+I (1053528) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1053582) LTE_AT: <<< ||OK||
+I (1053767) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1053787) LTE_AT: >>> AT+CCLK?
+I (1053846) LTE_AT: <<< ||+CCLK: "26/06/26,03:24:23+28"||||OK||
+I (1053846) LTE_AT: LTE time synced: 2026-06-26 03:24:23 tz=28
+I (1053847) PIPELINE: WDG: data=172141B offline=0B processing=0B queue=0/100
+I (1053852) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1053858) PIPELINE: WDG: pkt produced=350 delivered=350 offline=0 dropped=0
+I (1054005) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1054060) LTE_AT: <<< ||>
+I (1054204) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1054259) LTE_AT: <<< ||>
+I (1054394) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1054449) LTE_AT: <<< ||OK||
+I (1054637) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1056012) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1056067) LTE_AT: <<< ||>
+I (1056212) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1056267) LTE_AT: <<< ||>
+I (1056406) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1056461) LTE_AT: <<< ||OK||
+I (1056647) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1059182) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1059237) LTE_AT: <<< ||>
+I (1059382) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1059437) LTE_AT: <<< ||>
+I (1059576) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1059630) LTE_AT: <<< ||OK||
+I (1059817) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1062039) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1062094) LTE_AT: <<< ||>
+I (1062239) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1062294) LTE_AT: <<< ||>
+I (1062433) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1062488) LTE_AT: <<< ||OK||
+I (1062667) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1065202) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1065257) LTE_AT: <<< ||>
+I (1065402) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1065457) LTE_AT: <<< ||>
+I (1065596) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1065651) LTE_AT: <<< ||OK||
+I (1065837) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1068059) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1068114) LTE_AT: <<< ||>
+I (1068259) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1068314) LTE_AT: <<< ||>
+I (1068453) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1068507) LTE_AT: <<< ||OK||
+I (1068687) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1071222) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1071277) LTE_AT: <<< ||>
+I (1071422) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1071477) LTE_AT: <<< ||>
+I (1071616) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1071671) LTE_AT: <<< ||OK||
+I (1071857) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1074079) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1074134) LTE_AT: <<< ||>
+I (1074279) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1074334) LTE_AT: <<< ||>
+I (1074473) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1074528) LTE_AT: <<< ||OK||
+I (1074715) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1077019) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1077074) LTE_AT: <<< ||>
+I (1077219) LTE_AT: >>> AT+CMQTTPAYLOAD=0,196
+I (1077274) LTE_AT: <<< ||>
+I (1077413) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1077468) LTE_AT: <<< ||OK||
+I (1077647) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1080182) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1080237) LTE_AT: <<< ||>
+I (1080382) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1080437) LTE_AT: <<< ||>
+I (1080576) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1080631) LTE_AT: <<< ||OK||
+I (1080817) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1083039) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1083094) LTE_AT: <<< ||>
+I (1083239) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1083294) LTE_AT: <<< ||>
+I (1083433) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1083488) LTE_AT: <<< ||OK||
+I (1083675) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1084850) LTE_AT: >>> AT+CSQ
+I (1084905) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (1084905) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (1084925) LTE_AT: >>> AT+CTZU=1
+I (1084981) LTE_AT: <<< ||OK||
+I (1085201) LTE_AT: >>> AT+CTZR=1
+I (1085254) LTE_AT: <<< ||OK||
+I (1085511) LTE_AT: >>> AT+CCLK?
+I (1085570) LTE_AT: <<< ||+CCLK: "26/06/26,03:24:55+28"||||OK||
+I (1085570) LTE_AT: LTE time synced: 2026-06-26 03:24:55 tz=28
+I (1085571) PIPELINE: WDG: data=174088B offline=0B processing=0B queue=0/100
+I (1085576) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1085582) PIPELINE: WDG: pkt produced=360 delivered=360 offline=0 dropped=0
+I (1085729) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1085784) LTE_AT: <<< ||>
+I (1085928) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1085983) LTE_AT: <<< ||>
+I (1086118) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1086173) LTE_AT: <<< ||OK||
+I (1086357) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1086497) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1086552) LTE_AT: <<< ||>
+I (1086697) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1086752) LTE_AT: <<< ||>
+I (1086891) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1086946) LTE_AT: <<< ||OK||
+I (1087127) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1089040) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1089095) LTE_AT: <<< ||>
+I (1089240) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1089295) LTE_AT: <<< ||>
+I (1089434) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1089488) LTE_AT: <<< ||OK||
+I (1089667) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1092200) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1092255) LTE_AT: <<< ||>
+I (1092400) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1092455) LTE_AT: <<< ||>
+I (1092594) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1092648) LTE_AT: <<< ||OK||
+I (1092827) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1095052) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1095107) LTE_AT: <<< ||>
+I (1095252) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1095307) LTE_AT: <<< ||>
+I (1095446) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1095501) LTE_AT: <<< ||OK||
+I (1095687) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1098220) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1098275) LTE_AT: <<< ||>
+I (1098420) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1098475) LTE_AT: <<< ||>
+I (1098617) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1098672) LTE_AT: <<< ||OK||
+I (1098857) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1101080) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1101135) LTE_AT: <<< ||>
+I (1101280) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1101335) LTE_AT: <<< ||>
+I (1101474) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1101528) LTE_AT: <<< ||OK||
+I (1101707) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1104028) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1104083) LTE_AT: <<< ||>
+I (1104228) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1104283) LTE_AT: <<< ||>
+I (1104422) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1104476) LTE_AT: <<< ||OK||
+I (1104657) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1107190) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1107245) LTE_AT: <<< ||>
+I (1107390) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1107445) LTE_AT: <<< ||>
+I (1107584) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1107638) LTE_AT: <<< ||OK||
+I (1107817) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1110042) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1110097) LTE_AT: <<< ||>
+I (1110242) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1110297) LTE_AT: <<< ||>
+I (1110436) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1110491) LTE_AT: <<< ||OK||
+I (1110677) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1113209) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1113264) LTE_AT: <<< ||>
+I (1113409) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1113464) LTE_AT: <<< ||>
+I (1113603) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1113658) LTE_AT: <<< ||OK||
+I (1113837) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1116059) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1116114) LTE_AT: <<< ||>
+I (1116259) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1116314) LTE_AT: <<< ||>
+I (1116453) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1116507) LTE_AT: <<< ||OK||
+I (1116687) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1116707) LTE_AT: >>> AT+CSQ
+I (1116762) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (1116762) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (1116782) LTE_AT: >>> AT+CTZU=1
+I (1116838) LTE_AT: <<< ||OK||
+I (1117058) LTE_AT: >>> AT+CTZR=1
+I (1117111) LTE_AT: <<< ||OK||
+I (1117368) LTE_AT: >>> AT+CCLK?
+I (1117427) LTE_AT: <<< ||+CCLK: "26/06/26,03:25:27+28"||||OK||
+I (1117427) LTE_AT: LTE time synced: 2026-06-26 03:25:27 tz=28
+I (1117428) PIPELINE: WDG: data=176232B offline=0B processing=0B queue=0/100
+I (1117433) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1117439) PIPELINE: WDG: pkt produced=371 delivered=371 offline=0 dropped=0
+I (1117586) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1117641) LTE_AT: <<< ||>
+I (1117785) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1117840) LTE_AT: <<< ||>
+I (1117974) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1118029) LTE_AT: <<< ||OK||
+I (1118207) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1119167) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1119222) LTE_AT: <<< ||>
+I (1119367) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1119422) LTE_AT: <<< ||>
+I (1119561) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1119615) LTE_AT: <<< ||OK||
+I (1119798) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1122034) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1122089) LTE_AT: <<< ||>
+I (1122234) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1122289) LTE_AT: <<< ||>
+I (1122428) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1122483) LTE_AT: <<< ||OK||
+I (1122667) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1125199) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1125254) LTE_AT: <<< ||>
+I (1125399) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1125454) LTE_AT: <<< ||>
+I (1125593) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1125648) LTE_AT: <<< ||OK||
+I (1125835) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1128060) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1128115) LTE_AT: <<< ||>
+I (1128260) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1128315) LTE_AT: <<< ||>
+I (1128454) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1128508) LTE_AT: <<< ||OK||
+I (1128688) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1131220) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1131275) LTE_AT: <<< ||>
+I (1131420) LTE_AT: >>> AT+CMQTTPAYLOAD=0,196
+I (1131475) LTE_AT: <<< ||>
+I (1131614) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1131669) LTE_AT: <<< ||OK||
+I (1131847) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1134072) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1134127) LTE_AT: <<< ||>
+I (1134272) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1134327) LTE_AT: <<< ||>
+I (1134466) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1134521) LTE_AT: <<< ||OK||
+I (1134707) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1137240) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1137295) LTE_AT: <<< ||>
+I (1137440) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1137495) LTE_AT: <<< ||>
+I (1137634) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1137688) LTE_AT: <<< ||OK||
+I (1137876) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1140099) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1140154) LTE_AT: <<< ||>
+I (1140299) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1140354) LTE_AT: <<< ||>
+I (1140493) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1140548) LTE_AT: <<< ||OK||
+I (1140736) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1143041) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1143096) LTE_AT: <<< ||>
+I (1143241) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1143296) LTE_AT: <<< ||>
+I (1143435) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1143489) LTE_AT: <<< ||OK||
+I (1143679) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1146214) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1146269) LTE_AT: <<< ||>
+I (1146414) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1146469) LTE_AT: <<< ||>
+I (1146608) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1146663) LTE_AT: <<< ||OK||
+I (1146849) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1148334) LTE_AT: >>> AT+CSQ
+I (1148389) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (1148389) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (1148409) LTE_AT: >>> AT+CTZU=1
+I (1148465) LTE_AT: <<< ||OK||
+I (1148685) LTE_AT: >>> AT+CTZR=1
+I (1148738) LTE_AT: <<< ||OK||
+I (1148995) LTE_AT: >>> AT+CCLK?
+I (1149054) LTE_AT: <<< ||+CCLK: "26/06/26,03:25:58+28"||||OK||
+I (1149054) LTE_AT: LTE time synced: 2026-06-26 03:25:58 tz=28
+I (1149055) PIPELINE: WDG: data=178182B offline=0B processing=0B queue=0/100
+I (1149060) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1149066) PIPELINE: WDG: pkt produced=382 delivered=381 offline=0 dropped=0
+I (1149213) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1149268) LTE_AT: <<< ||>
+I (1149412) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1149467) LTE_AT: <<< ||>
+I (1149602) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1149656) LTE_AT: <<< ||OK||
+I (1149839) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1149979) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1150034) LTE_AT: <<< ||>
+I (1150179) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1150234) LTE_AT: <<< ||>
+I (1150373) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1150428) LTE_AT: <<< ||OK||
+I (1150609) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1152211) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1152266) LTE_AT: <<< ||>
+I (1152411) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1152466) LTE_AT: <<< ||>
+I (1152605) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1152660) LTE_AT: <<< ||OK||
+I (1152849) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1155071) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1155126) LTE_AT: <<< ||>
+I (1155271) LTE_AT: >>> AT+CMQTTPAYLOAD=0,196
+I (1155326) LTE_AT: <<< ||>
+I (1155465) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1155519) LTE_AT: <<< ||OK||
+I (1155709) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1158244) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1158299) LTE_AT: <<< ||>
+I (1158444) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1158499) LTE_AT: <<< ||>
+I (1158638) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1158692) LTE_AT: <<< ||OK||
+I (1158879) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1161101) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1161156) LTE_AT: <<< ||>
+I (1161301) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (1161356) LTE_AT: <<< ||>
+I (1161495) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1161550) LTE_AT: <<< ||OK||
+I (1161740) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1164048) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1164103) LTE_AT: <<< ||>
+I (1164248) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1164303) LTE_AT: <<< ||>
+I (1164442) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1164497) LTE_AT: <<< ||OK||
+I (1164687) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1167223) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1167278) LTE_AT: <<< ||>
+I (1167423) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1167478) LTE_AT: <<< ||>
+I (1167617) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1167672) LTE_AT: <<< ||OK||
+I (1167867) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1170090) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1170145) LTE_AT: <<< ||>
+I (1170290) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1170345) LTE_AT: <<< ||>
+I (1170484) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1170538) LTE_AT: <<< ||OK||
+I (1170719) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1173254) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1173309) LTE_AT: <<< ||>
+I (1173454) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1173509) LTE_AT: <<< ||>
+I (1173648) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1173703) LTE_AT: <<< ||OK||
+I (1173898) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1176121) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1176176) LTE_AT: <<< ||>
+I (1176321) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1176376) LTE_AT: <<< ||>
+I (1176515) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1176569) LTE_AT: <<< ||OK||
+I (1176749) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1179053) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1179108) LTE_AT: <<< ||>
+I (1179253) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1179308) LTE_AT: <<< ||>
+I (1179447) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1179501) LTE_AT: <<< ||OK||
+I (1179689) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1179934) LTE_AT: >>> AT+CSQ
+I (1179989) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (1179989) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (1180009) LTE_AT: >>> AT+CTZU=1
+I (1180065) LTE_AT: <<< ||OK||
+I (1180285) LTE_AT: >>> AT+CTZR=1
+I (1180338) LTE_AT: <<< ||OK||
+I (1180595) LTE_AT: >>> AT+CCLK?
+I (1180654) LTE_AT: <<< ||+CCLK: "26/06/26,03:26:30+28"||||OK||
+I (1180654) LTE_AT: LTE time synced: 2026-06-26 03:26:30 tz=28
+I (1180655) PIPELINE: WDG: data=180324B offline=0B processing=0B queue=0/100
+I (1180660) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1180666) PIPELINE: WDG: pkt produced=392 delivered=392 offline=0 dropped=0
+I (1180813) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1180868) LTE_AT: <<< ||>
+I (1181012) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1181067) LTE_AT: <<< ||>
+I (1181201) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1181256) LTE_AT: <<< ||OK||
+I (1181439) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1182089) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1182144) LTE_AT: <<< ||>
+I (1182289) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1182344) LTE_AT: <<< ||>
+I (1182483) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1182538) LTE_AT: <<< ||OK||
+I (1182719) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1185252) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1185307) LTE_AT: <<< ||>
+I (1185452) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1185507) LTE_AT: <<< ||>
+I (1185646) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1185700) LTE_AT: <<< ||OK||
+I (1185889) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1188112) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1188167) LTE_AT: <<< ||>
+I (1188312) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1188367) LTE_AT: <<< ||>
+I (1188506) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1188561) LTE_AT: <<< ||OK||
+I (1188749) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1191057) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1191112) LTE_AT: <<< ||>
+I (1191257) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1191312) LTE_AT: <<< ||>
+I (1191451) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1191506) LTE_AT: <<< ||OK||
+I (1191689) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1194221) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1194276) LTE_AT: <<< ||>
+I (1194421) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1194476) LTE_AT: <<< ||>
+I (1194615) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1194669) LTE_AT: <<< ||OK||
+I (1194850) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1197075) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1197130) LTE_AT: <<< ||>
+I (1197275) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1197330) LTE_AT: <<< ||>
+I (1197469) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1197523) LTE_AT: <<< ||OK||
+I (1197709) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1200241) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1200296) LTE_AT: <<< ||>
+I (1200441) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1200496) LTE_AT: <<< ||>
+I (1200635) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1200690) LTE_AT: <<< ||OK||
+I (1200869) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1203091) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1203146) LTE_AT: <<< ||>
+I (1203291) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1203346) LTE_AT: <<< ||>
+I (1203485) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1203540) LTE_AT: <<< ||OK||
+I (1203719) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1206254) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1206309) LTE_AT: <<< ||>
+I (1206454) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1206509) LTE_AT: <<< ||>
+I (1206648) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1206703) LTE_AT: <<< ||OK||
+I (1206889) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1209111) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1209166) LTE_AT: <<< ||>
+I (1209311) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1209366) LTE_AT: <<< ||>
+I (1209505) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1209560) LTE_AT: <<< ||OK||
+I (1209740) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1211532) LTE_AT: >>> AT+CSQ
+I (1211587) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (1211587) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (1211607) LTE_AT: >>> AT+CTZU=1
+I (1211663) LTE_AT: <<< ||OK||
+I (1211883) LTE_AT: >>> AT+CTZR=1
+I (1211936) LTE_AT: <<< ||OK||
+I (1212076) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1212130) LTE_AT: <<< ||>
+I (1212275) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1212330) LTE_AT: <<< ||>
+I (1212469) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1212524) LTE_AT: <<< ||OK||
+I (1212709) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1212729) LTE_AT: >>> AT+CCLK?
+I (1212788) LTE_AT: <<< ||+CCLK: "26/06/26,03:27:02+28"||||OK||
+I (1212788) LTE_AT: LTE time synced: 2026-06-26 03:27:02 tz=28
+I (1212789) PIPELINE: WDG: data=182457B offline=0B processing=0B queue=0/100
+I (1212794) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1212800) PIPELINE: WDG: pkt produced=403 delivered=403 offline=0 dropped=0
+I (1212947) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1213002) LTE_AT: <<< ||>
+I (1213146) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1213201) LTE_AT: <<< ||>
+I (1213335) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1213390) LTE_AT: <<< ||OK||
+I (1213569) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1215244) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1215299) LTE_AT: <<< ||>
+I (1215444) LTE_AT: >>> AT+CMQTTPAYLOAD=0,196
+I (1215499) LTE_AT: <<< ||>
+I (1215638) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1215693) LTE_AT: <<< ||OK||
+I (1215887) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1218110) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1218165) LTE_AT: <<< ||>
+I (1218310) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1218365) LTE_AT: <<< ||>
+I (1218504) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1218559) LTE_AT: <<< ||OK||
+I (1218740) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1221275) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1221330) LTE_AT: <<< ||>
+I (1221475) LTE_AT: >>> AT+CMQTTPAYLOAD=0,196
+I (1221530) LTE_AT: <<< ||>
+I (1221669) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1221723) LTE_AT: <<< ||OK||
+I (1221910) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1224133) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1224188) LTE_AT: <<< ||>
+I (1224333) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1224388) LTE_AT: <<< ||>
+I (1224527) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1224582) LTE_AT: <<< ||OK||
+I (1224781) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1227069) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1227124) LTE_AT: <<< ||>
+I (1227269) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1227324) LTE_AT: <<< ||>
+I (1227463) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1227517) LTE_AT: <<< ||OK||
+I (1227699) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1230234) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1230289) LTE_AT: <<< ||>
+I (1230434) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1230489) LTE_AT: <<< ||>
+I (1230628) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1230683) LTE_AT: <<< ||OK||
+I (1230870) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1233095) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1233150) LTE_AT: <<< ||>
+I (1233295) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1233350) LTE_AT: <<< ||>
+I (1233489) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1233543) LTE_AT: <<< ||OK||
+I (1233729) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1236264) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1236319) LTE_AT: <<< ||>
+I (1236464) LTE_AT: >>> AT+CMQTTPAYLOAD=0,196
+I (1236519) LTE_AT: <<< ||>
+I (1236658) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1236712) LTE_AT: <<< ||OK||
+I (1236899) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1239121) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1239176) LTE_AT: <<< ||>
+I (1239321) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1239376) LTE_AT: <<< ||>
+I (1239515) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1239570) LTE_AT: <<< ||OK||
+I (1239750) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1242282) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1242337) LTE_AT: <<< ||>
+I (1242482) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1242537) LTE_AT: <<< ||>
+I (1242676) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1242731) LTE_AT: <<< ||OK||
+I (1242919) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1243784) LTE_AT: >>> AT+CSQ
+I (1243839) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (1243839) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (1243859) LTE_AT: >>> AT+CTZU=1
+I (1243915) LTE_AT: <<< ||OK||
+I (1244135) LTE_AT: >>> AT+CTZR=1
+I (1244188) LTE_AT: <<< ||OK||
+I (1244445) LTE_AT: >>> AT+CCLK?
+I (1244504) LTE_AT: <<< ||+CCLK: "26/06/26,03:27:34+28"||||OK||
+I (1244504) LTE_AT: LTE time synced: 2026-06-26 03:27:34 tz=28
+I (1244505) PIPELINE: WDG: data=184409B offline=0B processing=0B queue=0/100
+I (1244510) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1244516) PIPELINE: WDG: pkt produced=413 delivered=413 offline=0 dropped=0
+I (1244663) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1244718) LTE_AT: <<< ||>
+I (1244863) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1244918) LTE_AT: <<< ||>
+I (1245053) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1245107) LTE_AT: <<< ||OK||
+I (1245290) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1245430) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1245485) LTE_AT: <<< ||>
+I (1245630) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1245685) LTE_AT: <<< ||>
+I (1245824) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1245879) LTE_AT: <<< ||OK||
+I (1246059) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1248281) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1248336) LTE_AT: <<< ||>
+I (1248481) LTE_AT: >>> AT+CMQTTPAYLOAD=0,191
+I (1248536) LTE_AT: <<< ||>
+I (1248675) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1248729) LTE_AT: <<< ||OK||
+I (1248910) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1251132) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1251187) LTE_AT: <<< ||>
+I (1251332) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1251387) LTE_AT: <<< ||>
+I (1251526) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1251581) LTE_AT: <<< ||OK||
+I (1251779) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1254078) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1254133) LTE_AT: <<< ||>
+I (1254278) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1254333) LTE_AT: <<< ||>
+I (1254472) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1254527) LTE_AT: <<< ||OK||
+I (1254710) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1257242) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1257297) LTE_AT: <<< ||>
+I (1257442) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1257497) LTE_AT: <<< ||>
+I (1257636) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1257691) LTE_AT: <<< ||OK||
+I (1257879) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1260104) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1260159) LTE_AT: <<< ||>
+I (1260304) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1260359) LTE_AT: <<< ||>
+I (1260498) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1260553) LTE_AT: <<< ||OK||
+I (1260741) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1263274) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1263329) LTE_AT: <<< ||>
+I (1263474) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1263529) LTE_AT: <<< ||>
+I (1263668) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1263722) LTE_AT: <<< ||OK||
+I (1263910) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1266133) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1266188) LTE_AT: <<< ||>
+I (1266333) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1266388) LTE_AT: <<< ||>
+I (1266527) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1266582) LTE_AT: <<< ||OK||
+I (1266770) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1269083) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1269138) LTE_AT: <<< ||>
+I (1269283) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1269338) LTE_AT: <<< ||>
+I (1269477) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1269532) LTE_AT: <<< ||OK||
+I (1269720) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1272253) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1272308) LTE_AT: <<< ||>
+I (1272453) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1272508) LTE_AT: <<< ||>
+I (1272647) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1272702) LTE_AT: <<< ||OK||
+I (1272890) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1275113) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1275168) LTE_AT: <<< ||>
+I (1275313) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1275368) LTE_AT: <<< ||>
+I (1275507) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1275562) LTE_AT: <<< ||OK||
+I (1275750) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1275770) LTE_AT: >>> AT+CSQ
+I (1275825) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (1275825) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (1275845) LTE_AT: >>> AT+CTZU=1
+I (1275901) LTE_AT: <<< ||OK||
+I (1276121) LTE_AT: >>> AT+CTZR=1
+I (1276174) LTE_AT: <<< ||OK||
+I (1276431) LTE_AT: >>> AT+CCLK?
+I (1276490) LTE_AT: <<< ||+CCLK: "26/06/26,03:28:06+28"||||OK||
+I (1276490) LTE_AT: LTE time synced: 2026-06-26 03:28:06 tz=28
+I (1276491) PIPELINE: WDG: data=186543B offline=0B processing=0B queue=0/100
+I (1276496) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1276502) PIPELINE: WDG: pkt produced=424 delivered=424 offline=0 dropped=0
+I (1276649) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1276704) LTE_AT: <<< ||>
+I (1276848) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1276903) LTE_AT: <<< ||>
+I (1277038) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1277092) LTE_AT: <<< ||OK||
+I (1277288) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1278248) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1278303) LTE_AT: <<< ||>
+I (1278448) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1278503) LTE_AT: <<< ||>
+I (1278642) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1278697) LTE_AT: <<< ||OK||
+I (1278880) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1281102) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1281157) LTE_AT: <<< ||>
+I (1281302) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1281357) LTE_AT: <<< ||>
+I (1281496) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1281550) LTE_AT: <<< ||OK||
+I (1281730) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1284265) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1284320) LTE_AT: <<< ||>
+I (1284465) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1284520) LTE_AT: <<< ||>
+I (1284659) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1284713) LTE_AT: <<< ||OK||
+I (1284908) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1287131) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1287186) LTE_AT: <<< ||>
+I (1287331) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1287386) LTE_AT: <<< ||>
+I (1287525) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1287580) LTE_AT: <<< ||OK||
+I (1287760) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1290292) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1290347) LTE_AT: <<< ||>
+I (1290492) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1290547) LTE_AT: <<< ||>
+I (1290686) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1290740) LTE_AT: <<< ||OK||
+I (1290920) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1293145) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1293200) LTE_AT: <<< ||>
+I (1293345) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1293400) LTE_AT: <<< ||>
+I (1293539) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1293593) LTE_AT: <<< ||OK||
+I (1293780) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1296092) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1296147) LTE_AT: <<< ||>
+I (1296292) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1296347) LTE_AT: <<< ||>
+I (1296486) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1296541) LTE_AT: <<< ||OK||
+I (1296720) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1299255) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1299310) LTE_AT: <<< ||>
+I (1299455) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1299510) LTE_AT: <<< ||>
+I (1299649) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1299704) LTE_AT: <<< ||OK||
+I (1299890) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1302112) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1302167) LTE_AT: <<< ||>
+I (1302312) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1302367) LTE_AT: <<< ||>
+I (1302506) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1302560) LTE_AT: <<< ||OK||
+I (1302748) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1305280) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1305335) LTE_AT: <<< ||>
+I (1305480) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1305535) LTE_AT: <<< ||>
+I (1305674) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1305728) LTE_AT: <<< ||OK||
+I (1305910) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1307395) LTE_AT: >>> AT+CSQ
+I (1307450) LTE_AT: <<< ||+CSQ: 24,99||||OK||
+I (1307450) PIPELINE: WDG: RSSI=24 | State=3 | Drops=0
+I (1307470) LTE_AT: >>> AT+CTZU=1
+I (1307526) LTE_AT: <<< ||OK||
+I (1307746) LTE_AT: >>> AT+CTZR=1
+I (1307799) LTE_AT: <<< ||OK||
+I (1308056) LTE_AT: >>> AT+CCLK?
+I (1308115) LTE_AT: <<< ||+CCLK: "26/06/26,03:28:37+28"||||OK||
+I (1308115) LTE_AT: LTE time synced: 2026-06-26 03:28:37 tz=28
+I (1308116) PIPELINE: WDG: data=188491B offline=0B processing=0B queue=0/100
+I (1308121) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1308127) PIPELINE: WDG: pkt produced=435 delivered=434 offline=0 dropped=0
+I (1308274) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1308329) LTE_AT: <<< ||>
+I (1308473) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1308528) LTE_AT: <<< ||>
+I (1308663) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1308718) LTE_AT: <<< ||OK||
+I (1308900) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1309040) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1309095) LTE_AT: <<< ||>
+I (1309240) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1309295) LTE_AT: <<< ||>
+I (1309434) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1309489) LTE_AT: <<< ||OK||
+I (1309688) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1311291) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1311346) LTE_AT: <<< ||>
+I (1311491) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1311546) LTE_AT: <<< ||>
+I (1311685) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1311740) LTE_AT: <<< ||OK||
+I (1311920) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1314143) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1314198) LTE_AT: <<< ||>
+I (1314343) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1314398) LTE_AT: <<< ||>
+I (1314537) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1314592) LTE_AT: <<< ||OK||
+I (1314787) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1317099) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1317154) LTE_AT: <<< ||>
+I (1317299) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1317354) LTE_AT: <<< ||>
+I (1317493) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1317548) LTE_AT: <<< ||OK||
+I (1317794) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1320100) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1320155) LTE_AT: <<< ||>
+I (1320300) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1320355) LTE_AT: <<< ||>
+I (1320494) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1320549) LTE_AT: <<< ||OK||
+I (1320730) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1323265) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1323320) LTE_AT: <<< ||>
+I (1323465) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1323520) LTE_AT: <<< ||>
+I (1323659) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1323714) LTE_AT: <<< ||OK||
+I (1323907) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1326129) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1326184) LTE_AT: <<< ||>
+I (1326329) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1326384) LTE_AT: <<< ||>
+I (1326523) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1326578) LTE_AT: <<< ||OK||
+I (1326760) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1329292) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1329347) LTE_AT: <<< ||>
+I (1329492) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1329547) LTE_AT: <<< ||>
+I (1329686) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1329740) LTE_AT: <<< ||OK||
+I (1329920) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1332145) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1332200) LTE_AT: <<< ||>
+I (1332345) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1332400) LTE_AT: <<< ||>
+I (1332539) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1332594) LTE_AT: <<< ||OK||
+I (1332787) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1335105) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1335160) LTE_AT: <<< ||>
+I (1335305) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1335360) LTE_AT: <<< ||>
+I (1335499) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1335554) LTE_AT: <<< ||OK||
+I (1335747) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1338279) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1338334) LTE_AT: <<< ||>
+I (1338479) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1338534) LTE_AT: <<< ||>
+I (1338673) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1338727) LTE_AT: <<< ||OK||
+I (1338911) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1338931) LTE_AT: >>> AT+CSQ
+I (1338986) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (1338986) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (1339006) LTE_AT: >>> AT+CTZU=1
+I (1339062) LTE_AT: <<< ||OK||
+I (1339282) LTE_AT: >>> AT+CTZR=1
+I (1339335) LTE_AT: <<< ||OK||
+I (1339592) LTE_AT: >>> AT+CCLK?
+I (1339651) LTE_AT: <<< ||+CCLK: "26/06/26,03:29:09+28"||||OK||
+I (1339651) LTE_AT: LTE time synced: 2026-06-26 03:29:09 tz=28
+I (1339652) PIPELINE: WDG: data=190625B offline=0B processing=0B queue=0/100
+I (1339657) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1339663) PIPELINE: WDG: pkt produced=445 delivered=445 offline=0 dropped=0
+I (1339810) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1339865) LTE_AT: <<< ||>
+I (1340009) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1340064) LTE_AT: <<< ||>
+I (1340198) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1340253) LTE_AT: <<< ||OK||
+I (1340440) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1341107) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1341162) LTE_AT: <<< ||>
+I (1341307) LTE_AT: >>> AT+CMQTTPAYLOAD=0,197
+I (1341362) LTE_AT: <<< ||>
+I (1341501) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1341556) LTE_AT: <<< ||OK||
+I (1341751) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1344283) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1344338) LTE_AT: <<< ||>
+I (1344483) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1344538) LTE_AT: <<< ||>
+I (1344677) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1344732) LTE_AT: <<< ||OK||
+I (1344921) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1347147) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1347202) LTE_AT: <<< ||>
+I (1347347) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1347402) LTE_AT: <<< ||>
+I (1347541) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1347596) LTE_AT: <<< ||OK||
+I (1347791) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1350110) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1350165) LTE_AT: <<< ||>
+I (1350310) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1350365) LTE_AT: <<< ||>
+I (1350504) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1350559) LTE_AT: <<< ||OK||
+I (1350740) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1353273) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1353328) LTE_AT: <<< ||>
+I (1353473) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1353528) LTE_AT: <<< ||>
+I (1353667) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1353722) LTE_AT: <<< ||OK||
+I (1353910) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1356135) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1356190) LTE_AT: <<< ||>
+I (1356335) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1356390) LTE_AT: <<< ||>
+I (1356529) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1356584) LTE_AT: <<< ||OK||
+I (1356771) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1359113) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1359168) LTE_AT: <<< ||>
+I (1359313) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1359368) LTE_AT: <<< ||>
+I (1359507) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1359562) LTE_AT: <<< ||OK||
+I (1359751) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1362317) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1362372) LTE_AT: <<< ||>
+I (1362517) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1362572) LTE_AT: <<< ||>
+I (1362711) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1362765) LTE_AT: <<< ||OK||
+I (1362951) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1365212) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1365267) LTE_AT: <<< ||>
+I (1365412) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1365467) LTE_AT: <<< ||>
+I (1365606) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1365660) LTE_AT: <<< ||OK||
+I (1365841) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1368116) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1368171) LTE_AT: <<< ||>
+I (1368316) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1368371) LTE_AT: <<< ||>
+I (1368510) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1368564) LTE_AT: <<< ||OK||
+I (1368751) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1370558) LTE_AT: >>> AT+CSQ
+I (1370613) LTE_AT: <<< ||+CSQ: 23,99||||OK||
+I (1370613) PIPELINE: WDG: RSSI=23 | State=3 | Drops=0
+I (1370633) LTE_AT: >>> AT+CTZU=1
+I (1370689) LTE_AT: <<< ||OK||
+I (1370909) LTE_AT: >>> AT+CTZR=1
+I (1370962) LTE_AT: <<< ||OK||
+I (1371117) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1371171) LTE_AT: <<< ||>
+I (1371316) LTE_AT: >>> AT+CMQTTPAYLOAD=0,192
+I (1371371) LTE_AT: <<< ||>
+I (1371510) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1371565) LTE_AT: <<< ||OK||
+I (1371761) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1371781) LTE_AT: >>> AT+CCLK?
+I (1371840) LTE_AT: <<< ||+CCLK: "26/06/26,03:29:41+28"||||OK||
+I (1371840) LTE_AT: LTE time synced: 2026-06-26 03:29:41 tz=28
+I (1371841) PIPELINE: WDG: data=192769B offline=0B processing=0B queue=0/100
+I (1371846) PIPELINE: WDG: heap_free=173492 heap_min=160740
+I (1371852) PIPELINE: WDG: pkt produced=456 delivered=456 offline=0 dropped=0
+I (1371999) LTE_AT: >>> AT+CMQTTTOPIC=0,24
+I (1372054) LTE_AT: <<< ||>
+I (1372198) LTE_AT: >>> AT+CMQTTPAYLOAD=0,141
+I (1372253) LTE_AT: <<< ||>
+I (1372387) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1372442) LTE_AT: <<< ||OK||
+I (1372641) MQTT: PUB OK >> [traintrack/Bamboo/status]
+I (1374293) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1374348) LTE_AT: <<< ||>
+I (1374493) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1374548) LTE_AT: <<< ||>
+I (1374687) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1374742) LTE_AT: <<< ||OK||
+I (1374931) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1377153) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1377208) LTE_AT: <<< ||>
+I (1377353) LTE_AT: >>> AT+CMQTTPAYLOAD=0,193
+I (1377408) LTE_AT: <<< ||>
+I (1377547) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1377602) LTE_AT: <<< ||OK||
+I (1377847) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1380120) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1380175) LTE_AT: <<< ||>
+I (1380320) LTE_AT: >>> AT+CMQTTPAYLOAD=0,194
+I (1380375) LTE_AT: <<< ||>
+I (1380514) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1380568) LTE_AT: <<< ||OK||
+I (1380751) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]
+I (1383283) LTE_AT: >>> AT+CMQTTTOPIC=0,27
+I (1383338) LTE_AT: <<< ||>
+I (1383483) LTE_AT: >>> AT+CMQTTPAYLOAD=0,195
+I (1383538) LTE_AT: <<< ||>
+I (1383677) LTE_AT: >>> AT+CMQTTPUB=0,1,60
+I (1383732) LTE_AT: <<< ||OK||
+I (1383921) MQTT: PUB OK >> [traintrack/Bamboo/telemetry]

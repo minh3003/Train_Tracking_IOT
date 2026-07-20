@@ -20,16 +20,13 @@ bool      sd_log_delete(const char *filename);
 bool      sd_log_rename(const char *old_filename, const char *new_filename);
 int       sd_log_count_lines(const char *filename);
 
-/* Đọc từng dòng từ file offline buffer */
-FILE*     sd_log_open_read(const char *filename);
-void      sd_log_close_read(FILE *f);
 
 /**
  * Doc N dong tu file, bat dau tu offset byte.
  * Mutex chi giu trong luc doc batch, khong giu lau.
  * Return: so dong doc duoc, -1 neu loi.
  */
-int       sd_log_read_lines(const char *fn, long offset,
+int       sd_log_read_lines(const char *fn, long *offset,
                             char lines[][PAYLOAD_MAX_LEN], int max_lines);
 
 #endif /* SD_LOG_H */

@@ -26,11 +26,11 @@
 #define GPS_UART_BAUD       9600
 
 /* MPU6050 - I2C */
-#define MPU_SDA_PIN         21
-#define MPU_SCL_PIN         22
+#define MPU_SDA_PIN         32
+#define MPU_SCL_PIN         33
 #define MPU_I2C_ADDR        0x68
 
 /* LED onboard (GPIO4 used for LTE_RESET) */
-#define LED_PIN             13
+#define LED_PIN             2
 
 #endif /* PIN_CONFIG_H */

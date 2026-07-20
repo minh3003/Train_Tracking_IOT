@@ -136,7 +136,8 @@ static void prv_drain_uart(void)
 {
     uint8_t tmp[256];
     int total = 0;
-    while (1) {
+    int max_iters = 200; /* [FIX] Chống treo vô hạn do nhiễu RX (floating pin) */
+    while (max_iters-- > 0) {
         int n = uart_read_bytes(LTE_UART_NUM, tmp, sizeof(tmp),
                                 pdMS_TO_TICKS(100));
         if (n <= 0) break;
@@ -155,7 +156,10 @@ static bool prv_resp_done(const char *buf)
     if (strstr(buf, "\r\nOK\r\n"))    return true;
     if (strstr(buf, "\r\nERROR\r\n")) return true;
     if (strstr(buf, "+CME ERROR"))    return true;
-    if (strstr(buf, ">"))             return true;
+    /* [M2-FIX-CORRECTED] A7680C tra ve "\r\n>" ma KHONG co khoang trang.
+     * Sua lai de khong bi timeout oan 5s. */
+    if (strstr(buf, "\r\n>"))    return true;
+    if (buf[0] == '>')           return true;
     return false;
 }
 
@@ -231,9 +235,15 @@ static esp_err_t prv_read_response(const char *cmd,
     TickType_t deadline = start + pdMS_TO_TICKS(timeout_ms);
 
     while (xTaskGetTickCount() < deadline) {
+        int space_left = sizeof(s_resp) - total - 1;
+        if (space_left <= 0) {
+            LOG_E(TAG, "AT response buffer FULL (Noise detected)");
+            break;
+        }
+
         int got = uart_read_bytes(LTE_UART_NUM,
                                    (uint8_t *)(s_resp + total),
-                                   sizeof(s_resp) - total - 1,
+                                   space_left,
                                    pdMS_TO_TICKS(50));
         if (got > 0) {
             total += got;
@@ -348,8 +358,8 @@ void lte_at_send_raw(const uint8_t *data, size_t len)
 void lte_at_flush(void)
 {
     char tmp[257];
-
-    while (1) {
+    int max_iters = 200; /* [FIX] Chống treo vô hạn do nhiễu RX (floating pin) */
+    while (max_iters-- > 0) {
         int n = uart_read_bytes(LTE_UART_NUM, (uint8_t *)tmp,
                                 sizeof(tmp) - 1, pdMS_TO_TICKS(20));
         if (n <= 0) break;
@@ -409,6 +419,10 @@ bool lte_full_init(void)
     prv_drain_uart();
     vTaskDelay(pdMS_TO_TICKS(300));
 
+    /* Bat NITZ auto-update ngay tu dau de don ban tin tu nha mang */
+    (void)lte_at_send("AT+CTZU=1", "OK", NULL, 0, AT_TIMEOUT_SHORT);
+    (void)lte_at_send("AT+CTZR=1", "OK", NULL, 0, AT_TIMEOUT_SHORT);
+
     /* [2] SIM */
     LOG_I(TAG, "[2/8] SIM card...");
     if (lte_at_send("AT+CPIN?", "READY", resp, sizeof(resp), 5000) != ESP_OK) {
@@ -456,6 +470,12 @@ bool lte_full_init(void)
     if (!registered) {
         LOG_E(TAG, "NETWORK FAIL - check SIM/coverage");
         return false;
+    }
+
+    /* [4.5] Network time (NITZ) - Lay gio ngay khi co song, khong cho Internet */
+    LOG_I(TAG, "[4.5/8] Network time...");
+    if (!lte_time_sync()) {
+        LOG_W(TAG, "  LTE time not synced yet, will retry in background");
     }
 
     /* [5] PDP context (internet) */
@@ -560,12 +580,6 @@ bool lte_full_init(void)
         LOG_W(TAG, "  DNS failed, using fallback IP: %s", MQTT_BROKER_IP);
         strncpy(s_broker_ip, MQTT_BROKER_IP, sizeof(s_broker_ip) - 1);
         s_broker_ip[sizeof(s_broker_ip) - 1] = '\0';
-    }
-
-    /* [8] Network time */
-    LOG_I(TAG, "[8/8] Network time...");
-    if (!lte_time_sync()) {
-        LOG_W(TAG, "  LTE time not synced - log retention by day disabled");
     }
 
     /* Done */

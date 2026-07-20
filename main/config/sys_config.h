@@ -4,18 +4,21 @@
 /* SIM / APN */
 #define SIM_APN             "v-internet"
 
+/* Device Identity (dung cho multi-device va packet tracing) */
+#define DEVICE_ID           "Bamboo"
+
 /* MQTT Broker */
 #define MQTT_BROKER_HOST    "broker.emqx.io"
 #define MQTT_BROKER_PORT    8883
 #define MQTT_BROKER_IP      "44.232.241.40"     /* Fallback khi DNS fail */
-#define MQTT_CLIENT_ID      "traintrack_Bamboo"
+#define MQTT_CLIENT_ID      "traintrack_" DEVICE_ID
 #define MQTT_KEEPALIVE_SEC  60
 
 /* MQTT Topics */
-#define MQTT_TOPIC_DATA     "traintrack/Bamboo/telemetry"
-#define MQTT_TOPIC_STATUS   "traintrack/Bamboo/status"
-#define MQTT_TOPIC_CMD      "traintrack/Bamboo/command"
-#define MQTT_TOPIC_RESP     "traintrack/Bamboo/response"
+#define MQTT_TOPIC_DATA     "traintrack/" DEVICE_ID "/telemetry"
+#define MQTT_TOPIC_STATUS   "traintrack/" DEVICE_ID "/status"
+#define MQTT_TOPIC_CMD      "traintrack/" DEVICE_ID "/command"
+#define MQTT_TOPIC_RESP     "traintrack/" DEVICE_ID "/response"
 
 /* Timing (ms) */
 #define SENSOR_INTERVAL_MS      3000
@@ -35,8 +38,8 @@
 /* Data log history. Offline buffer is never deleted by retention policy. */
 #define DATA_LOG_ENABLE             1
 #define DATA_LOG_MAX_BYTES          (5 * 1024 * 1024)
-#define DATA_LOG_MAX_FILES          10
-#define DATA_LOG_RETENTION_DAYS     5
+#define DATA_LOG_MAX_FILES          100
+#define DATA_LOG_RETENTION_DAYS     30
 #define DATA_LOG_MAINT_INTERVAL_MS  60000
 
 /* AT Command Timeouts (ms) */
