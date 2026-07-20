@@ -1,67 +1,72 @@
-# Phần mềm nhúng (Firmware) Hệ thống Giám sát Hành trình Tàu hỏa IoT
+# Data Integrity Assurance Solution for IoT Train Tracking Systems
 
 ## Project Overview
-Dự án này cung cấp mã nguồn phần mềm nhúng (firmware) cho Hệ thống Giám sát Hành trình Tàu hỏa IoT. Hệ thống được phát triển nhằm mục đích thu thập và truyền tải dữ liệu cảm biến theo thời gian thực về vị trí, gia tốc, và trạng thái môi trường trên tàu hỏa. Với môi trường đặc thù của đường sắt thường xuyên bị mất sóng LTE/3G và nhiễu điện từ (EMI), hệ thống được thiết kế hướng tới độ tin cậy cao, tự động phục hồi lỗi và đảm bảo không mất mát dữ liệu.
+This repository contains the embedded software (firmware) for the IoT Train Tracking System. The project focuses on a robust solution for collecting and transmitting real-time sensor data regarding train position, acceleration, and environmental conditions. Operating in the challenging railway environment characterized by frequent LTE/3G network dropouts and electromagnetic interference (EMI), this system is architected for high reliability, automatic fault recovery, and strict **zero data loss** guarantees.
 
 ## System Architecture
-Kiến trúc hệ thống bao gồm hai luồng hoạt động song song trên vi điều khiển ESP32: Luồng thu thập dữ liệu (Sensor Core) và Luồng xử lý truyền thông (Network Core). Toàn bộ dữ liệu được đồng bộ hóa và quản lý thông qua cơ chế Queue, Mutex của FreeRTOS, đảm bảo tính an toàn dữ liệu giữa các tiến trình.
+The system architecture features two parallel operational flows running on the ESP32 microcontroller: the Sensor Data Acquisition flow (Sensor Core) and the Communication Processing flow (Network Core). All data synchronization and management are handled via FreeRTOS Queues and Mutexes, ensuring thread-safe data integrity across concurrent processes.
 
-## Hardware
-- **Vi điều khiển chính:** ESP32 (Dual-core, XTensa LX6)
-- **Module kết nối mạng:** Module LTE/4G (Giao tiếp qua tập lệnh AT)
-- **Module định vị:** GPS/GNSS
-- **Cảm biến:** Gia tốc kế, Cảm biến nhiệt độ/độ ẩm
-- **Lưu trữ ngoại tuyến:** Thẻ nhớ SD (Giao tiếp SPI)
-- **Nguồn:** Hệ thống quản lý pin và dự phòng năng lượng.
+## Hardware Components
+- **Main Microcontroller:** ESP32 (Dual-core, XTensa LX6)
+- **Cellular Network:** LTE/4G Module (AT Command Interface)
+- **Positioning:** GPS/GNSS Module
+- **Sensors:** Accelerometer (IMU), Temperature & Humidity Sensors
+- **Offline Storage:** SD Card (SPI Interface)
+- **Power Management:** Battery management and backup power system
 
 ## Software Stack
-- **Hệ điều hành:** FreeRTOS (ESP-IDF v5.x)
-- **Ngôn ngữ lập trình:** C (C99/C11)
-- **Giao thức truyền tải:** MQTT (QoS 1)
-- **File System:** FAT32 (Cho thẻ SD)
+- **Operating System:** FreeRTOS (ESP-IDF v5.x)
+- **Programming Language:** C (C99/C11)
+- **Transport Protocol:** MQTT (QoS 1)
+- **File System:** FAT32 (for SD Card)
 
-## Features
-- **Store-and-Forward:** Tự động lưu trữ dữ liệu vào thẻ nhớ SD khi mất mạng và gửi tiếp khi kết nối khôi phục (Zero Data Loss).
-- **Interleaved Flush & Adaptive Rate:** Xả dữ liệu đệm linh hoạt kết hợp với việc điều chỉnh tốc độ lấy mẫu dựa trên băng thông mạng để tránh quá tải MQTT broker.
-- **Hardware-Level Fault Tolerance:** Tích hợp Watchdog tự chuẩn đoán lỗi và điều khiển khôi phục phần cứng (thông qua GPIO PWRKEY) khi module viễn thông bị treo do nhiễu.
-- **Core-Pinned Multitasking:** Cô lập các tác vụ để tránh gián đoạn tiến trình quan trọng.
+## Key Features
+- **Store-and-Forward (Zero Data Loss):** Automatically buffers data to the SD card during network outages and forwards it sequentially upon connection recovery.
+- **Interleaved Flush & Adaptive Rate:** Intelligently flushes buffered data while adapting the sampling rate based on available network bandwidth to prevent MQTT broker overload.
+- **Hardware-Level Fault Tolerance:** Integrated hardware Watchdog and self-diagnostic routines to recover from hardware freezes caused by severe EMI (via GPIO PWRKEY).
+- **Core-Pinned Multitasking:** Isolates critical tasks across different CPU cores to prevent high-priority process interruptions.
 
 ## Directory Structure
-- `main/`: Source code cốt lõi của hệ thống (ESP-IDF).
-- `Hardware_Architecture/`: Các bản vẽ sơ đồ nguyên lý (Schematic) và layout mạch.
-- `Software_Architecture/`: Các tài liệu và sơ đồ khối về luồng phần mềm.
-- `Demo/`: Video và hình ảnh hoạt động thực tế của hệ thống.
+- `main/`: Core firmware source code (ESP-IDF).
+- `Hardware_Architecture/`: Schematics, PCB layouts, and hardware design files.
+- `Software_Architecture/`: Flowcharts and software architecture documentation.
+- `Demo/`: Live demonstration videos and system operation footage.
+- `Docs/`: Project documentation and technical reference manuals.
+- `Images/`: Diagram assets and project photos.
+- `scripts_bieu_do/`: Python scripts for data visualization and analysis.
+- **Utility Scripts:** `demo_live.py`, `log_mqtt.py`, `parse_heap.py` for debugging and logging.
 
-## Build
-Dự án sử dụng toolchain tiêu chuẩn của ESP-IDF. Để biên dịch:
+## Build Instructions
+This project utilizes the standard ESP-IDF toolchain. To build the firmware:
 
 ```bash
-# 1. Thiết lập môi trường ESP-IDF
+# 1. Setup the ESP-IDF environment
 get_idf
 
-# 2. Cấu hình dự án (nếu cần thay đổi thông số)
+# 2. Configure project parameters (if necessary)
 idf.py menuconfig
 
-# 3. Biên dịch mã nguồn thành file binary (.bin)
+# 3. Build the firmware binary (.bin)
 idf.py build
 ```
+*(Note: Never auto-build the project directly. Ensure your ESP-IDF environment is properly configured before building.)*
 
-## Flash
-Để nạp chương trình xuống thiết bị và theo dõi log hệ thống:
+## Flash & Monitor
+To flash the firmware to the ESP32 and monitor the serial output:
 
 ```bash
-# 4. Nạp chương trình xuống ESP32 và mở màn hình theo dõi log
+# Flash to the device and open the serial monitor
 idf.py -p COM_PORT flash monitor
 ```
 
-## Demo Video
-*(Link video demo thực tế của hệ thống sẽ được cập nhật tại thư mục Demo)*
+## Demonstration
+*(Live demonstration videos and images can be found in the `Demo/` directory.)*
 
 ## Future Work
-- Cải thiện thuật toán **Adaptive Sampling** (Lấy mẫu động) thông minh hơn dựa trên bối cảnh môi trường để tối ưu hóa năng lượng và băng thông.
-- Nâng cấp File System từ FAT32 sang LittleFS để tối ưu hóa ghi xóa (Wear Leveling) trên thẻ nhớ, chống phân mảnh bộ nhớ.
-- Tích hợp thêm các cơ chế bảo mật cho kết nối MQTT qua TLS (mbedTLS).
-- Triển khai cập nhật phần mềm từ xa qua mạng (OTA Update).
+- **Context-Aware Adaptive Sampling:** Enhancing the dynamic sampling algorithm to optimize power and bandwidth consumption based on environmental context.
+- **LittleFS Migration:** Upgrading the file system from FAT32 to LittleFS to optimize wear leveling and prevent memory fragmentation on the SD card.
+- **Enhanced Security:** Integrating TLS (mbedTLS) for secure MQTT communication.
+- **OTA Updates:** Implementing Over-The-Air (OTA) firmware update capabilities.
 
 ## License
 [MIT License](LICENSE)
